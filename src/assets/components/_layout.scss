@@ -1,0 +1,70 @@
+@mixin pad-l {
+  @media (max-width: 1025px) {
+    @content
+  }
+};
+
+@mixin pad-m {
+  @media (max-width: 821px) {
+    @content
+  }
+};
+
+@mixin mobile-m {
+  @media (max-width: 415px) {
+    @content
+  }
+};
+
+@mixin mobile-s {
+  @media (max-width: 376px) {
+    @content
+  }
+};
+
+body a {
+  text-decoration: none;
+}
+
+.bg-color {
+  background: linear-gradient(#fff, #fbfbfd);
+  .title-bold {
+    font-weight: 800;
+    text-shadow: 0.5px 0.5px 1px #555;
+  }
+}
+
+.accordion-bg {
+  background-color: #fbfbfd;
+}
+
+.footer-bg {
+  background-color: #34495E;
+}
+
+.bg-cover {
+  background-size: cover;
+  background-position: top center;
+}
+
+.bg-blur {
+  width: 100%;
+  backdrop-filter: blur(6px);
+}
+
+.card{
+  transition: ease 0.5s;
+  cursor: pointer;
+  &:hover{
+    background-color: rgba(255, 255, 255, 0.25);
+  }
+  .card-img-top {
+    transition: ease 0.5s;
+    padding: 10px;
+    filter: brightness(75%);
+    &:hover {
+      padding: 0;
+      filter: brightness(100%);
+    }
+  }
+}

@@ -1,0 +1,8 @@
+@import '~bootstrap/scss/functions';
+@import './helpers/variables';
+@import '~bootstrap/scss/mixins';
+
+@import '~bootstrap/scss/bootstrap';
+@import './components/navbar';
+@import './components/layout';
+@import './components/index';
