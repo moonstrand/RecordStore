@@ -21,7 +21,7 @@
         aria-expanded="false"
         aria-label="Toggle navigation"
       >
-        <span class="navbar-toggler-icon"></span>
+        <span class="bi bi-list text-light"></span>
       </button>
       <div class="collapse navbar-collapse nav-shift" id="navbarText">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -41,7 +41,7 @@
               ><i class="bi bi-star"></i
             ></a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item my-md-0 my-2">
             <a class="nav-icon text-light fs-4" href="#"
               ><i class="bi bi-cart2"></i
             ></a>

@@ -1,12 +1,27 @@
 @import '../helpers/variables';
 
 .banner-bg {
-  background-image: url(https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1469&q=80);
-  height: 100vh;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3),rgba(0, 0, 0, 0.45)), url(https://images.unsplash.com/photo-1518481852452-9415b262eba4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80);
   background-size: cover;
-  background-position: center 85%;
-  @include pad-m {
-    background-position: bottom center;
+  background-position: top center;
+  height: 100vh;
+  position: relative;
+  .banner-content {
+    position: absolute;
+    bottom: 25%;
+    left: 15%;
+    @include mobile-m {
+      bottom: 15%;
+      left: 5%;
+    }
+    p {
+      font-weight: 400;
+      letter-spacing: 0.35rem;
+      text-shadow: 0.5px 0.5px 5px #EEE;
+      @include mobile-m {
+        font-size:  16px;
+      }
+    }
   }
 }
 
@@ -32,14 +47,23 @@
 .intro {
   background-image: linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.8)), url(https://images.unsplash.com/photo-1509363256058-621c95e5d4d4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80);
   background-attachment: fixed;
-  .intro-content {
+  .item-content {
     letter-spacing: 1.5px;
+    @include pad-xl {
+      font-size: 16px;
+    }
   }
 }
 
 .content {
   background-image: linear-gradient(rgba(0, 0, 0, 0.2),rgba(0, 0, 0, 0.4)), url(https://images.unsplash.com/photo-1542245980-c52e250a65ec?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80);
   background-attachment: fixed;
+}
+
+.card-body p {
+  @include pad-l {
+    font-size: 16px !important;
+  }
 }
 
 .coupon {
@@ -53,4 +77,20 @@
       box-shadow: 0 0 10px #fff;
     }
   }
+}
+
+.accordion-button {
+  @include mobile-m {
+    font-size: 13.5px;
+  }
+}
+
+.accordion-body {
+  @include mobile-m {
+    font-size: 14.5px;
+  }
+}
+
+.accordion-bg {
+  background-color: #fbfbfd;
 }

@@ -1,3 +1,9 @@
+@mixin pad-xl {
+  @media (max-width: 1181px) {
+    @content
+  }
+};
+
 @mixin pad-l {
   @media (max-width: 1025px) {
     @content
@@ -17,7 +23,7 @@
 };
 
 @mixin mobile-s {
-  @media (max-width: 376px) {
+  @media (max-width: 391px) {
     @content
   }
 };
@@ -34,10 +40,6 @@ body a {
   }
 }
 
-.accordion-bg {
-  background-color: #fbfbfd;
-}
-
 .footer-bg {
   background-color: #34495E;
 }
@@ -45,11 +47,6 @@ body a {
 .bg-cover {
   background-size: cover;
   background-position: top center;
-}
-
-.bg-blur {
-  width: 100%;
-  backdrop-filter: blur(6px);
 }
 
 .card{
