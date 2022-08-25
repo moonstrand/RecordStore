@@ -53,3 +53,22 @@
   opacity: 0.95;
   box-shadow: 0 1px 1px -2px #777;
 }
+
+.offcanvas-body {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  ul {
+    width: 100%;
+  }
+  .canvas-link {
+    padding: 15px 0;
+    transition: ease 0.35s;
+    display: block;
+    &:hover {
+      font-size: 35px;
+    }
+  }
+}
