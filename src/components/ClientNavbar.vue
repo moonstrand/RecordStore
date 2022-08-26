@@ -35,12 +35,12 @@
         <div class="offcanvas-body pt-0">
           <ul class="navbar-nav text-center me-auto mb-2 mb-lg-0">
             <li class="nav-item py-2 fs-4">
-              <router-link class="canvas-link text-light" to="index"
+              <router-link class="canvas-link text-light" to="/"
                 >返回首頁</router-link
               >
             </li>
             <li class="nav-item py-2 fs-4">
-              <router-link class="canvas-link text-light" to="index">專輯列表</router-link>
+              <router-link class="canvas-link text-light" to="products">專輯列表</router-link>
             </li>
             <li class="nav-item py-2 fs-4">
               <router-link class="canvas-link text-light" to="index"
@@ -80,29 +80,29 @@
       <div class="collapse navbar-collapse nav-shift" id="navbarText">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-lg-flex d-none">
           <li class="nav-item">
-            <router-link class="nav-link text-light" to="/index"
+            <router-link class="nav-link text-light" to="/"
               >首頁</router-link
             >
           </li>
           <li class="nav-item">
-            <a class="nav-link text-light" href="#">專輯列表</a>
+            <router-link class="nav-link text-light" to="products">專輯列表</router-link>
           </li>
         </ul>
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-icon text-light fs-4 d-lg-block d-none" href="#"
+            <router-link class="nav-icon text-light fs-4 d-lg-block d-none" to="/"
               ><i class="bi bi-star"></i
-            ></a>
+            ></router-link>
           </li>
           <li class="nav-item my-md-0 my-2">
-            <a class="nav-icon text-light fs-4 d-lg-block d-none" href="#"
+            <router-link class="nav-icon text-light fs-4 d-lg-block d-none" to="/"
               ><i class="bi bi-cart2"></i
-            ></a>
+            ></router-link>
           </li>
           <li class="nav-item">
-            <a class="nav-icon text-light fs-4 d-lg-block d-none" href="#"
+            <router-link class="nav-icon text-light fs-4 d-lg-block d-none" to="/"
               ><i class="bi bi-person-workspace"></i
-            ></a>
+            ></router-link>
           </li>
         </ul>
       </div>
@@ -127,3 +127,7 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+@import '../assets/components/navbar.scss';
+</style>

@@ -8,9 +8,14 @@ const routes = [
     component: ClientBoard,
     children: [
       {
-        path: 'index',
+        path: '',
         name: 'index',
         component: () => import('../views/index.vue'),
+      },
+      {
+        path: 'products',
+        name: 'products',
+        component: () => import('../views/ClientProducts.vue'),
       },
     ],
   },

@@ -1,5 +1,6 @@
 <template>
-  <div class="banner-bg">
+  <!-- banner -->
+  <div class="banner">
     <div class="banner-content">
       <p class="h1 text-light">角落唱片</p>
       <p class="h1 text-light ps-5">一個尋知音，聽知音的好場所。</p>
@@ -13,10 +14,11 @@
       </div>
     </div>
   </section>
+  <!-- introduce -->
   <section class="bg-cover intro py-md-5">
     <div class="container py-4">
       <div class="row px-md-0 px-3">
-        <div class="col-md-4">
+        <div class="col-lg-4">
           <p class="h5 text-light lh-lg item-content">
             角落唱片，不只是一間唱片行。 <br />
             更是給予生活疲倦的人們一個放鬆的場所， <br />
@@ -28,8 +30,8 @@
             >
           </div>
         </div>
-        <div class="col-md-4">
-          <p class="h5 text-light lh-lg item-content py-md-0 py-4">
+        <div class="col-lg-4">
+          <p class="h5 text-light lh-lg item-content py-lg-0 py-4">
             服務項目 <br />
             <i class="bi bi-music-note pe-2"></i>
             音樂試聽 <br />
@@ -39,7 +41,7 @@
             黑膠唱片販售
           </p>
         </div>
-        <div class="col-md-4">
+        <div class="col-lg-4">
           <p class="h5 text-light lh-lg item-content">
             營業時間 & 店家資訊 <br />
             <i class="bi bi-clock pe-2"></i>
@@ -61,6 +63,7 @@
       </p>
     </div>
   </section>
+  <!-- recommend -->
   <section class="bg-cover content py-sm-5 py-3">
     <div class="container">
       <div class="row">
@@ -94,6 +97,7 @@
       </div>
     </div>
   </section>
+  <!-- coupon -->
   <section class="bg-color py-5">
     <div class="container">
       <p class="h1 text-center title-bold">歡慶角落唱片開幕</p>
@@ -110,6 +114,7 @@
       </div>
     </div>
   </section>
+  <!-- F&Q -->
   <section class="bg-color py-5">
     <div class="containe">
       <p class="h1 text-center title-bold">常見問題</p>
@@ -250,3 +255,7 @@ export default {
   name: 'Home',
 };
 </script>
+
+<style lang="scss">
+@import '../assets/components/index.scss';
+</style>

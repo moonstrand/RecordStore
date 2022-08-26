@@ -1,7 +1,9 @@
+// 導覽列 logo 樣式
 .nav-logo {
   max-width: 120px;
 }
 
+// 導覽列連結樣式
 .nav-shift .nav-link {
   padding: 10px 20px !important;
   transition: all 0.5s;
@@ -38,6 +40,7 @@
   }
 }
 
+// 導覽列小按鈕樣式
 .nav-icon {
   font-weight: 800;
   padding: 0 15px !important;
@@ -47,6 +50,7 @@
   }
 }
 
+// 導覽列滾動樣式
 .navShow {
   transition: ease 0.5s;
   background-color: #222;
@@ -54,6 +58,7 @@
   box-shadow: 0 1px 1px -2px #777;
 }
 
+// 導覽列響應式 offcanvas 樣式
 .offcanvas-body {
   height: 100%;
   display: flex;

@@ -1,0 +1,72 @@
+@import '../components/layout';
+
+.product-banner {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.8),rgba(0, 0, 0, 0.45)), url(https://images.unsplash.com/photo-1582149916751-c4ecb7b29adb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80);
+  background-size: cover;
+  background-position: bottom center;
+  height: 30vh;
+  .banner-content {
+    font-weight: 400;
+    letter-spacing: 0.35rem;
+    text-shadow: 0.5px 0.5px 5px #EEE;
+  }
+  .banner-title {
+    @include mobile-s {
+      margin-bottom: 0;
+    }
+  }
+  .h3 {
+    @include mobile-s {
+      font-size: 20px;
+    }
+  }
+}
+
+.category {
+  li {
+    border-right: 1px solid #999;
+  }
+  .category-link {
+    margin: 0 auto;
+    font-size: 20px;
+    font-weight: 600;
+    color: #666;
+    padding: 0 20px;
+    transition: ease 0.3s;
+    &:hover {
+      font-size: 22px;
+      color: #34495E;
+    }
+    &:active {
+      font-weight: 800;
+      color: #34495E;
+    }
+    @include mobile-m {
+      font-size: 14px;
+      padding: 0 20px;
+      &:hover {
+        font-size: 14px;
+      }
+    }
+    @include mobile-s {
+      font-size: 14px;
+      padding: 0 15px;
+      &:hover {
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+.products {
+  .card {
+    font-weight: 300;
+    color: #555;
+    &:hover {
+      box-shadow: 1px 1px 5px #888;
+    }
+  }
+  .card .card-img-top {
+    filter: brightness(100%);
+  }
+}

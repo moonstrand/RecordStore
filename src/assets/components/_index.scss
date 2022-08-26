@@ -1,6 +1,7 @@
-@import '../helpers/variables';
+@import '../components/layout';
 
-.banner-bg {
+// banner 樣式
+.banner {
   background-image: linear-gradient(rgba(0, 0, 0, 0.3),rgba(0, 0, 0, 0.45)), url(https://images.unsplash.com/photo-1518481852452-9415b262eba4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80);
   background-size: cover;
   background-position: top center;
@@ -25,6 +26,7 @@
   }
 }
 
+// section 文字樣式
 .section-text {
   letter-spacing: 0.5rem;
   @include mobile-m {
@@ -33,24 +35,30 @@
   }
 }
 
+// 文字淡入淡出動畫
 @keyframes fadein {
   0% {opacity: 0;}
   40% {opacity: 1;}
   100% {opacity: 0;}
 }
 
+// 文字淡入淡出動畫設置
 .hide {
   animation: fadein 8s ease;
   animation-iteration-count: infinite;
 }
 
+// 店鋪資訊樣式
 .intro {
   background-image: linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.8)), url(https://images.unsplash.com/photo-1509363256058-621c95e5d4d4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80);
   background-attachment: fixed;
   .item-content {
     letter-spacing: 1.5px;
     @include pad-xl {
-      font-size: 16px;
+      font-size: 15.5px;
+    }
+    @include pad-m {
+      font-size: 20px;
     }
     @include mobile-s {
       font-size: 15px;
@@ -58,6 +66,7 @@
   }
 }
 
+// 唱片精選樣式
 .content {
   background-image: linear-gradient(rgba(0, 0, 0, 0.2),rgba(0, 0, 0, 0.4)), url(https://images.unsplash.com/photo-1542245980-c52e250a65ec?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80);
   background-attachment: fixed;
@@ -69,6 +78,7 @@
   }
 }
 
+// 優惠券樣式
 .coupon {
   background-image: linear-gradient(rgba(0, 0, 0, 0.3),rgba(0, 0, 0, 0.5)), url(https://images.unsplash.com/photo-1608755728617-aefab37d2edd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80);
   background-attachment: fixed;
@@ -82,6 +92,7 @@
   }
 }
 
+// 常見問題樣式
 .accordion-button {
   @include mobile-m {
     font-size: 13.5px;
