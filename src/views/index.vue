@@ -25,8 +25,8 @@
             隱藏在小巷的角落，讓您遠離城市的喧囂。
           </p>
           <div class="d-flex pt-3">
-            <a class="btn btn-outline-light d-block text-center" href="#"
-              >來去逛逛</a
+            <router-link class="btn btn-outline-light d-block text-center" to="products"
+              >來去逛逛</router-link
             >
           </div>
         </div>
@@ -64,7 +64,7 @@
     </div>
   </section>
   <!-- recommend -->
-  <section class="bg-cover content py-sm-5 py-3">
+  <section class="bg-cover recommend py-sm-5 py-3">
     <div class="container">
       <div class="row">
         <div class="col-sm-4 d-flex justify-content-center">
@@ -108,7 +108,7 @@
     <div class="container py-4 d-flex justify-content-center">
       <div class="d-flex flex-column align-items-center coupon-box w-100 py-5">
         <p class="section-text h3 text-light px-5">請點此抽取折扣優惠！</p>
-        <button type="button" class="btn btn-lg btn-outline-light mt-4">
+        <button type="button" class="btn btn-outline-light mt-4">
           試手氣
         </button>
       </div>

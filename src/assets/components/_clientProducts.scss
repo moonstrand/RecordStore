@@ -1,6 +1,7 @@
 @import '../components/layout';
 
-.product-banner {
+// banner
+.products-banner {
   background-image: linear-gradient(rgba(0, 0, 0, 0.8),rgba(0, 0, 0, 0.45)), url(https://images.unsplash.com/photo-1582149916751-c4ecb7b29adb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80);
   background-size: cover;
   background-position: bottom center;
@@ -22,6 +23,7 @@
   }
 }
 
+// category
 .category {
   li {
     border-right: 1px solid #999;
@@ -58,12 +60,22 @@
   }
 }
 
+// products list
 .products {
   .card {
     font-weight: 300;
     color: #555;
     &:hover {
       box-shadow: 1px 1px 5px #888;
+    }
+    a {
+      color: #555;
+    }
+    .card-body i {
+      color: #555;
+      &:hover {
+        color: goldenrod;
+      }
     }
   }
   .card .card-img-top {

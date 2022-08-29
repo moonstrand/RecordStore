@@ -1,10 +1,12 @@
 <template>
-  <div class="product-banner d-flex justify-content-center align-items-center">
+  <!-- banner -->
+  <div class="products-banner d-flex justify-content-center align-items-center">
     <div class="banner-content text-center h1 text-light">
       <p class="banner-title">專輯列表</p>
       <p class="h3 pt-3 mb-0">「讓音樂帶給你全新的感動。」</p>
     </div>
   </div>
+  <!-- category -->
   <section class="category container py-4">
     <div class="row">
       <ul
@@ -52,42 +54,127 @@
       </div>
     </div>
   </section>
-  <section class="products container pt-3 pb-5">
+  <!-- Products list -->
+  <section class="products container pt-xl-3 pt-0 pb-xl-5 pb-0">
     <div class="row">
       <div class="col-xxl-3 col-lg-4 col-sm-6 mb-xxl-0 mb-4">
         <div class="card">
-          <img src="../assets/images/cd-1.jpg" class="card-img-top" alt="" />
-          <div class="card-body p-2">
-            <p class="fs-5 ps-2 mt-1 mb-0">好きだから。</p>
-            <p class="fs-5 text-end pe-2 mb-1">NT.350</p>
-          </div>
+          <router-link to="product" title="好きだから。">
+            <img src="../assets/images/cd-1.jpg" class="card-img-top" alt="" />
+            <div class="card-body p-2">
+              <div class="d-flex justify-content-between align-items-center">
+                <p class="fs-5 ps-2 mt-1 mb-0">好きだから。</p>
+                <a class="pe-2" href=""><i class="bi bi-star"></i></a>
+              </div>
+              <div
+                class="
+                  d-flex
+                  justify-content-between
+                  align-items-center
+                  pt-3
+                  pb-2
+                "
+              >
+                <button
+                  type="button"
+                  class="btn btn-outline-secondary btn-sm ms-2"
+                >
+                  加入購物車
+                </button>
+                <p class="fs-5 text-end pe-2 mb-0">NT.350</p>
+              </div>
+            </div>
+          </router-link>
         </div>
       </div>
       <div class="col-xxl-3 col-lg-4 col-sm-6 mb-xxl-0 mb-4">
         <div class="card">
-          <img src="../assets/images/cd-1.jpg" class="card-img-top" alt="" />
-          <div class="card-body p-2">
-            <p class="fs-5 ps-2 mt-1 mb-0">好きだから。</p>
-            <p class="fs-5 text-end pe-2 mb-1">NT.350</p>
-          </div>
+          <a href="" title="好きだから。">
+            <img src="../assets/images/cd-1.jpg" class="card-img-top" alt="" />
+            <div class="card-body p-2">
+              <div class="d-flex justify-content-between align-items-center">
+                <p class="fs-5 ps-2 mt-1 mb-0">好きだから。</p>
+                <a class="pe-2" href=""><i class="bi bi-star"></i></a>
+              </div>
+              <div
+                class="
+                  d-flex
+                  justify-content-between
+                  align-items-center
+                  pt-3
+                  pb-2
+                "
+              >
+                <button
+                  type="button"
+                  class="btn btn-outline-secondary btn-sm ms-2"
+                >
+                  加入購物車
+                </button>
+                <p class="fs-5 text-end pe-2 mb-0">NT.350</p>
+              </div>
+            </div>
+          </a>
         </div>
       </div>
       <div class="col-xxl-3 col-lg-4 col-sm-6 mb-xxl-0 mb-4">
         <div class="card">
-          <img src="../assets/images/cd-1.jpg" class="card-img-top" alt="" />
-          <div class="card-body p-2">
-            <p class="fs-5 ps-2 mt-1 mb-0">好きだから。</p>
-            <p class="fs-5 text-end pe-2 mb-1">NT.350</p>
-          </div>
+          <a href="" title="好きだから。">
+            <img src="../assets/images/cd-1.jpg" class="card-img-top" alt="" />
+            <div class="card-body p-2">
+              <div class="d-flex justify-content-between align-items-center">
+                <p class="fs-5 ps-2 mt-1 mb-0">好きだから。</p>
+                <a class="pe-2" href=""><i class="bi bi-star"></i></a>
+              </div>
+              <div
+                class="
+                  d-flex
+                  justify-content-between
+                  align-items-center
+                  pt-3
+                  pb-2
+                "
+              >
+                <button
+                  type="button"
+                  class="btn btn-outline-secondary btn-sm ms-2"
+                >
+                  加入購物車
+                </button>
+                <p class="fs-5 text-end pe-2 mb-0">NT.350</p>
+              </div>
+            </div>
+          </a>
         </div>
       </div>
-      <div class="col-xxl-3 col-lg-4 col-sm-6  mb-xxl-0 mb-4">
+      <div class="col-xxl-3 col-lg-4 col-sm-6 mb-xxl-0 mb-4">
         <div class="card">
-          <img src="../assets/images/cd-1.jpg" class="card-img-top" alt="" />
-          <div class="card-body p-2">
-            <p class="fs-5 ps-2 mt-1 mb-0">好きだから。</p>
-            <p class="fs-5 text-end pe-2 mb-1">NT.350</p>
-          </div>
+          <a href="" title="好きだから。">
+            <img src="../assets/images/cd-1.jpg" class="card-img-top" alt="" />
+            <div class="card-body p-2">
+              <div class="d-flex justify-content-between align-items-center">
+                <p class="fs-5 ps-2 mt-1 mb-0">好きだから。</p>
+                <a class="pe-2" href=""><i class="bi bi-star"></i></a>
+              </div>
+              <div
+                class="
+                  d-flex
+                  justify-content-between
+                  align-items-center
+                  pt-3
+                  pb-2
+                "
+              >
+                <button
+                  type="button"
+                  class="btn btn-outline-secondary btn-sm ms-2"
+                >
+                  加入購物車
+                </button>
+                <p class="fs-5 text-end pe-2 mb-0">NT.350</p>
+              </div>
+            </div>
+          </a>
         </div>
       </div>
     </div>
