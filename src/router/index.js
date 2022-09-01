@@ -22,6 +22,21 @@ const routes = [
         name: 'product',
         component: () => import('../views/ClientProduct.vue'),
       },
+      {
+        path: 'favor',
+        name: 'favor',
+        component: () => import('../views/ClientFavor.vue'),
+      },
+      {
+        path: 'cart',
+        name: 'cart',
+        component: () => import('../views/ClientCart.vue'),
+      },
+      {
+        path: 'check',
+        name: 'check',
+        commponent: () => import('../views/ClientCheck.vue'),
+      },
     ],
   },
   {

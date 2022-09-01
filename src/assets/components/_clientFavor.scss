@@ -1,0 +1,73 @@
+@import '../components/layout';
+
+.favor-banner {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.75),rgba(0, 0, 0, 0.45)), url(https://images.unsplash.com/photo-1467810563316-b5476525c0f9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80);
+  background-size: cover;
+  background-position: center center;
+  height: 30vh;
+  .banner-content {
+    font-weight: 400;
+    letter-spacing: 0.35rem;
+    text-shadow: 0.5px 0.5px 5px #EEE;
+  }
+  .banner-title {
+    @include mobile-m {
+      padding-top: 25px;
+      font-size: 18px;
+    }
+    @include mobile-s {
+      margin-bottom: 0;
+      padding-top: 30px;
+      font-size: 16px;
+    }
+  }
+}
+
+.favor-table, .favor-need {
+  min-height: 70vh;
+}
+
+.favor-need {
+  color: #555;
+  i {
+  font-size: 95px;
+  }
+  p {
+    font-weight: 600;
+    letter-spacing: 0.1rem;
+  }
+  .btn {
+    font-size: 20px;
+    font-weight: 800;
+    border-width: 2px;
+  }
+}
+
+.favor-item {
+  width: 120px;
+  height: 120px;
+  background-size: cover;
+  background-position: center center;
+}
+
+.favor-title {
+  font-weight: 600;
+  color: #EEE;
+  @include mobile-m {
+    font-size: 15px;
+  }
+  @include mobile-s {
+    font-size: 14px;
+  }
+}
+
+.favor-content {
+  font-weight: 600;
+  color: #555;
+  @include mobile-m {
+    font-size: 15px;
+  }
+  @include mobile-s {
+    font-size: 14px;
+  }
+}
