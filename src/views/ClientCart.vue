@@ -56,7 +56,7 @@
     <section class="container">
       <div class="row g-3">
         <div class="col-xl-8">
-          <div class="cart-bg">
+          <div class="cart-bg px-4">
             <p class="text-center h3 py-4 mb-0 cart-title">您的購物車</p>
             <div
               class="
@@ -77,6 +77,7 @@
                   align-items-center
                   h5
                   mb-sm-0
+                  px-0
                 "
               >
                 <img
@@ -98,6 +99,7 @@
                       justify-content-center
                       align-items-center
                       mb-sm-0 mb-3
+                      px-0
                     "
                   >
                     <div class="input-group input-group-sm cart-qty">
@@ -110,7 +112,7 @@
                       </button>
                       <input
                         type="text"
-                        class="form-control count-text text-center"
+                        class="form-control border-secondary text-center"
                         placeholder=""
                       />
                       <button
@@ -129,6 +131,7 @@
                       justify-content-sm-around justify-content-between
                       align-items-center
                       mb-sm-0 mb-3
+                      px-0
                     "
                   >
                     <p class="cart-text mb-0 ps-sm-0 ps-3">NT.350</p>
@@ -142,7 +145,7 @@
           </div>
         </div>
         <div class="col-xl-4">
-          <div class="cart-bg">
+          <div class="cart-bg px-4">
             <p class="cart-title h3 py-4 mb-0 text-center">訂單價格</p>
             <div
               class="
@@ -150,19 +153,19 @@
                 h5
                 d-flex
                 justify-content-between
-                px-5
+                px-3
                 pt-4
               "
             >
               <p>訂單總額：</p>
-              <p>NT.1050</p>
+              <p>NT.350</p>
             </div>
-            <div class="cart-text h5 d-flex justify-content-between px-5">
-              <p>已折扣金額：</p>
+            <div class="cart-text h5 d-flex justify-content-between px-3">
+              <p>待折扣金額：</p>
               <p class="text-danger">NT.0</p>
             </div>
             <div class="d-flex justify-content-center cart-border pt-4 pb-2">
-              <div class="input-group cart-coupon mx-4 mb-3">
+              <div class="input-group cart-coupon mx-2 mb-3">
                 <input
                   type="text"
                   class="form-control"
@@ -180,16 +183,16 @@
               </div>
             </div>
           </div>
-          <div class="cart-bg mt-3">
+          <div class="cart-bg px-4 mt-3">
             <p class="cart-title h3 py-4 mb-0 text-center">購買須知</p>
-            <div class="cart-text cart-border fs-5 px-4 py-3">
+            <div class="cart-text cart-border fs-5 px-2 py-3">
               <p class="lh-base mb-0">
                 在您下標後將立即處理您的訂單，現貨商品將於三個工作天內寄出 （
                 不含週六日及國定例假日 ）， 若商品無庫存將由店家與您電話聯繫。
               </p>
-              <button type="button" class="btn btn-secondary w-100 mt-4">
+              <router-link to="check" class="btn btn-secondary rounded-0 w-100 mt-4">
                 確認訂單
-              </button>
+              </router-link>
             </div>
           </div>
         </div>

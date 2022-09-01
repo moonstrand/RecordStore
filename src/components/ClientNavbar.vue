@@ -110,7 +110,7 @@ export default {
   },
   methods: {
     navShow() {
-      this.navScroll = window.scrollY > 100;
+      this.navScroll = window.scrollY > 50;
     },
   },
   created() {

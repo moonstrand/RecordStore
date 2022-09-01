@@ -35,7 +35,7 @@ const routes = [
       {
         path: 'check',
         name: 'check',
-        commponent: () => import('../views/ClientCheck.vue'),
+        component: () => import('../views/ClientCheck.vue'),
       },
     ],
   },
