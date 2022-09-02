@@ -1,0 +1,52 @@
+@import '../components/layout';
+
+.success-banner {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.2),rgba(0, 0, 0, 0.3)), url(https://images.unsplash.com/photo-1496293455970-f8581aae0e3b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1413&q=80);
+  background-size: cover;
+  background-position: center center;
+  height: calc(100vh - 48px);
+  @include pad-l {
+    height: calc(100vh - 57px);;
+  }
+  .banner-content {
+    font-weight: 400;
+    letter-spacing: 0.35rem;
+    text-shadow: 0.5px 0.5px 5px #EEE;
+    transition: ease 0.1s;
+    border: 1px solid #fff;
+    background: rgba(0, 0, 0, 0.8);
+    @include pad-m {
+      letter-spacing: 0.1rem;
+    }
+    @include mobile-m {
+      letter-spacing: 0;
+    }
+    &:hover {
+      box-shadow: 0 0 10px #fff;
+    }
+  }
+  span, .bi.bi-check-circle {
+    font-size: 38px;
+    @include pad-l {
+      font-size: 32px;
+    }
+    @include pad-m {
+      font-size: 28px;
+    }
+    @include mobile-m {
+      font-size: 22px;
+    }
+  }
+  p {
+    font-size: 28px;
+    @include pad-l {
+      font-size: 24px;
+    }
+    @include pad-m {
+      font-size: 20px;
+    }
+    @include mobile-m {
+      font-size: 16px;
+    }
+  }
+}

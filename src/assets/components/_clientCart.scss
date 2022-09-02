@@ -1,15 +1,4 @@
 @import '../components/layout';
-
-.nav-bg {
-  box-sizing: content-box;
-  height: 48px;
-  padding: 8px 0;
-  background-color: #222;
-  @include pad-l {
-    height: 57px;
-  }
-}
-
 .cart-step {
   background: #333;
 }
@@ -55,4 +44,12 @@
 
 .cart-coupon {
   background: #f9fcff;
+}
+
+.list-group-item {
+  cursor: pointer;
+  font-size: 18px;
+  @include mobile-s {
+    font-size: 16px;
+  }
 }
