@@ -15,11 +15,11 @@
     </div>
   </section>
   <!-- introduce -->
-  <section class="bg-cover intro py-md-5">
+  <section class="bg-cover intro py-lg-5 py-3">
     <div class="container py-4">
       <div class="row px-md-0 px-3">
         <div class="col-lg-4">
-          <p class="h5 text-light lh-lg item-content">
+          <p class="text-light lh-lg item-content">
             角落唱片，不只是一間唱片行。 <br />
             更是給予生活疲倦的人們一個放鬆的場所， <br />
             隱藏在小巷的角落，讓您遠離城市的喧囂。
@@ -31,7 +31,7 @@
           </div>
         </div>
         <div class="col-lg-4">
-          <p class="h5 text-light lh-lg item-content py-lg-0 py-4">
+          <p class="text-light lh-lg item-content py-lg-0 py-4">
             服務項目 <br />
             <i class="bi bi-music-note pe-2"></i>
             音樂試聽 <br />
@@ -42,7 +42,7 @@
           </p>
         </div>
         <div class="col-lg-4">
-          <p class="h5 text-light lh-lg item-content">
+          <p class="text-light lh-lg item-content">
             營業時間 & 店家資訊 <br />
             <i class="bi bi-clock pe-2"></i>
             週一至週六 AM 10:30 ~ PM 9:30 <br />

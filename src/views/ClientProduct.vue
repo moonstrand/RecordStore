@@ -67,7 +67,7 @@
     </section>
     <section class="container product-intro border-bottom py-xl-5 py-4">
       <p class="title border-start border-info border-5 h2 ps-3">曲目</p>
-      <p class="content lh-lg h5 ps-3 pt-4">
+      <p class="content lh-lg ps-3 pt-4">
         1. そばにいて。 <br />
         2. そばにいて。 （Piano Version）
       </p>
