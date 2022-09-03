@@ -1,6 +1,6 @@
 <template>
   <div class="nav-bg"></div>
-  <div class="bg-color py-4">
+  <div class="bg-color cart-h py-4">
     <section
       class="
         container

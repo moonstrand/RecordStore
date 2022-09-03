@@ -1,6 +1,6 @@
 <template>
   <div class="nav-bg"></div>
-  <div class="bg-color py-4">
+  <div class="bg-color cart-h py-4">
     <section
       class="
         container
@@ -170,8 +170,6 @@
                   type="text"
                   class="form-control"
                   placeholder="請輸入優惠碼"
-                  aria-label="Recipient's username"
-                  aria-describedby="button-addon2"
                 />
                 <button
                   class="btn btn-outline-secondary rounded-0"

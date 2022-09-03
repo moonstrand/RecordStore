@@ -45,6 +45,11 @@
               >
             </li>
             <li class="nav-item py-2 fs-4">
+              <router-link class="canvas-link text-light" to="order"
+                >訂單查詢</router-link
+              >
+            </li>
+            <li class="nav-item py-2 fs-4">
               <router-link class="canvas-link text-light" to="favor"
                 >最愛商品</router-link
               >
@@ -70,6 +75,11 @@
           <li class="nav-item">
             <router-link class="nav-link text-light" to="products"
               >專輯列表</router-link
+            >
+          </li>
+          <li class="nav-item">
+            <router-link class="nav-link text-light" to="order"
+              >訂單查詢</router-link
             >
           </li>
         </ul>
@@ -110,7 +120,7 @@ export default {
   },
   methods: {
     navShow() {
-      this.navScroll = window.scrollY > 50;
+      this.navScroll = window.scrollY > 25;
     },
   },
   created() {

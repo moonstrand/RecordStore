@@ -1,4 +1,5 @@
 @import '../components/layout';
+
 .cart-step {
   background: #333;
 }
@@ -51,5 +52,12 @@
   font-size: 18px;
   @include mobile-s {
     font-size: 16px;
+  }
+}
+
+.cart-h {
+  min-height: calc(100vh - 64px);
+  @include pad-l {
+    min-height: calc(100vh - 73px);
   }
 }

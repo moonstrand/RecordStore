@@ -4,7 +4,7 @@ import ClientBoard from '../views/ClientBoard.vue';
 const routes = [
   {
     path: '/',
-    name: 'ClientBoard',
+    name: 'clientboard',
     component: ClientBoard,
     children: [
       {
@@ -46,6 +46,11 @@ const routes = [
         path: 'success',
         name: 'success',
         component: () => import('../views/ClientSuccess.vue'),
+      },
+      {
+        path: 'order',
+        name: 'order',
+        component: () => import('../views/ClientOrder.vue'),
       },
     ],
   },

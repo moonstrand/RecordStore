@@ -1,0 +1,40 @@
+@import '../components/layout';
+
+.order-banner {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.8),rgba(0, 0, 0, 0.45)), url(https://images.unsplash.com/photo-1638460392258-27e2283cfafb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80);
+  background-size: cover;
+  background-position: center center;
+  height: 30vh;
+  .banner-content {
+    font-weight: 400;
+    letter-spacing: 0.35rem;
+    text-shadow: 0.5px 0.5px 5px #EEE;
+  }
+  .banner-title {
+    @include mobile-s {
+      margin-bottom: 0;
+    }
+  }
+  .h3 {
+    @include mobile-s {
+      font-size: 20px;
+    }
+  }
+}
+
+.order-h {
+  min-height: 70vh;
+}
+
+.order-title, .order-text {
+  color: #555;
+  font-weight: 800;
+}
+
+.method-bg {
+  background: #f0f4f8;
+}
+
+.order-text {
+  font-weight: 600;
+}

@@ -1,6 +1,6 @@
 <template>
   <div class="nav-bg"></div>
-  <div class="success-banner">
+  <section class="success-banner">
     <div class="container d-flex align-items-center h-100">
       <div class="row w-100 d-flex justify-content-center">
         <div
@@ -18,7 +18,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <style lang="scss">
