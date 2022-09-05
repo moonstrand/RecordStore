@@ -131,7 +131,7 @@
                 </table>
                 <router-link
                   to="success"
-                  class="btn btn-secondary rounded-0 w-100 mt-2"
+                  class="btn btn-secondary w-100 mt-2"
                 >
                   確認付款
                 </router-link>

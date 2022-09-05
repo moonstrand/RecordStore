@@ -57,7 +57,7 @@
                 <option value="2">2</option>
                 <option value="3">3</option>
               </select>
-              <button class="btn btn-outline-secondary rounded-0" type="button">
+              <button class="btn btn-outline-secondary" type="button">
                 加入購物車
               </button>
             </div>

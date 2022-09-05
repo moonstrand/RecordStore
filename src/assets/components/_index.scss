@@ -27,8 +27,17 @@
 }
 
 // section 文字樣式
+.title-bold {
+  font-weight: 800;
+  text-shadow: 0.5px 0.5px 1px #555;
+}
+
 .section-text {
   letter-spacing: 0.5rem;
+  @include mobile-m {
+    letter-spacing: 0.2rem;
+    font-size: 18px;
+  }
 }
 
 // 文字淡入淡出動畫

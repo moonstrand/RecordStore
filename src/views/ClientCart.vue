@@ -172,7 +172,7 @@
                   placeholder="請輸入優惠碼"
                 />
                 <button
-                  class="btn btn-outline-secondary rounded-0"
+                  class="btn btn-outline-secondary"
                   type="button"
                   id="button-addon2"
                 >
@@ -188,7 +188,7 @@
                 在您下標後將立即處理您的訂單，現貨商品將於三個工作天內寄出 （
                 不含週六日及國定例假日 ）， 若商品無庫存將由店家與您電話聯繫。
               </p>
-              <router-link to="check" class="btn btn-secondary rounded-0 w-100 mt-4">
+              <router-link to="check" class="btn btn-secondary w-100 mt-4">
                 確認訂單
               </router-link>
             </div>

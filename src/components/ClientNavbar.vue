@@ -60,7 +60,7 @@
               >
             </li>
             <li class="nav-item py-2 fs-4">
-              <router-link class="canvas-link text-light" to="index"
+              <router-link class="canvas-link text-light" to="login"
                 >後台登入</router-link
               >
             </li>
@@ -101,7 +101,7 @@
           <li class="nav-item">
             <router-link
               class="nav-icon text-light fs-4 d-lg-block d-none"
-              to="/"
+              to="login"
               ><i class="bi bi-person-workspace"></i
             ></router-link>
           </li>

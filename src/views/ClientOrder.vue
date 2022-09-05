@@ -16,7 +16,7 @@
               placeholder="請輸入訂單編號"
             />
             <button
-              class="btn btn-outline-secondary rounded-0"
+              class="btn btn-outline-secondary"
               type="button"
               id="button-addon2"
             >

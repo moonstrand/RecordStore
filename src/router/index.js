@@ -52,12 +52,12 @@ const routes = [
         name: 'order',
         component: () => import('../views/ClientOrder.vue'),
       },
+      {
+        path: 'login',
+        name: 'login',
+        component: () => import('../views/Login.vue'),
+      },
     ],
-  },
-  {
-    path: '/about',
-    name: 'About',
-    component: () => import('../views/About.vue'),
   },
 ];
 

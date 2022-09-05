@@ -114,7 +114,7 @@
                 到店自取
               </label>
             </div>
-            <router-link to="payment" class="btn btn-secondary rounded-0 w-100">
+            <router-link to="payment" class="btn btn-secondary w-100">
               確認下單
             </router-link>
           </div>

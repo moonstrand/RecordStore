@@ -1,9 +1,20 @@
 <template>
   <!-- banner -->
   <div class="banner">
-    <div class="banner-content">
+    <div
+      class="banner-content"
+      data-aos="fade-zoom-in"
+      data-aos-easing="ease-in-back"
+      data-aos-duration="500"
+      data-aos-offset="0"
+    >
       <p class="h1 text-light">角落唱片</p>
       <p class="h1 text-light ps-5">一個尋知音，聽知音的好場所。</p>
+      <router-link
+        to="products"
+        class="btn btn-outline-light ms-3 mt-4"
+        >尋找知音</router-link
+      >
     </div>
   </div>
   <section class="bg-color py-5">
@@ -17,7 +28,11 @@
   <!-- introduce -->
   <section class="bg-cover intro py-lg-5 py-3">
     <div class="container py-4">
-      <div class="row px-md-0 px-3">
+      <div
+        class="row px-md-0 px-3"
+        data-aos="fade-right"
+        data-aos-duration="1500"
+      >
         <div class="col-lg-4">
           <p class="text-light lh-lg item-content">
             角落唱片，不只是一間唱片行。 <br />
@@ -25,7 +40,9 @@
             隱藏在小巷的角落，讓您遠離城市的喧囂。
           </p>
           <div class="d-flex pt-3">
-            <router-link class="btn btn-outline-light d-block text-center" to="products"
+            <router-link
+              class="btn btn-outline-light d-block text-center"
+              to="products"
               >來去逛逛</router-link
             >
           </div>
@@ -67,7 +84,11 @@
   <section class="bg-cover recommend py-sm-5 py-3">
     <div class="container">
       <div class="row">
-        <div class="col-sm-4 d-flex justify-content-center">
+        <div
+          class="col-sm-4 d-flex justify-content-center"
+          data-aos="flip-left"
+          data-aos-duration="1500"
+        >
           <div class="card" style="width: 18rem">
             <img src="../assets/images/cd-2.jpg" class="card-img-top" alt="" />
             <div class="card-body text-light p-2">
@@ -76,7 +97,11 @@
             </div>
           </div>
         </div>
-        <div class="col-sm-4 d-flex justify-content-center py-sm-0 py-3">
+        <div
+          class="col-sm-4 d-flex justify-content-center py-sm-0 py-3"
+          data-aos="flip-left"
+          data-aos-duration="1500"
+        >
           <div class="card" style="width: 18rem">
             <img src="../assets/images/cd-1.jpg" class="card-img-top" alt="" />
             <div class="card-body text-light p-2">
@@ -85,7 +110,11 @@
             </div>
           </div>
         </div>
-        <div class="col-sm-4 d-flex justify-content-center">
+        <div
+          class="col-sm-4 d-flex justify-content-center"
+          data-aos="flip-left"
+          data-aos-duration="1500"
+        >
           <div class="card" style="width: 18rem">
             <img src="../assets/images/cd-3.jpg" class="card-img-top" alt="" />
             <div class="card-body text-light p-2">
@@ -106,11 +135,13 @@
   </section>
   <section class="bg-cover coupon py-5">
     <div class="container py-4 d-flex justify-content-center">
-      <div class="d-flex flex-column align-items-center coupon-box w-100 py-5">
+      <div
+        class="d-flex flex-column align-items-center coupon-box w-100 py-5"
+        data-aos="zoom-in"
+        data-aos-duration="1000"
+      >
         <p class="section-text h3 text-light px-5">請點此抽取折扣優惠！</p>
-        <button type="button" class="btn btn-outline-light mt-4">
-          試手氣
-        </button>
+        <button type="button" class="btn btn-outline-light mt-4">試手氣</button>
       </div>
     </div>
   </section>
@@ -126,7 +157,12 @@
   <div class="accordion-bg pt-2 pb-5">
     <div class="container">
       <div class="accordion" id="accordionExample">
-        <div class="accordion-item">
+        <div
+          class="accordion-item"
+          data-aos="flip-up"
+          data-aos-delay="100"
+          data-aos-duration="1000"
+        >
           <h2 class="accordion-header" id="headingOne">
             <button
               class="accordion-button collapsed"
@@ -158,7 +194,12 @@
             </div>
           </div>
         </div>
-        <div class="accordion-item">
+        <div
+          class="accordion-item"
+          data-aos="flip-up"
+          data-aos-delay="100"
+          data-aos-duration="1000"
+        >
           <h2 class="accordion-header" id="headingTwo">
             <button
               class="accordion-button collapsed"
@@ -185,7 +226,12 @@
             </div>
           </div>
         </div>
-        <div class="accordion-item">
+        <div
+          class="accordion-item"
+          data-aos="flip-up"
+          data-aos-delay="100"
+          data-aos-duration="1000"
+        >
           <h2 class="accordion-header" id="headingThree">
             <button
               class="accordion-button collapsed"
@@ -210,7 +256,12 @@
             </div>
           </div>
         </div>
-        <div class="accordion-item">
+        <div
+          class="accordion-item"
+          data-aos="flip-up"
+          data-aos-delay="100"
+          data-aos-duration="1000"
+        >
           <h2 class="accordion-header" id="headingFour">
             <button
               class="accordion-button collapsed"
@@ -250,12 +301,11 @@
 </template>
 
 <script>
-
 export default {
   name: 'Home',
 };
 </script>
 
 <style lang="scss">
-@import '../assets/components/index.scss';
+@import "../assets/components/index.scss";
 </style>

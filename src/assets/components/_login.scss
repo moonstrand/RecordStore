@@ -1,0 +1,13 @@
+@import '../components/layout';
+
+.login-h {
+  min-height: calc(100vh - 164px);
+  @include pad-l {
+    min-height: calc(100vh - 173px);
+  }
+}
+
+.login-title {
+  font-weight: 800;
+  color: #555;
+}
