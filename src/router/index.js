@@ -59,6 +59,18 @@ const routes = [
       },
     ],
   },
+  {
+    path: '/dashboard',
+    name: 'dashboard',
+    component: () => import('../views/Dashboard.vue'),
+    children: [
+      {
+        path: 'serverproducts',
+        name: 'serverProducts',
+        component: () => import('../views/ServerProducts.vue'),
+      },
+    ],
+  },
 ];
 
 const router = createRouter({

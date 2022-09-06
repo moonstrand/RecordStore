@@ -67,7 +67,7 @@
           </ul>
         </div>
       </div>
-      <div class="collapse navbar-collapse nav-shift" id="navbarText">
+      <div class="collapse navbar-collapse nav-client" id="navbarText">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-lg-flex d-none">
           <li class="nav-item">
             <router-link class="nav-link text-light" to="/">首頁</router-link>

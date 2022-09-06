@@ -4,7 +4,7 @@
 }
 
 // 導覽列連結樣式
-.nav-shift .nav-link {
+.nav-client .nav-link {
   padding: 10px 20px !important;
   transition: all 0.5s;
   position:relative;
@@ -37,6 +37,16 @@
       visibility: visible;
       height: 100%;
     }
+  }
+}
+
+.nav-server .nav-link {
+  padding: 10px 20px !important;
+  color: #555;
+  font-weight: 600;
+  transition: ease 0.3s;
+  &:hover {
+    color: rgb(175, 175, 175);
   }
 }
 

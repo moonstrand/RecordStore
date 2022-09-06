@@ -1,5 +1,16 @@
 @import '../components/layout';
 
+.login-bg {
+  background: url(https://images.unsplash.com/photo-1458560871784-56d23406c091?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80);
+  background-size: cover;
+  background-position: center center;
+}
+
+.input-bg {
+  background: #fbfbfd;
+  opacity: 95%;
+}
+
 .login-h {
   min-height: calc(100vh - 164px);
   @include pad-l {
