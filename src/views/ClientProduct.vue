@@ -1,7 +1,7 @@
 <template>
   <div class="product-banner d-flex justify-content-center align-items-center">
     <div class="banner-content text-center h1 text-light">
-      <p class="banner-title mb-0">好きだから。</p>
+      <p class="banner-title mb-0">そばにいて。</p>
     </div>
   </div>
   <div class="bg-color">

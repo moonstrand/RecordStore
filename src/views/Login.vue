@@ -33,12 +33,19 @@
             />
             <label for="floatingPassword">Password</label>
           </div>
-          <button
+          <router-link
+            to="/dashboard/serverproducts"
             class="btn btn-lg btn-secondary fw-bold w-100 mt-3"
             type="submit"
           >
             登入
-          </button>
+          </router-link>
+          <!-- <button
+            class="btn btn-lg btn-secondary fw-bold w-100 mt-3"
+            type="submit"
+          >
+            登入
+          </button> -->
         </div>
       </div>
     </section>

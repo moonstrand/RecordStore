@@ -66,8 +66,18 @@ const routes = [
     children: [
       {
         path: 'serverproducts',
-        name: 'serverProducts',
+        name: 'serverproducts',
         component: () => import('../views/ServerProducts.vue'),
+      },
+      {
+        path: 'serverorder',
+        name: 'serverorder',
+        component: () => import('../views/ServerOrder.vue'),
+      },
+      {
+        path: 'servercoupon',
+        name: 'servercoupon',
+        component: () => import('../views/ServerCoupon.vue'),
       },
     ],
   },
@@ -76,6 +86,7 @@ const routes = [
 const router = createRouter({
   history: createWebHashHistory(),
   routes,
+  linkActiveClass: 'active',
 });
 
 export default router;

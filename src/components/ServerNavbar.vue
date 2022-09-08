@@ -39,17 +39,17 @@
               >
             </li>
             <li class="nav-item py-2 fs-4">
-              <router-link class="canvas-link text-dark" to="serverproducts"
+              <router-link class="canvas-link text-dark" to="serverorder"
                 >訂單列表</router-link
               >
             </li>
             <li class="nav-item py-2 fs-4">
-              <router-link class="canvas-link text-dark" to="serverproducts"
+              <router-link class="canvas-link text-dark" to="servercoupon"
                 >優惠券</router-link
               >
             </li>
             <li class="nav-item py-2 fs-4">
-              <router-link class="canvas-link text-dark" to="serverproducts"
+              <router-link class="canvas-link text-dark" to="/"
                 >登出</router-link
               >
             </li>
@@ -64,17 +64,17 @@
             >
           </li>
           <li class="nav-item">
-            <router-link class="nav-link" to="serverproducts"
+            <router-link class="nav-link" to="serverorder"
               >訂單列表</router-link
             >
           </li>
           <li class="nav-item">
-            <router-link class="nav-link" to="serverproducts"
+            <router-link class="nav-link" to="servercoupon"
               >優惠券</router-link
             >
           </li>
           <li class="nav-item">
-            <router-link class="nav-link" to="serverproducts"
+            <router-link class="nav-link" to="/"
               >登出</router-link
             >
           </li>
