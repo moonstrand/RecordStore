@@ -1,4 +1,5 @@
 <template>
+  <Loading :active="isLoading"></Loading>
   <div class="nav-bg"></div>
   <div class="login-bg">
     <section class="container">
@@ -59,13 +60,16 @@ export default {
         username: '',
         password: '',
       },
+      isLoading: false,
     };
   },
   methods: {
     signIn() {
+      this.isLoading = true;
       const api = `${process.env.VUE_APP_API}admin/signin`;
       this.$http.post(api, this.user).then((res) => {
         if (res.data.success) {
+          this.isLoading = false;
           const { token, expired } = res.data;
           document.cookie = `recordToken = ${token}; expires = ${new Date(expired)}`;
           this.$router.push('/dashboard/serverproducts');

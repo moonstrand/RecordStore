@@ -8,6 +8,11 @@ import { useToast } from 'vue-toastification';
 import ServerNavbar from '../components/ServerNavbar.vue';
 
 export default {
+  data() {
+    return {
+      isLoading: false,
+    };
+  },
   components: {
     ServerNavbar,
   },

@@ -1,4 +1,5 @@
 <template>
+  <Loading :active="isLoading"></Loading>
   <div class="row justify-content-center mt-4">
     <div class="col-10">
       <div class="text-end me-3 mb-4">
@@ -84,12 +85,14 @@
     @del-product="delProduct"
     ref="deleteModal"
   ></DeleteModal>
+  <Pagination :pages="pagination" @emit-pages="getProducts"></Pagination>
 </template>
 
 <script>
 import { useToast } from 'vue-toastification';
 import ProductsModal from '../components/ProductsModal.vue';
 import DeleteModal from '../components/DeleteModal.vue';
+import Pagination from '../components/Pagination.vue';
 
 export default {
   data() {
@@ -97,18 +100,24 @@ export default {
       products: [],
       tempProduct: {},
       isNew: false,
+      isLoading: false,
+      pagination: {},
     };
   },
   components: {
     ProductsModal,
     DeleteModal,
+    Pagination,
   },
   methods: {
-    getProducts() {
-      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/products?page=1`;
+    getProducts(page = 1) {
+      this.isLoading = true;
+      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/products?page=${page}`;
       this.$http.get(api).then((res) => {
         if (res.data.success) {
+          this.isLoading = false;
           this.products = res.data.products;
+          this.pagination = res.data.pagination;
         }
       });
     },
@@ -123,6 +132,7 @@ export default {
       productComponent.modalShow();
     },
     updateProduct(item) {
+      this.isLoading = true;
       const toast = useToast();
       this.tempProduct = item;
       const productComponent = this.$refs.productsModal;
@@ -132,9 +142,9 @@ export default {
         api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/product/${item.id}`;
         axiosMethod = 'put';
       }
+      productComponent.modalHide();
       this.$http[axiosMethod](api, { data: this.tempProduct })
         .then((res) => {
-          productComponent.modalHide();
           if (res.data.success) {
             this.getProducts();
             toast.success('更新商品成功');
@@ -149,11 +159,13 @@ export default {
       delComponent.modalShow();
     },
     delProduct() {
+      this.isLoading = true;
       const toast = useToast();
       const delComponent = this.$refs.deleteModal;
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/product/${this.tempProduct.id}`;
+      delComponent.modalHide();
       this.$http.delete(api).then((res) => {
-        delComponent.modalHide();
+        this.isLoading = false;
         if (res.data.success) {
           console.log(res);
           this.getProducts();

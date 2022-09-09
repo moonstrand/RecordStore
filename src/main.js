@@ -22,6 +22,7 @@ import router from './router';
 AOS.init();
 
 const app = createApp(App);
+app.component('Loading', Loading);
 app.use(VueAxios, axios);
 app.use(router);
 app.use(Toast, {
@@ -29,5 +30,4 @@ app.use(Toast, {
   maxToasts: 5,
   hideProgressBar: true,
 });
-app.component('Loading', Loading);
 app.mount('#app');

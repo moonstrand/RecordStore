@@ -74,8 +74,8 @@
             >
           </li>
           <li class="nav-item">
-            <router-link class="nav-link" to="/"
-              >登出</router-link
+            <a href="#" class="nav-link" @click.prevent="logout"
+              >登出</a
             >
           </li>
         </ul>
@@ -83,3 +83,23 @@
     </div>
   </nav>
 </template>
+
+<script>
+import { useToast } from 'vue-toastification';
+
+export default {
+  methods: {
+    logout() {
+      const toast = useToast();
+      const api = `${process.env.VUE_APP_API}logout`;
+      this.$http.post(api)
+        .then((res) => {
+          if (res.data.success) {
+            this.$router.push('/login');
+            toast.info('已登出');
+          }
+        });
+    },
+  },
+};
+</script>
