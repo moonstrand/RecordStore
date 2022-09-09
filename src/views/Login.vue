@@ -2,7 +2,10 @@
   <div class="nav-bg"></div>
   <div class="login-bg">
     <section class="container">
-      <div class="row login-h d-flex justify-content-center align-items-center">
+      <form
+        class="row login-h d-flex justify-content-center align-items-center"
+        @submit.prevent="signIn"
+      >
         <div class="input-bg col-lg-6 col-md-8 col-11 border border-1 p-5">
           <p
             class="
@@ -21,6 +24,8 @@
               class="form-control"
               id="floatingInput"
               placeholder="name@example.com"
+              autofocus
+              v-model="user.username"
             />
             <label for="floatingInput">Email address</label>
           </div>
@@ -30,27 +35,46 @@
               class="form-control"
               id="floatingPassword"
               placeholder="Password"
+              v-model="user.password"
             />
             <label for="floatingPassword">Password</label>
           </div>
-          <router-link
-            to="/dashboard/serverproducts"
+          <button
             class="btn btn-lg btn-secondary fw-bold w-100 mt-3"
             type="submit"
           >
             登入
-          </router-link>
-          <!-- <button
-            class="btn btn-lg btn-secondary fw-bold w-100 mt-3"
-            type="submit"
-          >
-            登入
-          </button> -->
+          </button>
         </div>
-      </div>
+      </form>
     </section>
   </div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      user: {
+        username: '',
+        password: '',
+      },
+    };
+  },
+  methods: {
+    signIn() {
+      const api = `${process.env.VUE_APP_API}admin/signin`;
+      this.$http.post(api, this.user).then((res) => {
+        if (res.data.success) {
+          const { token, expired } = res.data;
+          document.cookie = `recordToken = ${token}; expires = ${new Date(expired)}`;
+          this.$router.push('/dashboard/serverproducts');
+        }
+      });
+    },
+  },
+};
+</script>
 
 <style lang="scss">
 @import "../assets/components/_login.scss";
