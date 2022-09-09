@@ -2,7 +2,11 @@
   <div class="row justify-content-center mt-4">
     <div class="col-10">
       <div class="text-end me-3 mb-4">
-        <button class="btn btn-secondary" type="button" @click="openModal">
+        <button
+          class="btn btn-secondary"
+          type="button"
+          @click="openModal(true)"
+        >
           新增產品
         </button>
       </div>
@@ -45,7 +49,14 @@
                     class="dropdown-menu dropdown-menu-dark"
                     aria-labelledby="dropdownMenuButton1"
                   >
-                    <li><a class="dropdown-item" href="#">編輯</a></li>
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        @click.prevent="openModal(false, item)"
+                        >編輯</a
+                      >
+                    </li>
                     <li>
                       <a
                         class="dropdown-item"
@@ -68,7 +79,11 @@
     @update-product="updateProduct"
     ref="productsModal"
   ></ProductsModal>
-  <DeleteModal :product="tempProduct" @del-product="delProduct" ref="deleteModal"></DeleteModal>
+  <DeleteModal
+    :product="tempProduct"
+    @del-product="delProduct"
+    ref="deleteModal"
+  ></DeleteModal>
 </template>
 
 <script>
@@ -97,22 +112,36 @@ export default {
         }
       });
     },
-    openModal() {
-      this.tempProduct = {};
+    openModal(isNew, item) {
+      if (isNew) {
+        this.tempProduct = {};
+      } else {
+        this.tempProduct = { ...item };
+      }
+      this.isNew = isNew;
       const productComponent = this.$refs.productsModal;
       productComponent.modalShow();
     },
-    updateProduct() {
+    updateProduct(item) {
       const toast = useToast();
+      this.tempProduct = item;
       const productComponent = this.$refs.productsModal;
-      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/product`;
-      this.$http.post(api, { data: this.tempProduct }).then((res) => {
-        if (res.data.success) {
+      let api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/product`;
+      let axiosMethod = 'post';
+      if (!this.isNew) {
+        api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/product/${item.id}`;
+        axiosMethod = 'put';
+      }
+      this.$http[axiosMethod](api, { data: this.tempProduct })
+        .then((res) => {
           productComponent.modalHide();
-          this.getProducts();
-          toast.success('新增商品成功');
-        }
-      });
+          if (res.data.success) {
+            this.getProducts();
+            toast.success('更新商品成功');
+          } else {
+            toast.error('更新商品失敗');
+          }
+        });
     },
     openDelModal(item) {
       this.tempProduct = { ...item };
@@ -123,17 +152,16 @@ export default {
       const toast = useToast();
       const delComponent = this.$refs.deleteModal;
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/product/${this.tempProduct.id}`;
-      this.$http.delete(api)
-        .then((res) => {
-          delComponent.modalHide();
-          if (res.data.success) {
-            console.log(res);
-            this.getProducts();
-            toast.success('刪除商品成功');
-          } else {
-            toast.error('刪除產品失敗');
-          }
-        });
+      this.$http.delete(api).then((res) => {
+        delComponent.modalHide();
+        if (res.data.success) {
+          console.log(res);
+          this.getProducts();
+          toast.success('刪除商品成功');
+        } else {
+          toast.error('刪除產品失敗');
+        }
+      });
     },
   },
   created() {
