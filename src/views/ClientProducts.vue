@@ -58,17 +58,17 @@
     <!-- Products list -->
     <section class="products container pt-xl-3 pt-0 pb-xl-5 pb-0">
       <div class="row">
-        <div class="col-xxl-3 col-lg-4 col-sm-6 mb-xxl-0 mb-4">
-          <div class="card">
-            <router-link to="product" title="好きだから。">
-              <img
-                src="../assets/images/cd-1.jpg"
-                class="card-img-top"
-                alt=""
-              />
+        <div
+          class="col-xxl-3 col-lg-4 col-sm-6 mb-xxl-0"
+          v-for="item in products"
+          :key="item.id"
+        >
+          <div class="card mb-4">
+            <router-link to="product" :title="item.title">
+              <img :src="item.imageUrl" class="card-img-top" alt="" />
               <div class="card-body p-2">
                 <div class="d-flex justify-content-between align-items-center">
-                  <p class="fs-5 ps-2 mt-1 mb-0">好きだから。</p>
+                  <p class="fs-5 ps-2 mt-1 mb-0">{{ item.title }}</p>
                   <a class="pe-2" href=""><i class="bi bi-star"></i></a>
                 </div>
                 <div
@@ -86,118 +86,47 @@
                   >
                     加入購物車
                   </button>
-                  <p class="fs-5 text-end pe-2 mb-0">NT.350</p>
+                  <p class="fs-5 text-end pe-2 mb-0">NT.{{ item.price }}</p>
                 </div>
               </div>
             </router-link>
           </div>
         </div>
-        <div class="col-xxl-3 col-lg-4 col-sm-6 mb-xxl-0 mb-4">
-          <div class="card">
-            <a href="" title="好きだから。">
-              <img
-                src="../assets/images/cd-1.jpg"
-                class="card-img-top"
-                alt=""
-              />
-              <div class="card-body p-2">
-                <div class="d-flex justify-content-between align-items-center">
-                  <p class="fs-5 ps-2 mt-1 mb-0">好きだから。</p>
-                  <a class="pe-2" href=""><i class="bi bi-star"></i></a>
-                </div>
-                <div
-                  class="
-                    d-flex
-                    justify-content-between
-                    align-items-center
-                    pt-3
-                    pb-2
-                  "
-                >
-                  <button
-                    type="button"
-                    class="btn btn-outline-secondary btn-sm ms-2"
-                  >
-                    加入購物車
-                  </button>
-                  <p class="fs-5 text-end pe-2 mb-0">NT.350</p>
-                </div>
-              </div>
-            </a>
-          </div>
-        </div>
-        <div class="col-xxl-3 col-lg-4 col-sm-6 mb-xxl-0 mb-4">
-          <div class="card">
-            <a href="" title="好きだから。">
-              <img
-                src="../assets/images/cd-1.jpg"
-                class="card-img-top"
-                alt=""
-              />
-              <div class="card-body p-2">
-                <div class="d-flex justify-content-between align-items-center">
-                  <p class="fs-5 ps-2 mt-1 mb-0">好きだから。</p>
-                  <a class="pe-2" href=""><i class="bi bi-star"></i></a>
-                </div>
-                <div
-                  class="
-                    d-flex
-                    justify-content-between
-                    align-items-center
-                    pt-3
-                    pb-2
-                  "
-                >
-                  <button
-                    type="button"
-                    class="btn btn-outline-secondary btn-sm ms-2"
-                  >
-                    加入購物車
-                  </button>
-                  <p class="fs-5 text-end pe-2 mb-0">NT.350</p>
-                </div>
-              </div>
-            </a>
-          </div>
-        </div>
-        <div class="col-xxl-3 col-lg-4 col-sm-6 mb-xxl-0 mb-4">
-          <div class="card">
-            <a href="" title="好きだから。">
-              <img
-                src="../assets/images/cd-1.jpg"
-                class="card-img-top"
-                alt=""
-              />
-              <div class="card-body p-2">
-                <div class="d-flex justify-content-between align-items-center">
-                  <p class="fs-5 ps-2 mt-1 mb-0">好きだから。</p>
-                  <a class="pe-2" href=""><i class="bi bi-star"></i></a>
-                </div>
-                <div
-                  class="
-                    d-flex
-                    justify-content-between
-                    align-items-center
-                    pt-3
-                    pb-2
-                  "
-                >
-                  <button
-                    type="button"
-                    class="btn btn-outline-secondary btn-sm ms-2"
-                  >
-                    加入購物車
-                  </button>
-                  <p class="fs-5 text-end pe-2 mb-0">NT.350</p>
-                </div>
-              </div>
-            </a>
-          </div>
-        </div>
       </div>
     </section>
   </div>
+  <Pagination :pages="pagination" @emit-pages="getProducts"></Pagination>
 </template>
+
+<script>
+import Pagination from '../components/Pagination.vue';
+
+export default {
+  data() {
+    return {
+      products: {},
+      pagination: {},
+    };
+  },
+  components: {
+    Pagination,
+  },
+  methods: {
+    getProducts(page = 1) {
+      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/products?page=${page}`;
+      this.$http.get(api).then((res) => {
+        if (res.data.success) {
+          this.products = res.data.products;
+          this.pagination = res.data.pagination;
+        }
+      });
+    },
+  },
+  created() {
+    this.getProducts();
+  },
+};
+</script>
 
 <style lang="scss">
 @import "../assets/components/_clientProducts.scss";
