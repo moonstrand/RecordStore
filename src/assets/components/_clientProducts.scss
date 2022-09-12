@@ -43,10 +43,6 @@
       font-size: 22px;
       color: #34495E;
     }
-    &:active {
-      font-weight: 800;
-      color: #34495E;
-    }
     @include mobile-m {
       font-size: 14px;
       padding: 0 20px;
@@ -62,6 +58,10 @@
       }
     }
   }
+}
+
+.categoryActive {
+  color:  #b4b4b4 !important;
 }
 
 // products list
