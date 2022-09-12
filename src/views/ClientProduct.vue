@@ -1,7 +1,7 @@
 <template>
   <div class="product-banner d-flex justify-content-center align-items-center">
     <div class="banner-content text-center h1 text-light">
-      <p class="banner-title mb-0">そばにいて。</p>
+      <p class="banner-title mb-0">{{ product.title }}</p>
     </div>
   </div>
   <div class="bg-color">
@@ -13,7 +13,7 @@
           </li>
           <li class="breadcrumb-item"><a href="#">東洋</a></li>
           <li class="breadcrumb-item active" aria-current="page">
-            そばにいて。
+            <strong>{{ product.title }}</strong>
           </li>
         </ol>
       </nav>
@@ -21,32 +21,30 @@
         <div class="col-lg-6 text-lg-start text-center">
           <img
             class="product-img"
-            src="../assets/images/product/そばにいて.jpg"
+            :src="product.imageUrl"
             alt="そばにいて"
           />
         </div>
         <div class="col-lg-6 d-flex flex-column justify-content-between py-4">
           <div class="product-intro">
             <div class="d-flex justify-content-between align-items-center">
-              <p class="title h2 mb-0">そばにいて。</p>
+              <p class="title h2 mb-0">{{ product.title }}</p>
               <a href="" class="favor">
                 <i class="bi bi-star h4"></i>
               </a>
             </div>
             <div class="py-3">
-              <span class="badge bg-dark me-2">東洋</span>
-              <span class="badge bg-secondary me-2">抒情</span>
+              <span class="badge bg-dark me-2">{{ product.category }}</span>
+              <span class="badge bg-secondary me-2">{{ product.class }}</span>
             </div>
             <div class="content h5">
-              <p class="lh-lg">
-                由 Yuika 所演唱的 『そばにいて。』，
-                是繼『好きだから。』的全新力作，
-                用輕快且柔和的歌嗓詮釋了夏天的心境。
+              <p class="lh-lg mb-md-0 mb-4">
+                {{ product.description }}
               </p>
             </div>
           </div>
           <div class="d-flex justify-content-between align-items-center">
-            <p class="fw-bold h4 text-danger">NT.350</p>
+            <p class="fw-bold h4 text-danger">NT.{{ product.price }}</p>
             <div class="input-group product-input">
               <select
                 class="form-select"
@@ -67,9 +65,8 @@
     </section>
     <section class="container product-intro border-bottom py-xl-5 py-4">
       <p class="title border-start border-info border-5 h2 ps-3">曲目</p>
-      <p class="content lh-lg ps-3 pt-4">
-        1. そばにいて。 <br />
-        2. そばにいて。 （Piano Version）
+      <p class="content wrap lh-lg ps-3 pt-4">
+        {{ product.track }}
       </p>
     </section>
     <section class="container product-intro border-bottom py-xl-5 py-4">
@@ -147,6 +144,35 @@
     </section>
   </div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      product: {},
+      id: '',
+    };
+  },
+  methods: {
+    getProduct() {
+      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/product/${this.id}`;
+      this.$http.get(api)
+        .then((res) => {
+          if (res.data.success) {
+            this.product = res.data.product;
+          }
+        });
+    },
+    getID() {
+      this.id = this.$route.params.id;
+    },
+  },
+  created() {
+    this.getID();
+    this.getProduct();
+  },
+};
+</script>
 
 <style lang="scss">
 @import "../assets/components/_clientProduct.scss";

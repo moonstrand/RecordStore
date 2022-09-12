@@ -40,27 +40,27 @@
               >
             </li>
             <li class="nav-item py-2 fs-4">
-              <router-link class="canvas-link text-light" to="products"
+              <router-link class="canvas-link text-light" to="/products"
                 >專輯列表</router-link
               >
             </li>
             <li class="nav-item py-2 fs-4">
-              <router-link class="canvas-link text-light" to="order"
+              <router-link class="canvas-link text-light" to="/order"
                 >訂單查詢</router-link
               >
             </li>
             <li class="nav-item py-2 fs-4">
-              <router-link class="canvas-link text-light" to="favor"
+              <router-link class="canvas-link text-light" to="/favor"
                 >最愛商品</router-link
               >
             </li>
             <li class="nav-item py-2 fs-4">
-              <router-link class="canvas-link text-light" to="cart"
+              <router-link class="canvas-link text-light" to="/cart"
                 >購物車</router-link
               >
             </li>
             <li class="nav-item py-2 fs-4">
-              <router-link class="canvas-link text-light" to="login"
+              <router-link class="canvas-link text-light" to="/login"
                 >後台登入</router-link
               >
             </li>
@@ -73,12 +73,12 @@
             <router-link class="nav-link text-light" to="/">首頁</router-link>
           </li>
           <li class="nav-item">
-            <router-link class="nav-link text-light" to="products"
+            <router-link class="nav-link text-light" to="/products"
               >專輯列表</router-link
             >
           </li>
           <li class="nav-item">
-            <router-link class="nav-link text-light" to="order"
+            <router-link class="nav-link text-light" to="/order"
               >訂單查詢</router-link
             >
           </li>
@@ -87,21 +87,21 @@
           <li class="nav-item">
             <router-link
               class="nav-icon text-light fs-4 d-lg-block d-none"
-              to="favor"
+              to="/favor"
               ><i class="bi bi-star"></i
             ></router-link>
           </li>
           <li class="nav-item my-md-0 my-2">
             <router-link
               class="nav-icon text-light fs-4 d-lg-block d-none"
-              to="cart"
+              to="/cart"
               ><i class="bi bi-cart2"></i
             ></router-link>
           </li>
           <li class="nav-item">
             <router-link
               class="nav-icon text-light fs-4 d-lg-block d-none"
-              to="login"
+              to="/login"
               ><i class="bi bi-person-workspace"></i
             ></router-link>
           </li>

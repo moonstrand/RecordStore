@@ -7,11 +7,12 @@
       data-aos-easing="ease-in-back"
       data-aos-duration="500"
       data-aos-offset="0"
+      data-aos-once="true"
     >
       <p class="h1 text-light">角落唱片</p>
       <p class="h1 text-light ps-5">一個尋知音，聽知音的好場所。</p>
       <router-link
-        to="products"
+        to="/products"
         class="btn btn-outline-light ms-3 mt-4"
         >尋找知音</router-link
       >
@@ -32,6 +33,7 @@
         class="row px-md-0 px-3"
         data-aos="fade-right"
         data-aos-duration="1500"
+        data-aos-once="true"
       >
         <div class="col-lg-4">
           <p class="text-light lh-lg item-content">
@@ -42,7 +44,7 @@
           <div class="d-flex pt-3">
             <router-link
               class="btn btn-outline-light d-block text-center"
-              to="products"
+              to="/products"
               >來去逛逛</router-link
             >
           </div>
@@ -88,6 +90,7 @@
           class="col-sm-4 d-flex justify-content-center"
           data-aos="flip-left"
           data-aos-duration="1500"
+          data-aos-once="true"
         >
           <div class="card" style="width: 18rem">
             <img src="../assets/images/cd-2.jpg" class="card-img-top" alt="" />
@@ -101,6 +104,7 @@
           class="col-sm-4 d-flex justify-content-center py-sm-0 py-3"
           data-aos="flip-left"
           data-aos-duration="1500"
+          data-aos-once="true"
         >
           <div class="card" style="width: 18rem">
             <img src="../assets/images/cd-1.jpg" class="card-img-top" alt="" />
@@ -114,6 +118,7 @@
           class="col-sm-4 d-flex justify-content-center"
           data-aos="flip-left"
           data-aos-duration="1500"
+          data-aos-once="true"
         >
           <div class="card" style="width: 18rem">
             <img src="../assets/images/cd-3.jpg" class="card-img-top" alt="" />
@@ -139,6 +144,7 @@
         class="d-flex flex-column align-items-center coupon-box w-100 py-5"
         data-aos="zoom-in"
         data-aos-duration="1000"
+        data-aos-once="true"
       >
         <p class="section-text h3 text-light px-5">請點此抽取折扣優惠！</p>
         <button type="button" class="btn btn-outline-light mt-4">試手氣</button>
@@ -162,6 +168,7 @@
           data-aos="flip-up"
           data-aos-delay="100"
           data-aos-duration="1000"
+          data-aos-once="true"
         >
           <h2 class="accordion-header" id="headingOne">
             <button
@@ -199,6 +206,7 @@
           data-aos="flip-up"
           data-aos-delay="100"
           data-aos-duration="1000"
+          data-aos-once="true"
         >
           <h2 class="accordion-header" id="headingTwo">
             <button
@@ -231,6 +239,7 @@
           data-aos="flip-up"
           data-aos-delay="100"
           data-aos-duration="1000"
+          data-aos-once="true"
         >
           <h2 class="accordion-header" id="headingThree">
             <button
@@ -261,6 +270,7 @@
           data-aos="flip-up"
           data-aos-delay="100"
           data-aos-duration="1000"
+          data-aos-once="true"
         >
           <h2 class="accordion-header" id="headingFour">
             <button

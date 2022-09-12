@@ -96,7 +96,7 @@
           :key="item.id"
         >
           <div class="card mb-4">
-            <router-link to="product" :title="item.title">
+            <a href="#" :title="item.title" @click.prevent="toDetail(item.id)">
               <img :src="item.imageUrl" class="card-img-top" alt="" />
               <div class="card-body p-2">
                 <div class="d-flex justify-content-between align-items-center">
@@ -121,7 +121,7 @@
                   <p class="fs-5 text-end pe-2 mb-0">NT.{{ item.price }}</p>
                 </div>
               </div>
-            </router-link>
+            </a>
           </div>
         </div>
       </div>
@@ -132,7 +132,7 @@
           :key="item.id"
         >
           <div class="card mb-4">
-            <router-link to="product" :title="item.title">
+            <a href="#" :title="item.title" @click.prevent="toDetail(item.id)">
               <img :src="item.imageUrl" class="card-img-top" alt="" />
               <div class="card-body p-2">
                 <div class="d-flex justify-content-between align-items-center">
@@ -157,7 +157,7 @@
                   <p class="fs-5 text-end pe-2 mb-0">NT.{{ item.price }}</p>
                 </div>
               </div>
-            </router-link>
+            </a>
           </div>
         </div>
       </div>
@@ -178,6 +178,7 @@ export default {
       filterMode: false,
       keyword: '',
       pagination: {},
+      category: '',
     };
   },
   components: {
@@ -216,6 +217,9 @@ export default {
         this.tempProducts = arr;
         this.keyword = '';
       }
+    },
+    toDetail(id) {
+      this.$router.push(`/products/${id}`);
     },
   },
   created() {
