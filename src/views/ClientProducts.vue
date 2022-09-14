@@ -98,30 +98,31 @@
           <div class="card mb-4">
             <a href="#" :title="item.title" @click.prevent="toDetail(item.id)">
               <img :src="item.imageUrl" class="card-img-top" alt="" />
-              <div class="card-body p-2">
-                <div class="d-flex justify-content-between align-items-center">
-                  <p class="fs-5 ps-2 mt-1 mb-0">{{ item.title }}</p>
-                  <a class="pe-2" href=""><i class="bi bi-star"></i></a>
-                </div>
-                <div
-                  class="
-                    d-flex
-                    justify-content-between
-                    align-items-center
-                    pt-3
-                    pb-2
-                  "
-                >
-                  <button
-                    type="button"
-                    class="btn btn-outline-secondary btn-sm ms-2"
-                  >
-                    加入購物車
-                  </button>
-                  <p class="fs-5 text-end pe-2 mb-0">NT.{{ item.price }}</p>
-                </div>
-              </div>
             </a>
+            <div class="card-body p-2">
+              <div class="d-flex justify-content-between align-items-center">
+                <p class="fs-5 ps-2 mt-1 mb-0">{{ item.title }}</p>
+                <a class="pe-2" href=""><i class="bi bi-star"></i></a>
+              </div>
+              <div
+                class="
+                  d-flex
+                  justify-content-between
+                  align-items-center
+                  pt-3
+                  pb-2
+                "
+              >
+                <button
+                  type="button"
+                  class="btn btn-outline-secondary btn-sm ms-2"
+                  @click.prevent="addCart(item.id, item.title)"
+                >
+                  加入購物車
+                </button>
+                <p class="fs-5 text-end pe-2 mb-0">NT.{{ item.price }}</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -134,36 +135,41 @@
           <div class="card mb-4">
             <a href="#" :title="item.title" @click.prevent="toDetail(item.id)">
               <img :src="item.imageUrl" class="card-img-top" alt="" />
-              <div class="card-body p-2">
-                <div class="d-flex justify-content-between align-items-center">
-                  <p class="fs-5 ps-2 mt-1 mb-0">{{ item.title }}</p>
-                  <a class="pe-2" href=""><i class="bi bi-star"></i></a>
-                </div>
-                <div
-                  class="
-                    d-flex
-                    justify-content-between
-                    align-items-center
-                    pt-3
-                    pb-2
-                  "
-                >
-                  <button
-                    type="button"
-                    class="btn btn-outline-secondary btn-sm ms-2"
-                  >
-                    加入購物車
-                  </button>
-                  <p class="fs-5 text-end pe-2 mb-0">NT.{{ item.price }}</p>
-                </div>
-              </div>
             </a>
+            <div class="card-body p-2">
+              <div class="d-flex justify-content-between align-items-center">
+                <p class="fs-5 ps-2 mt-1 mb-0">{{ item.title }}</p>
+                <a class="pe-2" href=""><i class="bi bi-star"></i></a>
+              </div>
+              <div
+                class="
+                  d-flex
+                  justify-content-between
+                  align-items-center
+                  pt-3
+                  pb-2
+                "
+              >
+                <button
+                  type="button"
+                  class="btn btn-outline-secondary btn-sm ms-2"
+                  @click.prevent="addCart(item.id, item.title)"
+                >
+                  加入購物車
+                </button>
+                <p class="fs-5 text-end pe-2 mb-0">NT.{{ item.price }}</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </section>
   </div>
-  <Pagination :pages="pagination" @emit-pages="getProducts" v-if="!filterMode"></Pagination>
+  <Pagination
+    :pages="pagination"
+    @emit-pages="getProducts"
+    v-if="!filterMode"
+  ></Pagination>
 </template>
 
 <script>
@@ -220,6 +226,21 @@ export default {
     },
     toDetail(id) {
       this.$router.push(`/products/${id}`);
+    },
+    addCart(id, title) {
+      const toast = useToast();
+      const cart = {
+        product_id: id,
+        qty: +1,
+      };
+      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`;
+      this.$http.post(api, { data: cart }).then((res) => {
+        if (res.data.success) {
+          toast.success(`已將 ${title} 加入購物車`);
+        } else {
+          toast.error('加入購物車失敗');
+        }
+      });
     },
   },
   created() {

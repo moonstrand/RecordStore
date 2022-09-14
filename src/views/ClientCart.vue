@@ -68,38 +68,49 @@
                 pb-0
                 m-0
               "
+              v-for="item in tempcarts.carts"
+              :key="item.id"
             >
-              <div
-                class="
-                  col-md-6
-                  d-flex
-                  justify-content-around
-                  align-items-center
-                  h5
-                  mb-sm-0
-                  px-0
-                "
-              >
-                <img
-                  src="https://i.imgur.com/42dQvlj.jpg"
-                  class="cart-img"
-                  alt="cd"
-                />
-                <div class="cart-text">
-                  <p>そばにいて。</p>
-                  <p class="d-md-block d-none">NT.350</p>
-                </div>
-              </div>
-              <div class="col-md-6 h5">
-                <div class="row pt-md-0 pt-sm-4 pt-0 ps-md-0 ps-sm-2 ps-0">
+              <div class="col-md-6 align-items-center h5 my-sm-0 my-4">
+                <div class="row">
                   <div
                     class="
-                      col-sm-6
+                      col-6
                       d-flex
                       justify-content-center
                       align-items-center
-                      mb-sm-0 mb-3
-                      px-0
+                      cart-text
+                    "
+                  >
+                    <img
+                      :src="item.product.imageUrl"
+                      class="cart-img"
+                      alt="cd"
+                    />
+                  </div>
+                  <div
+                    class="
+                      col-6
+                      d-flex
+                      flex-column
+                      justify-content-center
+                      align-items-center
+                      cart-text
+                    "
+                  >
+                    <p class="mb-3">{{ item.product.title }}</p>
+                    <p class="mb-0">NT.{{ item.total }}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 my-0 h5">
+                <div class="row pt-md-0 pt-4">
+                  <div
+                    class="
+                      col-6
+                      d-flex
+                      justify-content-center
+                      align-items-center
                     "
                   >
                     <div class="input-group input-group-sm cart-qty">
@@ -107,6 +118,7 @@
                         class="btn btn-outline-secondary count rounded-0"
                         type="button"
                         id="button-addon1"
+                        @click="updateCart(item, item.qty + 1)"
                       >
                         <i class="bi bi-plus h5"></i>
                       </button>
@@ -114,11 +126,15 @@
                         type="text"
                         class="form-control border-secondary text-center"
                         placeholder=""
+                        min="1"
+                        v-model.number="item.qty"
                       />
                       <button
                         class="btn btn-outline-secondary count rounded-0"
                         type="button"
                         id="button-addon2"
+                        @click="updateCart(item, item.qty - 1)"
+                        :disabled="item.qty == 1"
                       >
                         <i class="bi bi-dash h5"></i>
                       </button>
@@ -126,17 +142,19 @@
                   </div>
                   <div
                     class="
-                      col-sm-6
+                      col-6
                       d-flex
-                      justify-content-sm-around justify-content-between
+                      justify-content-center
                       align-items-center
-                      mb-sm-0 mb-3
-                      px-0
+                      pe-4
                     "
                   >
-                    <p class="cart-text mb-0 ps-sm-0 ps-3">NT.350</p>
-                    <a class="cart-text pe-3" href="#">
-                      <i class="bi bi-x-lg cart-delete"></i>
+                    <a
+                      class="btn btn-sm btn-outline-danger"
+                      href="#"
+                      @click.prevent="deleteCart(item)"
+                    >
+                      <i class="bi bi-bag-x pe-2"></i>刪除此商品
                     </a>
                   </div>
                 </div>
@@ -158,11 +176,11 @@
               "
             >
               <p>訂單總額：</p>
-              <p>NT.350</p>
+              <p>NT.{{ tempcarts.total }}</p>
             </div>
             <div class="cart-text h5 d-flex justify-content-between px-3">
               <p>待折扣金額：</p>
-              <p class="text-danger">NT.0</p>
+              <p class="text-danger">NT.{{ tempcarts.total - tempcarts.final_total }}</p>
             </div>
             <div class="d-flex justify-content-center cart-border pt-4 pb-2">
               <div class="input-group cart-coupon mx-2 mb-3">
@@ -198,6 +216,55 @@
     </section>
   </div>
 </template>
+
+<script>
+import { useToast } from 'vue-toastification';
+
+export default {
+  data() {
+    return {
+      tempcarts: {},
+    };
+  },
+  methods: {
+    getCart() {
+      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`;
+      this.$http.get(api).then((res) => {
+        if (res.data.success) {
+          this.tempcarts = res.data.data;
+        }
+      });
+    },
+    updateCart(item, qty) {
+      const toast = useToast();
+      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart/${item.id}`;
+      const carts = {
+        product_id: item.product_id,
+        qty,
+      };
+      this.$http.put(api, { data: carts }).then((res) => {
+        if (res.data.success) {
+          toast.success('更新購物車成功');
+          this.getCart();
+        }
+      });
+    },
+    deleteCart(item) {
+      const toast = useToast();
+      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart/${item.id}`;
+      this.$http.delete(api).then((res) => {
+        if (res.data.success) {
+          toast.success(`已刪除 ${item.product.title}`);
+          this.getCart();
+        }
+      });
+    },
+  },
+  created() {
+    this.getCart();
+  },
+};
+</script>
 
 <style lang="scss">
 @import "../assets/components/_clientCart.scss";

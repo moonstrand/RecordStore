@@ -19,11 +19,7 @@
       </nav>
       <div class="row my-4">
         <div class="col-lg-6 text-lg-start text-center">
-          <img
-            class="product-img"
-            :src="product.imageUrl"
-            alt="そばにいて"
-          />
+          <img class="product-img" :src="product.imageUrl" alt="そばにいて" />
         </div>
         <div class="col-lg-6 d-flex flex-column justify-content-between py-4">
           <div class="product-intro">
@@ -50,12 +46,17 @@
                 class="form-select"
                 id="inputGroupSelect04"
                 aria-label="Example select with button addon"
+                v-model.number="qty"
               >
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
+                <option :value="qty" v-for="qty in 15" :key="qty">
+                  {{ qty }}
+                </option>
               </select>
-              <button class="btn btn-outline-secondary" type="button">
+              <button
+                class="btn btn-outline-secondary"
+                type="button"
+                @click="addCart(product, qty)"
+              >
                 加入購物車
               </button>
             </div>
@@ -146,25 +147,41 @@
 </template>
 
 <script>
+import { useToast } from 'vue-toastification';
+
 export default {
   data() {
     return {
       product: {},
       id: '',
+      qty: 1,
     };
   },
   methods: {
     getProduct() {
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/product/${this.id}`;
-      this.$http.get(api)
-        .then((res) => {
-          if (res.data.success) {
-            this.product = res.data.product;
-          }
-        });
+      this.$http.get(api).then((res) => {
+        if (res.data.success) {
+          console.log(res);
+          this.product = res.data.product;
+        }
+      });
     },
     getID() {
       this.id = this.$route.params.id;
+    },
+    addCart(item, qty) {
+      const toast = useToast();
+      const carts = {
+        product_id: item.id,
+        qty,
+      };
+      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`;
+      this.$http.post(api, { data: carts }).then((res) => {
+        if (res.data.success) {
+          toast.success(`已將 ${item.title} 加入購物車`);
+        }
+      });
     },
   },
   created() {
