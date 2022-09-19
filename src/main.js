@@ -18,10 +18,13 @@ import 'vue-toastification/dist/index.css';
 
 import App from './App.vue';
 import router from './router';
+import { currency, date } from './assets/methods/filters';
 
 AOS.init();
 
 const app = createApp(App);
+app.config.globalProperties.$filters = { currency, date };
+
 app.component('Loading', Loading);
 app.use(VueAxios, axios);
 app.use(router);

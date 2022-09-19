@@ -24,7 +24,7 @@
               class="category-link"
               href="#"
               :class="{ categoryActive: category == '全部' }"
-              @click.prevent="toCategory('全部')"
+              @click.prevent="categoryChange('全部')"
               >所有類別</a
             >
           </li>
@@ -33,7 +33,7 @@
               class="category-link"
               href="#"
               :class="{ categoryActive: category == '西洋' }"
-              @click.prevent="toCategory('西洋')"
+              @click.prevent="categoryChange('西洋')"
               >西洋</a
             >
           </li>
@@ -42,7 +42,7 @@
               class="category-link"
               href="#"
               :class="{ categoryActive: category == '東洋' }"
-              @click.prevent="toCategory('東洋')"
+              @click.prevent="categoryChange('東洋')"
               >東洋</a
             >
           </li>
@@ -51,16 +51,16 @@
               class="category-link"
               href="#"
               :class="{ categoryActive: category == '華語' }"
-              @click.prevent="toCategory('華語')"
+              @click.prevent="categoryChange('華語')"
               >華語</a
             >
           </li>
-          <li class="border-end-0">
+          <li>
             <a
               class="category-link"
               href="#"
               :class="{ categoryActive: category == '純音樂' }"
-              @click.prevent="toCategory('純音樂')"
+              @click.prevent="categoryChange('純音樂')"
               >純音樂</a
             >
           </li>
@@ -90,8 +90,10 @@
           v-for="item in filterProducts"
           :key="item.id"
         >
-          <div class="card mb-4" @click.prevent="toDetail(item.id)">
-            <img :src="item.imageUrl" class="card-img-top" alt="" />
+          <div class="card mb-4">
+            <a href="#" :title="item.title" @click.prevent="toDetail(item.id)">
+              <img :src="item.imageUrl" class="card-img-top" alt="" />
+            </a>
             <div class="card-body p-2">
               <div class="d-flex justify-content-between align-items-center">
                 <p class="fs-5 ps-2 mt-1 mb-0">{{ item.title }}</p>
@@ -109,7 +111,7 @@
                 <button
                   type="button"
                   class="btn btn-outline-secondary btn-sm ms-2"
-                  @click.stop="addCart(item.id, item.title)"
+                  @click.prevent="addCart(item.id, item.title)"
                 >
                   加入購物車
                 </button>
@@ -119,35 +121,53 @@
           </div>
         </div>
       </div>
+      <Pagination
+        :pages="pagination"
+        @emit-pages="getProducts"
+        class="mt-4"
+        v-if="!filterMode"
+      ></Pagination>
     </section>
   </div>
 </template>
 
 <script>
 import { useToast } from 'vue-toastification';
+import Pagination from '../components/Pagination.vue';
 
 export default {
   data() {
     return {
       products: [],
+      filterMode: false,
       search: '',
+      pagination: {},
       category: '全部',
     };
   },
+  components: {
+    Pagination,
+  },
   methods: {
-    getProducts() {
-      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/products/all`;
+    getProducts(page = 1) {
+      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/products?page=${page}`;
       this.$http.get(api).then((res) => {
         if (res.data.success) {
           this.products = res.data.products;
+          this.pagination = res.data.pagination;
         }
       });
     },
+    categoryChange(category) {
+      if (category !== '全部') {
+        this.filterMode = true;
+      } else if (category === '全部') {
+        this.filterMode = false;
+      }
+      this.category = category;
+    },
     toDetail(id) {
       this.$router.push(`/products/${id}`);
-    },
-    toCategory(category) {
-      this.category = category;
     },
     addCart(id, title) {
       const toast = useToast();

@@ -9,9 +9,8 @@
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb py-3">
           <li class="breadcrumb-item">
-            <router-link to="products">專輯列表</router-link>
+            <router-link to="/products">專輯列表</router-link>
           </li>
-          <li class="breadcrumb-item"><a href="#">東洋</a></li>
           <li class="breadcrumb-item active" aria-current="page">
             <strong>{{ product.title }}</strong>
           </li>
