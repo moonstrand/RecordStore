@@ -54,8 +54,8 @@
       </div>
     </section>
     <section class="container">
-      <div class="row d-flex flex-lg-row flex-column-reverse g-3">
-        <div class="col-lg-7">
+      <div class="row d-flex flex-xl-row flex-column-reverse g-3">
+        <form class="col-xl-7" @submit="submitData">
           <div class="cart-bg pb-4 px-4">
             <p class="text-center h3 py-4 mb-0 cart-title">客戶資料</p>
             <div class="form-floating mb-3">
@@ -64,6 +64,7 @@
                 class="form-control"
                 id="floatingInput"
                 placeholder="name@example.com"
+                v-model="form.user.email"
               />
               <label for="floatingInput">Email</label>
             </div>
@@ -73,6 +74,7 @@
                 class="form-control"
                 id="floatingInput"
                 placeholder="收件人姓名"
+                v-model="form.user.name"
               />
               <label for="floatingInput">收件人姓名</label>
             </div>
@@ -82,6 +84,7 @@
                 class="form-control"
                 id="floatingInput"
                 placeholder="收件人電話"
+                v-model="form.user.tel"
               />
               <label for="floatingInput">收件人電話</label>
             </div>
@@ -91,8 +94,12 @@
                 class="form-control"
                 id="floatingInput"
                 placeholder="收件人地址"
+                :disabled="selfPick"
+                v-model="form.user.address"
               />
-              <label for="floatingInput">收件人地址</label>
+              <label for="floatingInput" :class="{ 'text-secondary': selfPick }"
+                >收件人地址</label
+              >
             </div>
             <div class="form-floating mb-3">
               <textarea
@@ -100,6 +107,7 @@
                 placeholder="有任何備註請留言"
                 id="floatingTextarea2"
                 style="height: 150px"
+                v-model="form.message"
               ></textarea>
               <label for="floatingTextarea2">備註</label>
             </div>
@@ -109,29 +117,35 @@
                 type="checkbox"
                 value=""
                 id="flexCheckDefault"
+                v-model="selfPick"
               />
               <label class="form-check-label" for="flexCheckDefault">
                 到店自取
               </label>
             </div>
-            <router-link to="payment" class="btn btn-secondary w-100">
+            <button class="btn btn-secondary w-100">
               確認下單
-            </router-link>
+            </button>
           </div>
-        </div>
-        <div class="col-lg-5">
+        </form>
+        <div class="col-xl-5">
           <div class="cart-bg pb-2 px-4">
             <p class="text-center h3 py-4 mb-0 cart-title">訂單明細</p>
-            <div class="d-flex align-items-center cart-border px-3 py-4">
-              <img
-                src="https://i.imgur.com/42dQvlj.jpg"
-                class="cart-img"
-                alt="cd"
-              />
+            <div
+              class="d-flex align-items-center cart-border px-3 py-4"
+              v-for="item in carts.carts"
+              :key="item.id"
+            >
+              <img :src="item.product.imageUrl" class="cart-img" alt="cd" />
               <div class="cart-text fs-sm-5 ps-sm-5 ps-3">
-                <p class="mb-0">そばにいて。</p>
-                <p class="py-2 mb-0">1 張</p>
-                <p class="mb-0">NT.350</p>
+                <p class="mb-0">{{ item.product.title }}</p>
+                <p class="py-2 mb-0">{{ item.qty }} 張</p>
+                <p class="mb-0" v-if="carts.total === carts.final_total">
+                  NT.{{ item.final_total }}
+                </p>
+                <p class="text-success mb-0" v-else>
+                  折扣價： NT.{{ item.final_total }}
+                </p>
               </div>
             </div>
             <div
@@ -145,11 +159,13 @@
               "
             >
               <p>商品總額：</p>
-              <p>NT.350</p>
+              <p>NT.{{ carts.total }}</p>
             </div>
             <div class="cart-text h5 d-flex justify-content-between px-3">
               <p>折扣金額：</p>
-              <p class="text-danger">NT.0</p>
+              <p class="text-danger">
+                NT.{{ carts.total - carts.final_total }}
+              </p>
             </div>
             <div
               class="
@@ -162,7 +178,7 @@
               "
             >
               <p>訂單總額：</p>
-              <p>NT.1050</p>
+              <p>NT.{{ carts.final_total }}</p>
             </div>
           </div>
         </div>
@@ -170,6 +186,56 @@
     </section>
   </div>
 </template>
+
+<script>
+import { useToast } from 'vue-toastification';
+
+export default {
+  data() {
+    return {
+      carts: {},
+      form: {
+        user: {},
+        message: '',
+      },
+      selfPick: false,
+    };
+  },
+  methods: {
+    getCarts() {
+      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`;
+      this.$http.get(api).then((res) => {
+        if (res.data.success) {
+          this.carts = res.data.data;
+        }
+      });
+    },
+    submitData() {
+      const toast = useToast();
+      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/order`;
+      this.$http.post(api, { data: this.form })
+        .then((res) => {
+          if (res.data.success) {
+            toast.success(res.data.message);
+            this.$router.push(`payment/${res.data.orderId}`);
+          }
+        });
+    },
+  },
+  watch: {
+    selfPick(n) {
+      if (n === true) {
+        this.form.user.address = '到店自取';
+      } else {
+        this.form.user.address = '';
+      }
+    },
+  },
+  created() {
+    this.getCarts();
+  },
+};
+</script>
 
 <style lang="scss">
 @import "../assets/components/_clientCart.scss";

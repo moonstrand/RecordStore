@@ -59,7 +59,7 @@
           <div class="cart-bg py-4 px-4">
             <ul class="list-group list-group-horizontal text-center flex-fill">
               <li
-                class="list-group-item list-group-item-action cart-text"
+                class="list-group-item list-group-item-action cart-text active"
                 data-bs-toggle="list"
                 href="#list-order"
                 role="tab"
@@ -83,7 +83,7 @@
                 訂購須知
               </li>
             </ul>
-            <div class="tab-content pt-3 px-3" id="nav-tabContent">
+            <div class="tab-content pt-3 px-sm-3 px-0" id="nav-tabContent">
               <div
                 class="tab-pane fade show active"
                 id="list-order"
@@ -92,49 +92,51 @@
                 <table class="table table-hover cart-text">
                   <tbody>
                     <tr>
-                      <th width="250px">訂單編號</th>
-                      <td>1234567890</td>
+                      <th width="140px">訂單編號</th>
+                      <td>{{ order.id }}</td>
                     </tr>
                     <tr>
                       <th>Email</th>
-                      <td>test@email.com</td>
+                      <td>{{ order.user.email }}</td>
                     </tr>
                     <tr>
                       <th>收件人姓名</th>
-                      <td>test</td>
+                      <td>{{ order.user.name }}</td>
                     </tr>
                     <tr>
                       <th>收件人電話</th>
-                      <td>0912345678</td>
+                      <td>{{ order.user.tel }}</td>
                     </tr>
                     <tr>
                       <th>取貨方式</th>
-                      <td>宅配</td>
+                      <td v-if="order.user.address === '到店自取'">自取</td>
+                      <td v-else>宅配</td>
                     </tr>
                     <tr>
                       <th>收件人地址</th>
-                      <td>測試地址</td>
+                      <td>{{ order.user.address }}</td>
                     </tr>
                     <tr>
                       <th>備註</th>
-                      <td>測試</td>
+                      <td>{{ order.message }}</td>
                     </tr>
                     <tr>
                       <th>訂單成立時間</th>
-                      <td>2022/09/02</td>
+                      <td>{{ $filters.date(order.create_at) }}</td>
                     </tr>
                     <tr>
                       <th>付款狀態</th>
-                      <td>尚未付款</td>
+                      <td v-if="!order.is_paid" class="text-danger">尚未付款</td>
+                      <td v-else class="text-success">已付款</td>
                     </tr>
                   </tbody>
                 </table>
-                <router-link
-                  to="success"
+                <button
                   class="btn btn-secondary w-100 mt-2"
+                  @click="payOrder"
                 >
                   確認付款
-                </router-link>
+                </button>
               </div>
               <div class="tab-pane fade" id="list-products" role="tabpanel">
                 <div
@@ -146,16 +148,18 @@
                     px-3
                     py-4
                   "
+                  v-for="(item, i) in order.products"
+                  :key="i"
                 >
                   <img
-                    src="https://i.imgur.com/42dQvlj.jpg"
+                    :src="item.product.imageUrl"
                     class="cart-img"
                     alt="cd"
                   />
-                  <div class="cart-text h5 fs-sm-5 ps-sm-5 ps-3 pt-sm-0 pt-3">
-                    <p class="mb-0">そばにいて。</p>
-                    <p class="py-2 mb-0">1 張</p>
-                    <p class="mb-0">NT.350</p>
+                  <div class="cart-text h5 fs-sm-5 ps-sm-5 ps-sm-3 ps-0 pt-sm-0 pt-3">
+                    <p class="mb-0">{{ item.product.title }}</p>
+                    <p class="py-2 mb-0">{{ item.qty }} 張</p>
+                    <p class="mb-0">NT. {{ item.final_total }}</p>
                   </div>
                 </div>
                 <div
@@ -170,7 +174,7 @@
                   "
                 >
                   <p>訂單總額：</p>
-                  <p>NT.350</p>
+                  <p>NT. {{ order.total }}</p>
                 </div>
               </div>
               <div class="tab-pane fade" id="list-info" role="tabpanel">
@@ -207,6 +211,50 @@
     </section>
   </div>
 </template>
+
+<script>
+import { useToast } from 'vue-toastification';
+
+export default {
+  data() {
+    return {
+      orderId: '',
+      order: {
+        user: {},
+      },
+    };
+  },
+  methods: {
+    getId() {
+      this.orderId = this.$route.params.orderId;
+    },
+    getOrder() {
+      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/order/${this.orderId}`;
+      this.$http.get(api)
+        .then((res) => {
+          if (res.data.success) {
+            this.order = res.data.order;
+          }
+        });
+    },
+    payOrder() {
+      const toast = useToast();
+      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/pay/${this.orderId}`;
+      this.$http.post(api)
+        .then((res) => {
+          if (res.data.success) {
+            toast.success(res.data.message);
+            this.$router.push('/success');
+          }
+        });
+    },
+  },
+  created() {
+    this.getId();
+    this.getOrder();
+  },
+};
+</script>
 
 <style lang="scss">
 @import "../assets/components/_clientCart.scss";
