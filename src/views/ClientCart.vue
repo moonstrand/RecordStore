@@ -99,7 +99,15 @@
                     "
                   >
                     <p class="mb-3">{{ item.product.title }}</p>
-                    <p class="mb-0">NT.{{ item.total }}</p>
+                    <p
+                      class="mb-0"
+                      v-if="tempcarts.final_total === tempcarts.total"
+                    >
+                      NT.{{ item.total }}
+                    </p>
+                    <p class="text-success mb-0" v-else>
+                      NT.{{ item.final_total }}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -180,7 +188,9 @@
             </div>
             <div class="cart-text h5 d-flex justify-content-between px-3">
               <p>待折扣金額：</p>
-              <p class="text-danger">NT.{{ tempcarts.total - tempcarts.final_total }}</p>
+              <p class="text-danger">
+                NT.{{ tempcarts.total - tempcarts.final_total }}
+              </p>
             </div>
             <div class="d-flex justify-content-center cart-border pt-4 pb-2">
               <div class="input-group cart-coupon mx-2 mb-3">
@@ -188,11 +198,14 @@
                   type="text"
                   class="form-control"
                   placeholder="請輸入優惠碼"
+                  v-model="code"
                 />
                 <button
                   class="btn btn-outline-secondary"
                   type="button"
                   id="button-addon2"
+                  @click="applyCoupon"
+                  :disabled="tempcarts.final_total !== tempcarts.total"
                 >
                   套用優惠碼
                 </button>
@@ -206,7 +219,11 @@
                 在您下標後將立即處理您的訂單，現貨商品將於三個工作天內寄出 （
                 不含週六日及國定例假日 ）， 若商品無庫存將由店家與您電話聯繫。
               </p>
-              <router-link to="check" class="btn btn-secondary w-100 mt-4">
+              <router-link
+                to="check"
+                class="btn btn-secondary w-100 mt-4"
+                :class="{'disabled': tempcarts.total === 0}"
+              >
                 確認訂單
               </router-link>
             </div>
@@ -224,6 +241,7 @@ export default {
   data() {
     return {
       tempcarts: {},
+      code: '',
     };
   },
   methods: {
@@ -256,6 +274,18 @@ export default {
         if (res.data.success) {
           toast.success(`已刪除 ${item.product.title}`);
           this.getCart();
+        }
+      });
+    },
+    applyCoupon() {
+      const toast = useToast();
+      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/coupon`;
+      const coupon = { code: this.code };
+      this.$http.post(api, { data: coupon }).then((res) => {
+        if (res.data.success) {
+          toast.success(res.data.message);
+          this.getCart();
+          this.code = '';
         }
       });
     },
