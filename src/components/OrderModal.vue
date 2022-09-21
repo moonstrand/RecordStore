@@ -23,7 +23,7 @@
             <div class="col-5">
               <span class="h4 fw-bold ms-1">用戶資料</span>
               <table class="table mt-2 mb-4">
-                <tbody>
+                <tbody v-if="order.user">
                   <tr>
                     <th>姓名</th>
                     <td>{{ order.user.name }}</td>

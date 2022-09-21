@@ -1,4 +1,5 @@
 <template>
+  <Loading :active="isLoading"></Loading>
   <div class="row justify-content-center mt-5">
     <div class="col-10">
       <table class="table table-hover server-text align-middle">
@@ -34,7 +35,9 @@
                   class="form-check-input"
                   type="checkbox"
                   role="switch"
+                  :checked="order.is_paid"
                   v-model="order.is_paid"
+                  @change="updatePaid(order)"
                 />
                 <label class="form-check-label">
                   <span class="text-success fw-bold" v-if="order.is_paid"
@@ -67,7 +70,14 @@
                       >詳細</a
                     >
                   </li>
-                  <li><a class="dropdown-item" href="#">刪除</a></li>
+                  <li>
+                    <a
+                      class="dropdown-item"
+                      href="#"
+                      @click.prevent="openDelModal(order)"
+                      >刪除</a
+                    >
+                  </li>
                 </ul>
               </div>
             </td>
@@ -77,34 +87,71 @@
     </div>
   </div>
   <OrderModal ref="orderModal" :order="tempOrder"></OrderModal>
+  <DelOrderModal ref="delOrderModal" :order="tempOrder" @delOrder="delOrder"></DelOrderModal>
 </template>
 
 <script>
+import { useToast } from 'vue-toastification';
 import OrderModal from '../components/OrderModal.vue';
+import DelOrderModal from '../components/DelOrderModal.vue';
 
 export default {
   data() {
     return {
       orders: [],
       tempOrder: {},
+      isLoading: false,
     };
   },
   components: {
     OrderModal,
+    DelOrderModal,
   },
   methods: {
     getOrders() {
+      this.isLoading = true;
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/orders?page=1`;
       this.$http.get(api).then((res) => {
         if (res.data.success) {
+          this.isLoading = false;
           this.orders = res.data.orders;
         }
       });
     },
     openModal(order) {
-      this.tempOrder = { ...order };
       const orderComponents = this.$refs.orderModal;
+      this.tempOrder = { ...order };
       orderComponents.modalShow();
+    },
+    openDelModal(order) {
+      const delComponents = this.$refs.delOrderModal;
+      this.tempOrder = { ...order };
+      delComponents.modalShow();
+    },
+    delOrder() {
+      this.isLoading = true;
+      const toast = useToast();
+      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/order/${this.tempOrder.id}`;
+      const delComponents = this.$refs.delOrderModal;
+      delComponents.modalHide();
+      this.$http.delete(api)
+        .then((res) => {
+          this.isLoading = false;
+          if (res.data.success) {
+            toast.success(`已刪除 ${this.tempOrder.id}`);
+            this.getOrders();
+          }
+        });
+    },
+    updatePaid(order) {
+      const toast = useToast();
+      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/order/${this.tempOrder.id}`;
+      this.$http.put(api, { data: { ...order } })
+        .then((res) => {
+          if (res.data.success) {
+            toast.success(res.data.message);
+          }
+        });
     },
   },
   created() {

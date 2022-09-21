@@ -167,7 +167,6 @@ export default {
       this.$http.delete(api).then((res) => {
         this.isLoading = false;
         if (res.data.success) {
-          console.log(res);
           this.getProducts();
           toast.success('刪除商品成功');
         } else {
