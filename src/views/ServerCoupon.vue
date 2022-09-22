@@ -53,7 +53,14 @@
                       >編輯</a
                     >
                   </li>
-                  <li><a class="dropdown-item" href="#">刪除</a></li>
+                  <li>
+                    <a
+                      class="dropdown-item"
+                      href="#"
+                      @click.prevent="openDelModal(item)"
+                      >刪除</a
+                    >
+                  </li>
                 </ul>
               </div>
             </td>
@@ -68,12 +75,14 @@
     @update-coupon="updateCoupon"
     :coupon="tempCoupon"
   ></CouponModal>
+  <DelCouponModal ref="delCouponModal" :coupon="tempCoupon" @delCoupon="delCoupon"></DelCouponModal>
 </template>
 
 <script>
 import { useToast } from 'vue-toastification';
 import Pagination from '../components/Pagination.vue';
 import CouponModal from '../components/CouponModal.vue';
+import DelCouponModal from '../components/DelCouponModal.vue';
 
 export default {
   data() {
@@ -88,6 +97,7 @@ export default {
   components: {
     Pagination,
     CouponModal,
+    DelCouponModal,
   },
   methods: {
     getCoupon(page = 1) {
@@ -132,6 +142,26 @@ export default {
           this.getCoupon();
         }
       });
+    },
+    openDelModal(item) {
+      const delComponents = this.$refs.delCouponModal;
+      this.tempCoupon = { ...item };
+      delComponents.modalShow();
+    },
+    delCoupon() {
+      this.isLoading = true;
+      const toast = useToast();
+      const delComponents = this.$refs.delCouponModal;
+      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/coupon/${this.tempCoupon.id}`;
+      delComponents.modalHide();
+      this.$http.delete(api)
+        .then((res) => {
+          if (res.data.success) {
+            this.isLoading = false;
+            toast.success(`已刪除 ${this.tempCoupon.title} 優惠券`);
+            this.getCoupon();
+          }
+        });
     },
   },
   created() {

@@ -53,6 +53,11 @@ const routes = [
         component: () => import('../views/ClientOrder.vue'),
       },
       {
+        path: 'ordercheck/:orderId',
+        name: 'ordercheck',
+        component: () => import('../views/ClientOrderCheck.vue'),
+      },
+      {
         path: 'login',
         name: 'login',
         component: () => import('../views/Login.vue'),

@@ -1,58 +1,11 @@
 <template>
-  <div class="nav-bg"></div>
-  <div class="bg-color cart-h py-4">
-    <section
-      class="
-        container
-        d-flex
-        flex-md-row flex-column
-        justify-content-around
-        align-items-center
-        py-md-5
-        pb-3
-      "
-    >
-      <div class="cart-step bg-light h4 py-3 px-4 border border-dark text-dark">
-        <i
-          class="
-            bi bi-check-lg
-            pe-4
-            border-end border-dark border-2
-            d-lg-inline d-none
-          "
-        ></i>
-        <i class="bi bi-cart-check ps-lg-4 ps-0"></i>
-        <span class="h5 ps-3">確認訂單</span>
-      </div>
-      <i class="bi bi-chevron-right d-md-block d-none h4"></i>
-      <i class="bi bi-chevron-down d-md-none d-block h4"></i>
-      <div class="cart-step bg-light h4 py-3 px-4 border border-dark text-dark">
-        <i
-          class="
-            bi bi-check-lg
-            pe-4
-            border-end border-dark border-2
-            d-lg-inline d-none
-          "
-        ></i>
-        <i class="bi bi-file-text ps-lg-4 ps-0"></i>
-        <span class="h5 ps-3">填寫資料</span>
-      </div>
-      <i class="bi bi-chevron-right d-md-block d-none h4"></i>
-      <i class="bi bi-chevron-down d-md-none d-block h4"></i>
-      <div class="cart-step h4 py-3 px-4 border border-dark text-light">
-        <i
-          class="
-            bi bi-3-square
-            pe-4
-            border-end border-light border-2
-            d-lg-inline d-none
-          "
-        ></i>
-        <i class="bi bi-credit-card ps-lg-4 ps-0"></i>
-        <span class="h5 ps-3">確認付款</span>
-      </div>
-    </section>
+  <div class="order-banner d-flex justify-content-center align-items-center">
+    <div class="banner-content text-center h1 text-light">
+      <p class="banner-title">訂單查詢</p>
+      <p class="h3 pt-3 mb-0">「隨時追蹤你的專輯訂單。」</p>
+    </div>
+  </div>
+  <div class="order-h bg-color d-flex align-items-center py-5">
     <section class="container">
       <div class="row d-flex justify-content-center">
         <div class="col-md-9">
@@ -109,7 +62,7 @@
                     </tr>
                     <tr>
                       <th>取貨方式</th>
-                      <td v-if="order.user.address === '到店自取'">自取</td>
+                      <td v-if="(order.user.address = '到店自取')">自取</td>
                       <td v-else>宅配</td>
                     </tr>
                     <tr>
@@ -118,7 +71,7 @@
                     </tr>
                     <tr>
                       <th>備註</th>
-                      <td>{{ order.message }}</td>
+                      <td>"{{ order.message }}"</td>
                     </tr>
                     <tr>
                       <th>訂單成立時間</th>
@@ -157,8 +110,19 @@
                   <p v-if="!order.is_paid" class="text-danger">尚未付款</p>
                   <p v-else class="text-success">已付款</p>
                 </div>
-                <button class="btn btn-secondary w-100 mt-2" @click="payOrder">
+                <button
+                  class="btn btn-secondary w-100 mt-2"
+                  v-if="!order.is_paid"
+                  @click="payOrder"
+                >
                   確認付款
+                </button>
+                <button
+                  class="btn btn-secondary w-100 mt-2"
+                  v-else
+                  @click="backOrderCheck"
+                >
+                  返回訂單查詢
                 </button>
               </div>
               <div class="tab-pane fade" id="list-products" role="tabpanel">
@@ -185,7 +149,9 @@
                     "
                   >
                     <p class="mb-0">{{ item.product.title }}</p>
-                    <p class="py-2 mb-0">{{ item.qty }} 張</p>
+                    <p class="py-2 mb-0">
+                      {{ item.qty }} {{ item.product.unit }}
+                    </p>
                     <p class="mb-0">NT. {{ item.final_total }}</p>
                   </div>
                 </div>
@@ -257,7 +223,7 @@ export default {
     },
     getOrder() {
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/order/${this.orderId}`;
-      this.$http.get(api).then((res) => {
+      this.$http.get(api, this.orderId).then((res) => {
         if (res.data.success) {
           this.order = res.data.order;
         }
@@ -273,6 +239,9 @@ export default {
         }
       });
     },
+    backOrderCheck() {
+      this.$router.push('/order');
+    },
   },
   created() {
     this.getId();
@@ -282,5 +251,6 @@ export default {
 </script>
 
 <style lang="scss">
+@import "../assets/components/_clientOrder.scss";
 @import "../assets/components/_clientCart.scss";
 </style>

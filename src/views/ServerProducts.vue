@@ -80,18 +80,18 @@
     @update-product="updateProduct"
     ref="productsModal"
   ></ProductsModal>
-  <DeleteModal
+  <DelProductModal
     :product="tempProduct"
     @del-product="delProduct"
     ref="deleteModal"
-  ></DeleteModal>
+  ></DelProductModal>
   <Pagination :pages="pagination" @emit-pages="getProducts"></Pagination>
 </template>
 
 <script>
 import { useToast } from 'vue-toastification';
 import ProductsModal from '../components/ProductsModal.vue';
-import DeleteModal from '../components/DeleteModal.vue';
+import DelProductModal from '../components/DelProductModal.vue';
 import Pagination from '../components/Pagination.vue';
 
 export default {
@@ -106,7 +106,7 @@ export default {
   },
   components: {
     ProductsModal,
-    DeleteModal,
+    DelProductModal,
     Pagination,
   },
   methods: {

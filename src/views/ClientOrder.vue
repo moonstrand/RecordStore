@@ -14,11 +14,13 @@
               type="text"
               class="form-control border-secondary"
               placeholder="請輸入訂單編號"
+              v-model="orderId"
             />
             <button
               class="btn btn-outline-secondary"
               type="button"
               id="button-addon2"
+              @click="checkOrder"
             >
               <i class="bi bi-search"></i>
             </button>
@@ -55,6 +57,33 @@
     </section>
   </div>
 </template>
+
+<script>
+import { useToast } from 'vue-toastification';
+
+export default {
+  data() {
+    return {
+      orderId: '',
+    };
+  },
+  methods: {
+    checkOrder() {
+      const toast = useToast();
+      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/order/${this.orderId}`;
+      this.$http.get(api, this.orderId).then((res) => {
+        if (res.data.success && res.data.order !== null) {
+          console.log(res);
+          toast.info(`已查找到訂單 ${this.orderId} 的資訊`);
+          this.$router.push(`/ordercheck/${this.orderId}`);
+        } else {
+          toast.error(`查無訂單 ${this.orderId} 的資訊，請再次確認`);
+        }
+      });
+    },
+  },
+};
+</script>
 
 <style lang="scss">
 @import "../assets/components/_clientOrder.scss";

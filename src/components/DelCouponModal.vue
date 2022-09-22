@@ -3,7 +3,7 @@
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header bg-danger text-light">
-          <h5 class="modal-title">刪除此筆訂單</h5>
+          <h5 class="modal-title">刪除此筆優惠券</h5>
           <button
             type="button"
             class="btn-close btn-close-white"
@@ -12,8 +12,9 @@
           ></button>
         </div>
         <div class="modal-body">
-          <p>確認要刪除此筆訂單？</p>
-          <p>訂單編號：{{ order.id }}</p>
+          <p>確認要刪除此筆優惠券？</p>
+          <p>優惠券名稱： {{ coupon.title }}</p>
+          <p>優惠碼： {{ coupon.code }}</p>
         </div>
         <div class="modal-footer">
           <small class="fw-bold text-danger">此動作將無法回復</small>
@@ -27,7 +28,7 @@
           <button
             type="button"
             class="btn btn-danger"
-            @click="$emit('delOrder')"
+            @click="$emit('delCoupon')"
           >
             刪除
           </button>
@@ -42,14 +43,9 @@ import modalMixin from '../assets/mixins/modalMixin';
 
 export default {
   props: {
-    order: {},
+    coupon: {},
   },
-  emits: ['delOrder'],
-  data() {
-    return {
-      modal: '',
-    };
-  },
+  emits: ['delCoupon'],
   mixins: [modalMixin],
 };
 </script>
