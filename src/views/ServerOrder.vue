@@ -88,33 +88,38 @@
   </div>
   <OrderModal ref="orderModal" :order="tempOrder"></OrderModal>
   <DelOrderModal ref="delOrderModal" :order="tempOrder" @delOrder="delOrder"></DelOrderModal>
+  <Pagination :pages="pagination" @emit-pages="getOrders"></Pagination>
 </template>
 
 <script>
 import { useToast } from 'vue-toastification';
 import OrderModal from '../components/OrderModal.vue';
 import DelOrderModal from '../components/DelOrderModal.vue';
+import Pagination from '../components/Pagination.vue';
 
 export default {
   data() {
     return {
       orders: [],
       tempOrder: {},
+      pagination: {},
       isLoading: false,
     };
   },
   components: {
     OrderModal,
     DelOrderModal,
+    Pagination,
   },
   methods: {
-    getOrders() {
+    getOrders(page = 1) {
       this.isLoading = true;
-      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/orders?page=1`;
+      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/orders?page=${page}`;
       this.$http.get(api).then((res) => {
         if (res.data.success) {
           this.isLoading = false;
           this.orders = res.data.orders;
+          this.pagination = res.data.pagination;
         }
       });
     },
