@@ -106,13 +106,23 @@
                   pb-2
                 "
               >
-                <button
-                  type="button"
-                  class="btn btn-outline-secondary btn-sm ms-2"
-                  @click.stop="addCart(item.id, item.title)"
-                >
-                  加入購物車
-                </button>
+                <div class="d-flex align-items-center">
+                  <button
+                    type="button"
+                    class="btn btn-outline-secondary btn-sm ms-2"
+                    :disabled="status.itemLoading === item.id"
+                    @click.stop="addCart(item.id, item.title)"
+                  >
+                    加入購物車
+                  </button>
+                  <div
+                    class="spinner-grow spinner-grow-sm text-secondary ms-3"
+                    role="status"
+                    v-if="status.itemLoading === item.id"
+                  >
+                    <span class="visually-hidden">Loading...</span>
+                  </div>
+                </div>
                 <p class="fs-5 text-end pe-2 mb-0">NT.{{ item.price }}</p>
               </div>
             </div>
@@ -132,6 +142,9 @@ export default {
       products: [],
       search: '',
       category: '全部',
+      status: {
+        itemLoading: '',
+      },
     };
   },
   methods: {
@@ -150,6 +163,7 @@ export default {
       this.category = category;
     },
     addCart(id, title) {
+      this.status.itemLoading = id;
       const toast = useToast();
       const cart = {
         product_id: id,
@@ -157,6 +171,7 @@ export default {
       };
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`;
       this.$http.post(api, { data: cart }).then((res) => {
+        this.status.itemLoading = '';
         if (res.data.success) {
           toast.success(`已將 ${title} 加入購物車`);
         } else {

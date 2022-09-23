@@ -126,6 +126,7 @@
                         class="btn btn-outline-secondary count rounded-0"
                         type="button"
                         id="button-addon1"
+                        :disabled="status.itemLoading === item.id"
                         @click="updateCart(item, item.qty + 1)"
                       >
                         <i class="bi bi-plus h5"></i>
@@ -136,13 +137,16 @@
                         placeholder=""
                         min="1"
                         v-model.number="item.qty"
+                        @change="updateCart"
                       />
                       <button
                         class="btn btn-outline-secondary count rounded-0"
                         type="button"
                         id="button-addon2"
                         @click="updateCart(item, item.qty - 1)"
-                        :disabled="item.qty == 1"
+                        :disabled="
+                          item.qty === 1 || status.itemLoading === item.id
+                        "
                       >
                         <i class="bi bi-dash h5"></i>
                       </button>
@@ -164,6 +168,13 @@
                     >
                       <i class="bi bi-bag-x pe-2"></i>刪除此商品
                     </a>
+                    <div
+                      class="spinner-grow spinner-grow-sm text-danger ms-3"
+                      role="status"
+                      v-if="status.itemLoading === item.id"
+                    >
+                      <span class="visually-hidden">Loading...</span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -222,7 +233,7 @@
               <router-link
                 to="check"
                 class="btn btn-secondary w-100 mt-4"
-                :class="{'disabled': tempcarts.total === 0}"
+                :class="{ disabled: tempcarts.total === 0 }"
               >
                 確認訂單
               </router-link>
@@ -242,6 +253,9 @@ export default {
     return {
       tempcarts: {},
       code: '',
+      status: {
+        itemLoading: '',
+      },
     };
   },
   methods: {
@@ -268,9 +282,11 @@ export default {
       });
     },
     deleteCart(item) {
+      this.status.itemLoading = item.id;
       const toast = useToast();
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart/${item.id}`;
       this.$http.delete(api).then((res) => {
+        this.status.itemLoading = '';
         if (res.data.success) {
           toast.success(`已刪除 ${item.product.title}`);
           this.getCart();

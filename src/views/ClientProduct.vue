@@ -54,8 +54,16 @@
               <button
                 class="btn btn-outline-secondary"
                 type="button"
+                :disabled="status.itemLoading === product.id"
                 @click="addCart(product, qty)"
               >
+                <div
+                  class="spinner-grow spinner-grow-sm text-lighty me-2"
+                  role="status"
+                  v-if="status.itemLoading === product.id"
+                >
+                  <span class="visually-hidden">Loading...</span>
+                </div>
                 加入購物車
               </button>
             </div>
@@ -154,6 +162,9 @@ export default {
       product: {},
       id: '',
       qty: 1,
+      status: {
+        itemLoading: '',
+      },
     };
   },
   methods: {
@@ -170,6 +181,7 @@ export default {
       this.id = this.$route.params.id;
     },
     addCart(item, qty) {
+      this.status.itemLoading = item.id;
       const toast = useToast();
       const carts = {
         product_id: item.id,
@@ -177,6 +189,7 @@ export default {
       };
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`;
       this.$http.post(api, { data: carts }).then((res) => {
+        this.status.itemLoading = '';
         if (res.data.success) {
           toast.success(`已將 ${item.title} 加入購物車`);
         }
