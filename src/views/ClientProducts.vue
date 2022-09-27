@@ -95,7 +95,20 @@
             <div class="card-body p-2">
               <div class="d-flex justify-content-between align-items-center">
                 <p class="fs-5 ps-2 mt-1 mb-0">{{ item.title }}</p>
-                <a class="pe-2" href=""><i class="bi bi-star"></i></a>
+                <button
+                  type="button"
+                  class="btn btn-link"
+                  @click.stop="toggleFavor(item)"
+                >
+                  <i
+                    class="bi"
+                    :class="
+                      favor.some((favor) => favor.id === item.id)
+                        ? 'bi-star-fill text-warning'
+                        : 'bi-star'
+                    "
+                  ></i>
+                </button>
               </div>
               <div
                 class="
@@ -142,11 +155,13 @@ export default {
       products: [],
       search: '',
       category: '全部',
+      favor: [],
       status: {
         itemLoading: '',
       },
     };
   },
+  inject: ['emitter'],
   methods: {
     getProducts() {
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/products/all`;
@@ -179,6 +194,26 @@ export default {
         }
       });
     },
+    getFavor() {
+      this.favor = JSON.parse(localStorage.getItem('favor')) || [];
+    },
+    toggleFavor(product) {
+      const toast = useToast();
+      const favorId = product.id;
+      const isFavor = this.favor.some((item) => item.id === favorId);
+      if (!isFavor) {
+        this.favor.push(product);
+        localStorage.setItem('favor', JSON.stringify(this.favor));
+        toast.info(`${product.title}已加入願望清單`);
+      } else {
+        const delFavor = this.favor.find((item) => item.id === favorId);
+        this.favor.splice(this.favor.indexOf(delFavor), 1);
+        localStorage.setItem('favor', JSON.stringify(this.favor));
+        toast.info(`${product.title}已從願望清單中移除`);
+      }
+      this.getFavor();
+      this.emitter.emit('setFavor', this.favor);
+    },
   },
   computed: {
     filterProducts() {
@@ -197,6 +232,7 @@ export default {
   },
   created() {
     this.getProducts();
+    this.getFavor();
   },
 };
 </script>
