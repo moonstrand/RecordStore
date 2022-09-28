@@ -117,7 +117,6 @@ export default {
       favor: [],
     };
   },
-  inject: ['emitter'],
   methods: {
     getFavor() {
       this.favor = JSON.parse(localStorage.getItem('favor')) || [];

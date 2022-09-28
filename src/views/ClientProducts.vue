@@ -161,7 +161,6 @@ export default {
       },
     };
   },
-  inject: ['emitter'],
   methods: {
     getProducts() {
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/products/all`;
@@ -204,12 +203,12 @@ export default {
       if (!isFavor) {
         this.favor.push(product);
         localStorage.setItem('favor', JSON.stringify(this.favor));
-        toast.info(`${product.title}已加入願望清單`);
+        toast.success(`${product.title} 已加入願望清單`);
       } else {
         const delFavor = this.favor.find((item) => item.id === favorId);
         this.favor.splice(this.favor.indexOf(delFavor), 1);
         localStorage.setItem('favor', JSON.stringify(this.favor));
-        toast.info(`${product.title}已從願望清單中移除`);
+        toast.success(`${product.title} 已從願望清單中移除`);
       }
       this.getFavor();
       this.emitter.emit('setFavor', this.favor);

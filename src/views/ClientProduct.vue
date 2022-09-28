@@ -24,8 +24,15 @@
           <div class="product-intro">
             <div class="d-flex justify-content-between align-items-center">
               <p class="title h2 mb-0">{{ product.title }}</p>
-              <a href="" class="favor">
-                <i class="bi bi-star h4"></i>
+              <a href="" class="favor" @click.prevent="toggleFavor(product)">
+                <i
+                  class="bi h4"
+                  :class="
+                    this.favor.some((item) => item.id === product.id)
+                      ? 'bi-star-fill text-warning'
+                      : 'bi-star'
+                  "
+                ></i>
               </a>
             </div>
             <div class="py-3">
@@ -39,7 +46,9 @@
             </div>
           </div>
           <div class="d-flex justify-content-between align-items-center">
-            <p class="fw-bold h4 text-danger">NT.{{ $filters.currency(product.price) }}</p>
+            <p class="fw-bold h4 text-danger">
+              NT.{{ $filters.currency(product.price) }}
+            </p>
             <div class="input-group product-input">
               <select
                 class="form-select"
@@ -162,6 +171,7 @@ export default {
       product: {},
       id: '',
       qty: 1,
+      favor: [],
       status: {
         itemLoading: '',
       },
@@ -172,7 +182,6 @@ export default {
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/product/${this.id}`;
       this.$http.get(api).then((res) => {
         if (res.data.success) {
-          console.log(res);
           this.product = res.data.product;
         }
       });
@@ -195,10 +204,30 @@ export default {
         }
       });
     },
+    getFavor() {
+      this.favor = JSON.parse(localStorage.getItem('favor')) || [];
+    },
+    toggleFavor(product) {
+      const toast = useToast();
+      const favorId = product.id;
+      const isFavor = this.favor.some((item) => item.id === favorId);
+      if (!isFavor) {
+        this.favor.push(product);
+        localStorage.setItem('favor', JSON.stringify(this.favor));
+        toast.success(`${product.title} 已加入願望清單`);
+      } else {
+        const delFavor = this.favor.find((item) => item.id === favorId);
+        this.favor.splice(this.favor.indexOf(delFavor), 1);
+        localStorage.setItem('favor', JSON.stringify(this.favor));
+        toast.success(`${product.title} 已從願望清單中移除`);
+      }
+      this.getFavor();
+    },
   },
   created() {
     this.getID();
     this.getProduct();
+    this.getFavor();
   },
 };
 </script>
