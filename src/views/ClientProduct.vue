@@ -118,42 +118,21 @@
       <p
         class="title border-start border-success border-5 h2 ps-3 mb-xl-5 mb-4"
       >
-        你可能會喜歡
+        精選推薦
       </p>
       <div class="row">
-        <div class="col-lg-3 col-md-6 col-sm-12 mb-lg-0 mb-4">
-          <div class="card">
-            <img src="../assets/images/cd-1.jpg" class="card-img-top" alt="" />
+        <div
+          class="col-lg-3 col-md-6 col-sm-12 mb-lg-0 mb-4"
+          v-for="item in recommend"
+          :key="item.id"
+        >
+          <div class="card" @click="toDetail(item.id)">
+            <img :src="item.imageUrl" class="card-img-top" :alt="item.title" />
             <div class="card-body p-2">
-              <p class="fs-5 ps-2 mt-1 mb-0">好きだから。</p>
-              <p class="fs-5 text-end pe-2 mb-1">NT.350</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-6 col-sm-12 mb-lg-0 mb-4">
-          <div class="card">
-            <img src="../assets/images/cd-1.jpg" class="card-img-top" alt="" />
-            <div class="card-body p-2">
-              <p class="fs-5 ps-2 mt-1 mb-0">好きだから。</p>
-              <p class="fs-5 text-end pe-2 mb-1">NT.350</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-6 col-sm-12 mb-lg-0 mb-4">
-          <div class="card">
-            <img src="../assets/images/cd-1.jpg" class="card-img-top" alt="" />
-            <div class="card-body p-2">
-              <p class="fs-5 ps-2 mt-1 mb-0">好きだから。</p>
-              <p class="fs-5 text-end pe-2 mb-1">NT.350</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-6 col-sm-12 mb-lg-0 mb-4">
-          <div class="card">
-            <img src="../assets/images/cd-1.jpg" class="card-img-top" alt="" />
-            <div class="card-body p-2">
-              <p class="fs-5 ps-2 mt-1 mb-0">好きだから。</p>
-              <p class="fs-5 text-end pe-2 mb-1">NT.350</p>
+              <p class="fs-5 ps-2 mt-1 mb-0">{{ item.title }}</p>
+              <p class="fs-5 text-end pe-2 mb-1">
+                NT. {{ $filters.currency(item.price) }}
+              </p>
             </div>
           </div>
         </div>
@@ -172,6 +151,7 @@ export default {
       id: '',
       qty: 1,
       favor: [],
+      recommend: [],
       status: {
         itemLoading: '',
       },
@@ -223,11 +203,31 @@ export default {
       }
       this.getFavor();
     },
+    randomItem() {
+      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/products/all`;
+      this.$http.get(api).then((res) => {
+        if (res.data.success) {
+          this.recommend = res.data.products
+            .filter((item) => item.id !== this.id)
+            .sort(() => Math.random() - 0.5)
+            .slice(0, 4);
+        }
+      });
+    },
+    toDetail(id) {
+      this.$router.push(`${id}`);
+      this.id = id;
+      this.init();
+    },
+    init() {
+      this.getProduct();
+      this.getFavor();
+      this.randomItem();
+    },
   },
   created() {
     this.getID();
-    this.getProduct();
-    this.getFavor();
+    this.init();
   },
 };
 </script>
