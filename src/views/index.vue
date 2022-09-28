@@ -91,40 +91,14 @@
           data-aos="flip-left"
           data-aos-duration="1500"
           data-aos-once="true"
+          v-for="item in recommend"
+          :key="item.id"
         >
-          <div class="card" style="width: 18rem">
-            <img src="../assets/images/cd-2.jpg" class="card-img-top" alt="" />
+          <div class="card" style="width: 18rem" @click="toDetail(item.id)">
+            <img :src="item.imageUrl" class="card-img-top" alt="" />
             <div class="card-body text-light p-2">
-              <p class="fs-5 ps-2 mt-1 mb-0">好きだから。</p>
-              <p class="fs-5 text-end pe-2 mb-1">NT.350</p>
-            </div>
-          </div>
-        </div>
-        <div
-          class="col-sm-4 d-flex justify-content-center py-sm-0 py-3"
-          data-aos="flip-left"
-          data-aos-duration="1500"
-          data-aos-once="true"
-        >
-          <div class="card" style="width: 18rem">
-            <img src="../assets/images/cd-1.jpg" class="card-img-top" alt="" />
-            <div class="card-body text-light p-2">
-              <p class="fs-5 ps-2 mt-1 mb-0">そばにいて。</p>
-              <p class="fs-5 text-end pe-2 mb-1">NT.350</p>
-            </div>
-          </div>
-        </div>
-        <div
-          class="col-sm-4 d-flex justify-content-center"
-          data-aos="flip-left"
-          data-aos-duration="1500"
-          data-aos-once="true"
-        >
-          <div class="card" style="width: 18rem">
-            <img src="../assets/images/cd-3.jpg" class="card-img-top" alt="" />
-            <div class="card-body text-light p-2">
-              <p class="fs-5 ps-2 mt-1 mb-0">High</p>
-              <p class="fs-5 text-end pe-2 mb-1">NT.400</p>
+              <p class="fs-5 ps-2 mt-1 mb-0">{{ item.title }}</p>
+              <p class="fs-5 text-end pe-2 mb-1">NT. {{ item.price }}</p>
             </div>
           </div>
         </div>
@@ -313,6 +287,30 @@
 <script>
 export default {
   name: 'Home',
+  data() {
+    return {
+      recommend: [],
+    };
+  },
+  methods: {
+    randomItem() {
+      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/products/all`;
+      this.$http.get(api)
+        .then((res) => {
+          if (res.data.success) {
+            this.recommend = res.data.products
+              .sort(() => Math.random() - 0.5)
+              .slice(0, 3);
+          }
+        });
+    },
+    toDetail(id) {
+      this.$router.push(`/products/${id}`);
+    },
+  },
+  created() {
+    this.randomItem();
+  },
 };
 </script>
 
