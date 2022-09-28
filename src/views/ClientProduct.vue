@@ -39,7 +39,7 @@
             </div>
           </div>
           <div class="d-flex justify-content-between align-items-center">
-            <p class="fw-bold h4 text-danger">NT.{{ product.price }}</p>
+            <p class="fw-bold h4 text-danger">NT.{{ $filters.currency(product.price) }}</p>
             <div class="input-group product-input">
               <select
                 class="form-select"

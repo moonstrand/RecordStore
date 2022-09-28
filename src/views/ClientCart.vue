@@ -103,10 +103,10 @@
                       class="mb-0"
                       v-if="tempcarts.final_total === tempcarts.total"
                     >
-                      NT.{{ item.total }}
+                      NT. {{ $filters.currency(item.total) }}
                     </p>
                     <p class="text-success mb-0" v-else>
-                      NT.{{ item.final_total }}
+                      NT. {{ $filters.currency(item.final_total) }}
                     </p>
                   </div>
                 </div>
@@ -195,12 +195,12 @@
               "
             >
               <p>訂單總額：</p>
-              <p>NT.{{ tempcarts.total }}</p>
+              <p>NT. {{ $filters.currency(tempcarts.total) }}</p>
             </div>
             <div class="cart-text h5 d-flex justify-content-between px-3">
               <p>待折扣金額：</p>
               <p class="text-danger">
-                NT.{{ tempcarts.total - tempcarts.final_total }}
+                NT. {{ $filters.currency(tempcarts.total - tempcarts.final_total) }}
               </p>
             </div>
             <div class="d-flex justify-content-center cart-border pt-4 pb-2">

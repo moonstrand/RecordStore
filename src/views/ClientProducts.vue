@@ -136,7 +136,7 @@
                     <span class="visually-hidden">Loading...</span>
                   </div>
                 </div>
-                <p class="fs-5 text-end pe-2 mb-0">NT.{{ item.price }}</p>
+                <p class="fs-5 text-end pe-2 mb-0">NT.{{ $filters.currency(item.price) }}</p>
               </div>
             </div>
           </div>

@@ -40,7 +40,7 @@
               class="favor-content h5"
               :class="{ 'text-danger': item.origin_price !== item.price }"
             >
-              NT.{{ item.price }}
+              NT.{{ $filters.currency(item.price) }}
             </td>
             <td
               class="favor-content h5"

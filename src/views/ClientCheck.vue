@@ -141,10 +141,10 @@
                 <p class="mb-0">{{ item.product.title }}</p>
                 <p class="py-2 mb-0">{{ item.qty }} 張</p>
                 <p class="mb-0" v-if="carts.total === carts.final_total">
-                  NT.{{ item.final_total }}
+                  NT. {{ $filters.currency(item.final_total) }}
                 </p>
                 <p class="text-success mb-0" v-else>
-                  折扣價： NT.{{ item.final_total }}
+                  折扣價： NT. {{ $filters.currency(item.final_total) }}
                 </p>
               </div>
             </div>
@@ -159,12 +159,12 @@
               "
             >
               <p>商品總額：</p>
-              <p>NT.{{ carts.total }}</p>
+              <p>NT. {{ $filters.currency(carts.total) }}</p>
             </div>
             <div class="cart-text h5 d-flex justify-content-between px-3">
               <p>折扣金額：</p>
               <p class="text-danger">
-                NT.{{ carts.total - carts.final_total }}
+                NT. {{ $filters.currency(carts.total - carts.final_total) }}
               </p>
             </div>
             <div
@@ -178,7 +178,7 @@
               "
             >
               <p>訂單總額：</p>
-              <p>NT.{{ carts.final_total }}</p>
+              <p>NT.{{ $filters.currency(carts.final_total) }}</p>
             </div>
           </div>
         </div>

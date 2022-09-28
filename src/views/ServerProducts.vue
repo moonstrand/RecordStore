@@ -27,8 +27,8 @@
             <tr>
               <td>{{ item.category }}</td>
               <td>{{ item.title }}</td>
-              <td class="text-center">NT.{{ item.origin_price }}</td>
-              <td class="text-center">NT.{{ item.price }}</td>
+              <td class="text-center">NT.{{ $filters.currency(item.origin_price) }}</td>
+              <td class="text-center">NT.{{ $filters.currency(item.price) }}</td>
               <td class="text-center">
                 <span class="text-success fw-bold" v-if="item.is_enabled"
                   >啟用</span

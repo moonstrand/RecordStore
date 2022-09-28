@@ -186,7 +186,7 @@
                   >
                     <p class="mb-0">{{ item.product.title }}</p>
                     <p class="py-2 mb-0">{{ item.qty }} 張</p>
-                    <p class="mb-0">NT. {{ item.final_total }}</p>
+                    <p class="mb-0">NT. {{ $filters.currency(item.final_total) }}</p>
                   </div>
                 </div>
                 <div
@@ -201,7 +201,7 @@
                   "
                 >
                   <p>訂單總額：</p>
-                  <p>NT. {{ order.total }}</p>
+                  <p>NT. {{ $filters.currency(order.total) }}</p>
                 </div>
               </div>
               <div class="tab-pane fade" id="list-info" role="tabpanel">

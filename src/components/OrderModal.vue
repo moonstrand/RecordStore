@@ -73,7 +73,7 @@
                   </tr>
                   <tr>
                     <th>總金額</th>
-                    <td>NT. {{ order.total }}</td>
+                    <td>NT. {{ $filters.currency(order.total) }}</td>
                   </tr>
                 </tbody>
               </table>
@@ -83,7 +83,7 @@
                   <tr v-for="(item, i) in order.products" :key="i">
                     <th>{{ item.product.title }}</th>
                     <td>{{ item.qty }} / {{ item.product.unit }}</td>
-                    <td>NT. {{ item.product.price }}</td>
+                    <td>NT. {{ $filters.currency(item.product.price) }}</td>
                   </tr>
                 </tbody>
               </table>

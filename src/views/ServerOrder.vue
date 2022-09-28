@@ -28,7 +28,7 @@
                 </li>
               </ul>
             </td>
-            <td>NT. {{ order.total }}</td>
+            <td>NT. {{ $filters.currency(order.total) }}</td>
             <td>
               <div class="form-check form-switch">
                 <input
