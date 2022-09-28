@@ -11,9 +11,7 @@
     >
       <p class="h1 text-light">角落唱片</p>
       <p class="h1 text-light ps-5">一個尋知音，聽知音的好場所。</p>
-      <router-link
-        to="/products"
-        class="btn btn-outline-light ms-3 mt-4"
+      <router-link to="/products" class="btn btn-outline-light ms-3 mt-4"
         >尋找知音</router-link
       >
     </div>
@@ -83,7 +81,7 @@
     </div>
   </section>
   <!-- recommend -->
-  <section class="bg-cover recommend py-sm-5 py-3">
+  <section class="bg-cover recommend py-sm-5 pt-4">
     <div class="container">
       <div class="row">
         <div
@@ -94,7 +92,11 @@
           v-for="item in recommend"
           :key="item.id"
         >
-          <div class="card" style="width: 18rem" @click="toDetail(item.id)">
+          <div
+            class="card mb-sm-0 mb-4"
+            style="width: 18rem"
+            @click="toDetail(item.id)"
+          >
             <img :src="item.imageUrl" class="card-img-top" alt="" />
             <div class="card-body text-light p-2">
               <p class="fs-5 ps-2 mt-1 mb-0">{{ item.title }}</p>
@@ -119,9 +121,48 @@
         data-aos="zoom-in"
         data-aos-duration="1000"
         data-aos-once="true"
+        v-if="randomCode.length === 0"
       >
-        <p class="section-text h3 text-light px-5">請點此抽取折扣優惠！</p>
-        <button type="button" class="btn btn-outline-light mt-4">試手氣</button>
+        <p class="section-text h3 text-light">請點此抽取折扣優惠！</p>
+        <button
+          type="button"
+          class="btn btn-outline-light mt-4"
+          @click="randomCoupon"
+        >
+          試手氣
+        </button>
+      </div>
+      <div
+        class="d-flex flex-column align-items-center coupon-box w-100 py-5"
+        data-aos="zoom-in"
+        data-aos-duration="1000"
+        data-aos-once="true"
+        v-else
+        v-for="coupon in randomCode"
+        :key="coupon.code"
+      >
+        <p class="coupon-text h3 text-light">恭喜獲得{{ coupon.title }}！</p>
+        <p
+          class="
+            coupon-text
+            h3
+            text-light
+            d-flex
+            align-items-center
+            pt-3
+          "
+        >
+          優惠券代碼：{{ coupon.code }}
+          <button type="button" class="btn btn-link p-0 ms-3" @click="copycode">
+            <i class="bi bi-clipboard-check text-light btn-coupon h4"></i>
+          </button>
+        </p>
+        <input
+          type="text"
+          id="coupon"
+          class="d-none"
+          v-model="randomCode[0].code"
+        />
       </div>
     </div>
   </section>
@@ -285,27 +326,51 @@
 </template>
 
 <script>
+import { useToast } from 'vue-toastification';
+
 export default {
   name: 'Home',
   data() {
     return {
       recommend: [],
+      coupons: [
+        {
+          title: '歡慶開幕7折券',
+          code: 'lucky777',
+        },
+        {
+          title: '知音有你85折券',
+          code: 'friend85',
+        },
+        {
+          title: '隱藏優惠6折券',
+          code: 'secret666',
+        },
+      ],
+      randomCode: [],
     };
   },
   methods: {
     randomItem() {
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/products/all`;
-      this.$http.get(api)
-        .then((res) => {
-          if (res.data.success) {
-            this.recommend = res.data.products
-              .sort(() => Math.random() - 0.5)
-              .slice(0, 3);
-          }
-        });
+      this.$http.get(api).then((res) => {
+        if (res.data.success) {
+          this.recommend = res.data.products.sort(() => Math.random() - 0.5).slice(0, 3);
+        }
+      });
+    },
+    randomCoupon() {
+      this.randomCode = this.coupons.sort(() => Math.random() - 0.5).slice(0, 1);
     },
     toDetail(id) {
       this.$router.push(`/products/${id}`);
+    },
+    copycode() {
+      const toast = useToast();
+      navigator.clipboard.writeText(this.randomCode[0].code)
+        .then(() => {
+          toast.success('優惠券複製成功');
+        });
     },
   },
   created() {
