@@ -179,6 +179,24 @@
                 </div>
               </div>
             </div>
+            <div
+              class="
+                container
+                d-flex
+                flex-column
+                justify-content-center
+                align-items-center
+                cart-border
+                pb-4
+              "
+              v-if="tempcarts.total === 0"
+            >
+              <i class="bi bi-cart-x cart-icon"></i>
+              <p class="h3 pb-4">購物車內無任何商品</p>
+              <router-link to="products" class="btn btn-outline-secondary">
+                來去逛逛
+              </router-link>
+            </div>
           </div>
         </div>
         <div class="col-xl-4">
@@ -200,7 +218,8 @@
             <div class="cart-text h5 d-flex justify-content-between px-3">
               <p>待折扣金額：</p>
               <p class="text-danger">
-                NT. {{ $filters.currency(tempcarts.total - tempcarts.final_total) }}
+                NT.
+                {{ $filters.currency(tempcarts.total - tempcarts.final_total) }}
               </p>
             </div>
             <div class="d-flex justify-content-center cart-border pt-4 pb-2">
