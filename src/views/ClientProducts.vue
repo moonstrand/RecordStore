@@ -211,7 +211,6 @@ export default {
         toast.success(`${product.title} 已從願望清單中移除`);
       }
       this.getFavor();
-      this.emitter.emit('setFavor', this.favor);
     },
   },
   computed: {

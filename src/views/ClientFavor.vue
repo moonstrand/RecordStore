@@ -124,10 +124,10 @@ export default {
     removeFavor(product) {
       const toast = useToast();
       const favorId = product.id;
-      const delFavor = this.favor.some((item) => item.id === favorId);
+      const delFavor = this.favor.find((item) => item.id === favorId);
       this.favor.splice(this.favor.indexOf(delFavor), 1);
       localStorage.setItem('favor', JSON.stringify(this.favor));
-      toast.success(`${product.title}已從願望清單移除`);
+      toast.success(`${product.title} 已從願望清單移除`);
       this.getFavor();
     },
     addCart(id, title) {
