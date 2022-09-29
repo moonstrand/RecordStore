@@ -6,7 +6,7 @@
           <h5 class="modal-title">新增優惠券</h5>
           <button
             type="button"
-            class="btn-close"
+            class="btn-close btn-close-white"
             data-bs-dismiss="modal"
             aria-label="Close"
           ></button>

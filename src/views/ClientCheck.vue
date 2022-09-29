@@ -55,51 +55,67 @@
     </section>
     <section class="container">
       <div class="row d-flex flex-xl-row flex-column-reverse g-3">
-        <form class="col-xl-7" @submit="submitData">
+        <Form class="col-xl-7" @submit="submitData" v-slot="{ errors }">
           <div class="cart-bg pb-4 px-4">
             <p class="text-center h3 py-4 mb-0 cart-title">客戶資料</p>
             <div class="form-floating mb-3">
-              <input
+              <field
+                name="email"
                 type="email"
                 class="form-control"
                 id="floatingInput"
+                rules="email|required"
                 placeholder="name@example.com"
+                :class="{ 'is-invalid': errors['email']}"
                 v-model="form.user.email"
-              />
+              ></field>
               <label for="floatingInput">Email</label>
+              <error-message name="email" class="invalid-feedback"></error-message>
             </div>
             <div class="form-floating mb-3">
-              <input
+              <field
+                name="姓名"
                 type="text"
                 class="form-control"
                 id="floatingInput"
+                rules="required"
                 placeholder="收件人姓名"
+                :class="{ 'is-invalid': errors['姓名']}"
                 v-model="form.user.name"
-              />
-              <label for="floatingInput">收件人姓名</label>
+              ></field>
+              <label name="姓名" for="floatingInput">收件人姓名</label>
+              <error-message name="姓名" class="invalid-feedback"></error-message>
             </div>
             <div class="form-floating mb-3">
-              <input
+              <field
+                name="電話"
                 type="phone"
                 class="form-control"
                 id="floatingInput"
+                :rules="isPhone"
                 placeholder="收件人電話"
+                :class="{ 'is-invalid': errors['電話']}"
                 v-model="form.user.tel"
-              />
-              <label for="floatingInput">收件人電話</label>
+              ></field>
+              <label name="電話" for="floatingInput">收件人電話</label>
+              <error-message name="電話" class="invalid-feedback"></error-message>
             </div>
             <div class="form-floating mb-3">
-              <input
-                type="phone"
+              <field
+                name="地址"
+                type="text"
                 class="form-control"
                 id="floatingInput"
+                rules="required"
                 placeholder="收件人地址"
+                :class="{ 'is-invalid': errors['地址']}"
                 :disabled="selfPick"
                 v-model="form.user.address"
-              />
-              <label for="floatingInput" :class="{ 'text-secondary': selfPick }"
+              ></field>
+              <label name="地址" for="floatingInput" :class="{ 'text-secondary': selfPick }"
                 >收件人地址</label
               >
+              <error-message name="地址" class="invalid-feedback"></error-message>
             </div>
             <div class="form-floating mb-3">
               <textarea
@@ -220,6 +236,10 @@ export default {
             this.$router.push(`payment/${res.data.orderId}`);
           }
         });
+    },
+    isPhone(value) {
+      const phoneNumber = /^(09)[0-9]{8}$/;
+      return phoneNumber.test(value) ? true : '需要正確的電話號碼';
     },
   },
   watch: {
