@@ -89,11 +89,33 @@
                 id="list-order"
                 role="tabpanel"
               >
-                <table class="table table-hover cart-text d-sm-table d-none">
+                <table
+                  class="
+                    table table-hover
+                    cart-text
+                    align-middle
+                    d-sm-table d-none
+                  "
+                >
                   <tbody>
                     <tr>
                       <th width="140px">訂單編號</th>
-                      <td>{{ order.id }}</td>
+                      <td class="d-flex align-items-center">
+                        {{ order.id }}
+                        <button
+                          type="button"
+                          class="btn btn-link p-0 ms-2"
+                          @click="copyCode"
+                        >
+                          <i
+                            class="
+                              bi bi-clipboard-check
+                              text-secondary
+                              btn-copy
+                            "
+                          ></i>
+                        </button>
+                      </td>
                     </tr>
                     <tr>
                       <th>Email</th>
@@ -135,7 +157,18 @@
                 </table>
                 <div class="d-sm-none d-block">
                   <h5 class="cart-title border-bottom py-2">訂單編號</h5>
-                  <p class="cart-text">{{ order.id }}</p>
+                  <p class="cart-text d-flex align-items-center">
+                    {{ order.id }}
+                    <button
+                      type="button"
+                      class="btn btn-link p-0 ms-2"
+                      @click="copyCode"
+                    >
+                      <i
+                        class="bi bi-clipboard-check text-secondary btn-copy"
+                      ></i>
+                    </button>
+                  </p>
                   <h5 class="cart-title border-bottom py-2">Email</h5>
                   <p class="cart-text">{{ order.user.email }}</p>
                   <h5 class="cart-title border-bottom py-2">收件人姓名</h5>
@@ -186,7 +219,9 @@
                   >
                     <p class="mb-0">{{ item.product.title }}</p>
                     <p class="py-2 mb-0">{{ item.qty }} 張</p>
-                    <p class="mb-0">NT. {{ $filters.currency(item.final_total) }}</p>
+                    <p class="mb-0">
+                      NT. {{ $filters.currency(item.final_total) }}
+                    </p>
                   </div>
                 </div>
                 <div
@@ -271,6 +306,12 @@ export default {
           toast.success(res.data.message);
           this.$router.push('/success');
         }
+      });
+    },
+    copyCode() {
+      const toast = useToast();
+      navigator.clipboard.writeText(this.orderId).then(() => {
+        toast.success('訂單編號複製成功');
       });
     },
   },

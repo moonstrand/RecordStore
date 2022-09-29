@@ -192,7 +192,7 @@
               "
               v-if="tempcarts.total === 0"
             >
-              <i class="bi bi-cart-x cart-icon"></i>
+              <i class="bi bi-cart-x"></i>
               <p class="h3 pb-4">購物車內無任何商品</p>
               <router-link to="/products" class="btn btn-outline-secondary">
                 來去逛逛

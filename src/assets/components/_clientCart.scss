@@ -73,3 +73,8 @@
     min-height: calc(100vh - 73px);
   }
 }
+
+.btn-copy:hover {
+  transition: 0.3s ease;
+  color: #bbb !important;
+}
