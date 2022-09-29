@@ -39,8 +39,20 @@
   }
 }
 
-.cart-icon {
-  font-size: 95px;
+.cart-need {
+  color: #555;
+  i {
+    font-size: 95px;
+  }
+  p {
+    font-weight: 600;
+    letter-spacing: 0.1rem;
+  }
+  .btn {
+    font-size: 20px;
+    font-weight: 800;
+    border-width: 2px;
+  }
 }
 
 .cart-coupon {
