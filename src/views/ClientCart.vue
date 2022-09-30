@@ -112,7 +112,7 @@
                 </div>
               </div>
               <div class="col-md-6 my-0 h5">
-                <div class="row pt-md-0 pt-4">
+                <div class="row pt-md-0 pt-4 mb-sm-0 mb-4">
                   <div
                     class="
                       col-6

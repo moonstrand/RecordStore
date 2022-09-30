@@ -23,6 +23,7 @@
         tabindex="-1"
         id="offcanvasRight"
         aria-labelledby="offcanvasRightLabel"
+        ref="offcanvas"
       >
         <div class="offcanvas-header pb-0">
           <button
@@ -34,33 +35,45 @@
         </div>
         <div class="offcanvas-body pt-0">
           <ul class="navbar-nav text-center me-auto mb-2 mb-lg-0">
-            <li class="nav-item py-2 fs-4">
-              <router-link class="canvas-link text-light" to="/"
+            <li class="nav-item py-2 fs-4" @click="offcanvasHide">
+              <router-link
+                class="canvas-link text-light"
+                to="/"
                 >返回首頁</router-link
               >
             </li>
-            <li class="nav-item py-2 fs-4">
-              <router-link class="canvas-link text-light" to="/products"
+            <li class="nav-item py-2 fs-4" @click="offcanvasHide">
+              <router-link
+                class="canvas-link text-light"
+                to="/products"
                 >專輯列表</router-link
               >
             </li>
             <li class="nav-item py-2 fs-4">
-              <router-link class="canvas-link text-light" to="/order"
+              <router-link
+                class="canvas-link text-light"
+                to="/order"
                 >訂單查詢</router-link
               >
             </li>
             <li class="nav-item py-2 fs-4">
-              <router-link class="canvas-link text-light" to="/favor"
+              <router-link
+                class="canvas-link text-light"
+                to="/favor"
                 >最愛商品</router-link
               >
             </li>
             <li class="nav-item py-2 fs-4">
-              <router-link class="canvas-link text-light" to="/cart"
+              <router-link
+                class="canvas-link text-light"
+                to="/cart"
                 >購物車</router-link
               >
             </li>
             <li class="nav-item py-2 fs-4">
-              <router-link class="canvas-link text-light" to="/login"
+              <router-link
+                class="canvas-link text-light"
+                to="/login"
                 >後台登入</router-link
               >
             </li>
@@ -112,19 +125,23 @@
 </template>
 
 <script>
+import offcanvasMixin from '../assets/mixins/offcanvasMixin';
+
 export default {
   data() {
     return {
       navScroll: false,
     };
   },
+  mixins: [offcanvasMixin],
   methods: {
     navShow() {
       this.navScroll = window.scrollY > 25;
     },
-  },
-  created() {
-    window.addEventListener('scroll', this.navShow);
+    offcanvasHide() {
+      const canvasComponent = this.$refs.offcanvas;
+      canvasComponent.canvasHide();
+    },
   },
 };
 </script>
