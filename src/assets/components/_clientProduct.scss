@@ -5,6 +5,9 @@
   background-size: cover;
   background-position: center center;
   height: 30vh;
+  @include mobile-m {
+    height: 40vh;
+  }
   .banner-content {
     font-weight: 400;
     letter-spacing: 0.35rem;

@@ -1,6 +1,6 @@
 <template>
   <!-- banner -->
-  <div class="banner">
+  <div class="index-banner">
     <div
       class="banner-content"
       data-aos="fade-zoom-in"

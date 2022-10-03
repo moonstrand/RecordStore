@@ -1,7 +1,7 @@
 @import '../components/layout';
 
 // banner 樣式
-.banner {
+.index-banner {
   background-image: linear-gradient(rgba(0, 0, 0, 0.3),rgba(0, 0, 0, 0.45)), url(https://images.unsplash.com/photo-1518481852452-9415b262eba4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80);
   background-size: cover;
   background-position: top center;
@@ -64,6 +64,12 @@
     }
   }
 }
+
+.bg-cover {
+  background-size: cover;
+  background-position: top center;
+}
+
 // 唱片精選樣式
 .recommend {
   background-image: linear-gradient(rgba(0, 0, 0, 0.2),rgba(0, 0, 0, 0.4)), url(https://images.unsplash.com/photo-1542245980-c52e250a65ec?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80);

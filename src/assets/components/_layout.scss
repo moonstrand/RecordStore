@@ -34,6 +34,7 @@ body a {
   text-decoration: none;
 }
 
+// navbar 樣式
 .nav-bg {
   box-sizing: content-box;
   height: 48px;
@@ -47,11 +48,6 @@ body a {
 // 背景樣式
 .bg-color {
   background: linear-gradient(#fff, #fbfbfd);
-}
-
-.bg-cover {
-  background-size: cover;
-  background-position: top center;
 }
 
 // 頁尾樣式
