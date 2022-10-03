@@ -1,7 +1,15 @@
 <template>
   <Loading :active="isLoading"></Loading>
   <!-- banner -->
-  <div class="banner products-banner d-flex justify-content-center align-items-center">
+  <div
+    class="
+      banner
+      products-banner
+      d-flex
+      justify-content-center
+      align-items-center
+    "
+  >
     <div class="banner-content text-center h1 text-light">
       <p class="banner-title">專輯列表</p>
       <p class="h3 pt-3 mb-0">「讓音樂帶給你全新的感動。」</p>
@@ -84,8 +92,8 @@
       </div>
     </section>
     <!-- Products list -->
-    <section class="products container pt-xl-3 pt-0 pb-xl-5 pb-0">
-      <div class="row">
+    <section class="products container pt-xl-3 pt-0 pb-xl-5 pb-0 h-100">
+      <div class="row" v-if="filterProducts.length !== 0">
         <div
           class="col-xxl-3 col-lg-4 col-sm-6 mb-xxl-0"
           v-for="item in filterProducts"
@@ -137,11 +145,19 @@
                     <span class="visually-hidden">Loading...</span>
                   </div>
                 </div>
-                <p class="fs-5 text-end pe-2 mb-0">NT.{{ $filters.currency(item.price) }}</p>
+                <p class="fs-5 text-end pe-2 mb-0">
+                  NT.{{ $filters.currency(item.price) }}
+                </p>
               </div>
             </div>
           </div>
         </div>
+      </div>
+      <div class="row py-5" v-else>
+        <p class="text-center h1 fw-bold">
+          <i class="bi bi-emoji-dizzy pe-2"></i>
+          找不到 {{ search }} 這張專輯
+        </p>
       </div>
     </section>
   </div>
