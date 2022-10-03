@@ -10,11 +10,7 @@
       <button
         class="btn d-lg-none d-block"
         type="button"
-        data-bs-toggle="offcanvas"
-        data-bs-target="#offcanvasRight"
-        aria-controls="offcanvasRight"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
+        @click="offcanvasToggle"
       >
         <span class="bi bi-list fs-2 text-light"></span>
       </button>
@@ -35,17 +31,19 @@
         </div>
         <div class="offcanvas-body pt-0">
           <ul class="navbar-nav text-center me-auto mb-2 mb-lg-0">
-            <li class="nav-item py-2 fs-4" @click="offcanvasHide">
+            <li class="nav-item py-2 fs-4">
               <router-link
                 class="canvas-link text-light"
                 to="/"
+                @click="offcanvasHide"
                 >返回首頁</router-link
               >
             </li>
-            <li class="nav-item py-2 fs-4" @click="offcanvasHide">
+            <li class="nav-item py-2 fs-4">
               <router-link
                 class="canvas-link text-light"
                 to="/products"
+                @click="offcanvasHide"
                 >專輯列表</router-link
               >
             </li>
@@ -53,6 +51,7 @@
               <router-link
                 class="canvas-link text-light"
                 to="/order"
+                @click="offcanvasHide"
                 >訂單查詢</router-link
               >
             </li>
@@ -60,6 +59,7 @@
               <router-link
                 class="canvas-link text-light"
                 to="/favor"
+                @click="offcanvasHide"
                 >最愛商品</router-link
               >
             </li>
@@ -67,6 +67,7 @@
               <router-link
                 class="canvas-link text-light"
                 to="/cart"
+                @click="offcanvasHide"
                 >購物車</router-link
               >
             </li>
@@ -74,6 +75,7 @@
               <router-link
                 class="canvas-link text-light"
                 to="/login"
+                @click="offcanvasHide"
                 >後台登入</router-link
               >
             </li>
@@ -138,10 +140,15 @@ export default {
     navShow() {
       this.navScroll = window.scrollY > 25;
     },
-    offcanvasHide() {
-      const canvasComponent = this.$refs.offcanvas;
-      canvasComponent.canvasHide();
+    offcanvasToggle() {
+      this.canvasToggle();
     },
+    offcanvasHide() {
+      this.canvasHide();
+    },
+  },
+  created() {
+    window.addEventListener('scroll', this.navShow);
   },
 };
 </script>

@@ -8,7 +8,7 @@
   <div class="order-h bg-color d-flex align-items-center">
     <section class="container">
       <div class="row d-flex justify-content-center">
-        <div class="col-8 py-4">
+        <div class="col-sm-8 py-4">
           <div class="input-group">
             <input
               type="text"
@@ -30,7 +30,7 @@
               使用方法
             </p>
             <div
-              class="alert alert-secondary method-bg rounded-0 mt-4"
+              class="alert alert-secondary method-bg rounded-0 mt-4 mb-0"
               role="alert"
             >
               <ul class="lh-lg order-text">
