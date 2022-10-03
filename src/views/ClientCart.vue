@@ -1,4 +1,5 @@
 <template>
+  <Loading :active="isLoading"></Loading>
   <div class="nav-bg"></div>
   <div class="bg-color cart-h py-sm-0 py-4">
     <section
@@ -96,8 +97,7 @@
                       justify-content-center
                       align-items-center
                       cart-text
-                      pt-md-0
-                      pt-3
+                      pt-md-0 pt-3
                     "
                   >
                     <p class="mb-3">{{ item.product.title }}</p>
@@ -158,8 +158,7 @@
                       justify-content-center
                       align-items-center
                       pe-4
-                      pt-md-0
-                      pt-4
+                      pt-md-0 pt-4
                     "
                   >
                     <a
@@ -220,6 +219,7 @@
                 justify-content-sm-start
                 justify-content-between
                 px-3
+                mb-0
               "
             >
               <p>待折扣金額：</p>
@@ -228,13 +228,20 @@
                 {{ $filters.currency(tempcarts.total - tempcarts.final_total) }}
               </p>
             </div>
+            <div class="ps-3 pb-2">
+              <small
+                class="text-success"
+                v-if="tempcarts.final_total !== tempcarts.total"
+              >
+                已套用優惠券
+              </small>
+            </div>
             <div
               class="
                 row
                 g-0
                 d-flex
-                justify-content-xl-center
-                justify-content-md-end
+                justify-content-xl-center justify-content-md-end
                 cart-border
                 pt-4
                 pb-2
@@ -289,20 +296,24 @@ import { useToast } from 'vue-toastification';
 export default {
   data() {
     return {
+      isLoading: false,
       tempcarts: {},
       code: '',
     };
   },
   methods: {
     getCart() {
+      this.isLoading = true;
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`;
       this.$http.get(api).then((res) => {
         if (res.data.success) {
+          this.isLoading = false;
           this.tempcarts = res.data.data;
         }
       });
     },
     updateCart(item, qty) {
+      this.isLoading = true;
       const toast = useToast();
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart/${item.id}`;
       const carts = {
@@ -311,22 +322,26 @@ export default {
       };
       this.$http.put(api, { data: carts }).then((res) => {
         if (res.data.success) {
+          this.isLoading = false;
           toast.success('更新購物車成功');
           this.getCart();
         }
       });
     },
     deleteCart(item) {
+      this.isLoading = true;
       const toast = useToast();
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart/${item.id}`;
       this.$http.delete(api).then((res) => {
         if (res.data.success) {
+          this.isLoading = false;
           toast.success(`已刪除 ${item.product.title}`);
           this.getCart();
         }
       });
     },
     applyCoupon() {
+      this.isLoading = true;
       const toast = useToast();
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/coupon`;
       const coupon = { code: this.code };

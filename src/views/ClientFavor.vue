@@ -1,4 +1,5 @@
 <template>
+  <Loading :active="isLoading"></Loading>
   <div class="banner favor-banner d-flex justify-content-center align-items-center">
     <div class="banner-content text-center h1 text-light">
       <p class="banner-title">願望清單</p>
@@ -115,12 +116,15 @@ import { useToast } from 'vue-toastification';
 export default {
   data() {
     return {
+      isLoading: false,
       favor: [],
     };
   },
   methods: {
     getFavor() {
+      this.isLoading = true;
       this.favor = JSON.parse(localStorage.getItem('favor')) || [];
+      this.isLoading = false;
     },
     removeFavor(product) {
       const toast = useToast();
@@ -132,6 +136,7 @@ export default {
       this.getFavor();
     },
     addCart(id, title) {
+      this.isLoading = true;
       const toast = useToast();
       const cart = {
         product_id: id,
@@ -140,6 +145,7 @@ export default {
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`;
       this.$http.post(api, { data: cart }).then((res) => {
         if (res.data.success) {
+          this.isLoading = false;
           toast.success(`已將 ${title} 加入購物車`);
         } else {
           toast.error('加入購物車失敗');

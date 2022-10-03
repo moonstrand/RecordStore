@@ -1,4 +1,5 @@
 <template>
+  <Loading :active="isLoading"></Loading>
   <div class="banner order-banner d-flex justify-content-center align-items-center">
     <div class="banner-content text-center h1 text-light">
       <p class="banner-title">訂單查詢</p>
@@ -64,16 +65,18 @@ import { useToast } from 'vue-toastification';
 export default {
   data() {
     return {
+      isLoading: false,
       orderId: '',
     };
   },
   methods: {
     checkOrder() {
+      this.isLoading = true;
       const toast = useToast();
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/order/${this.orderId}`;
       this.$http.get(api, this.orderId).then((res) => {
         if (res.data.success && res.data.order !== null) {
-          console.log(res);
+          this.isLoading = false;
           toast.info(`已查找到訂單 ${this.orderId} 的資訊`);
           this.$router.push(`/ordercheck/${this.orderId}`);
         } else {

@@ -1,4 +1,5 @@
 <template>
+  <Loading :active="isLoading"></Loading>
   <div
     class="
       banner
@@ -168,6 +169,7 @@ import { useToast } from 'vue-toastification';
 export default {
   data() {
     return {
+      isLoading: false,
       product: {},
       id: '',
       qty: 1,
@@ -180,9 +182,11 @@ export default {
   },
   methods: {
     getProduct() {
+      this.isLoading = true;
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/product/${this.id}`;
       this.$http.get(api).then((res) => {
         if (res.data.success) {
+          this.isLoading = false;
           this.product = res.data.product;
         }
       });

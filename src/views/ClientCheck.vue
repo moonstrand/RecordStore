@@ -1,4 +1,5 @@
 <template>
+  <Loading :active="isLoading"></Loading>
   <div class="nav-bg"></div>
   <div class="bg-color cart-h py-4">
     <section
@@ -209,6 +210,7 @@ import { useToast } from 'vue-toastification';
 export default {
   data() {
     return {
+      isLoading: false,
       carts: {},
       form: {
         user: {},
@@ -219,14 +221,17 @@ export default {
   },
   methods: {
     getCarts() {
+      this.isLoading = true;
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`;
       this.$http.get(api).then((res) => {
         if (res.data.success) {
+          this.isLoading = false;
           this.carts = res.data.data;
         }
       });
     },
     submitData() {
+      this.isLoading = true;
       const toast = useToast();
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/order`;
       this.$http.post(api, { data: this.form })

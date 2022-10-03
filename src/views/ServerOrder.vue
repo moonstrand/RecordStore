@@ -141,8 +141,8 @@ export default {
       delComponents.modalHide();
       this.$http.delete(api)
         .then((res) => {
-          this.isLoading = false;
           if (res.data.success) {
+            this.isLoading = false;
             toast.success(`已刪除 ${this.tempOrder.id}`);
             this.getOrders();
           }

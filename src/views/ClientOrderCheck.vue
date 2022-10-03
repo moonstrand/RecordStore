@@ -1,4 +1,5 @@
 <template>
+  <Loading :active="isLoading"></Loading>
   <div class="banner order-banner d-flex justify-content-center align-items-center">
     <div class="banner-content text-center h1 text-light">
       <p class="banner-title">訂單查詢</p>
@@ -212,6 +213,7 @@ import { useToast } from 'vue-toastification';
 export default {
   data() {
     return {
+      isLoading: false,
       orderId: '',
       order: {
         user: {},
@@ -223,18 +225,22 @@ export default {
       this.orderId = this.$route.params.orderId;
     },
     getOrder() {
+      this.isLoading = true;
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/order/${this.orderId}`;
       this.$http.get(api, this.orderId).then((res) => {
         if (res.data.success) {
+          this.isLoading = false;
           this.order = res.data.order;
         }
       });
     },
     payOrder() {
+      this.isLoading = true;
       const toast = useToast();
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/pay/${this.orderId}`;
       this.$http.post(api).then((res) => {
         if (res.data.success) {
+          this.isLoading = false;
           toast.success(res.data.message);
           this.$router.push('/success');
         }

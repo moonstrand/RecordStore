@@ -1,4 +1,5 @@
 <template>
+  <Loading :active="isLoading"></Loading>
   <!-- banner -->
   <div class="banner products-banner d-flex justify-content-center align-items-center">
     <div class="banner-content text-center h1 text-light">
@@ -152,6 +153,7 @@ import { useToast } from 'vue-toastification';
 export default {
   data() {
     return {
+      isLoading: false,
       products: [],
       search: '',
       category: '全部',
@@ -163,9 +165,11 @@ export default {
   },
   methods: {
     getProducts() {
+      this.isLoading = true;
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/products/all`;
       this.$http.get(api).then((res) => {
         if (res.data.success) {
+          this.isLoading = false;
           this.products = res.data.products;
         }
       });
