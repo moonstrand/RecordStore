@@ -1,6 +1,6 @@
 <template>
   <div class="nav-bg"></div>
-  <div class="bg-color cart-h py-4">
+  <div class="bg-color cart-h py-sm-0 py-4">
     <section
       class="
         container
@@ -54,7 +54,7 @@
       </div>
     </section>
     <section class="container">
-      <div class="row g-3">
+      <div class="row g-3 mb-3">
         <div class="col-xl-8">
           <div class="cart-bg px-4">
             <p class="text-center h3 py-4 mb-0 cart-title">您的購物車</p>
@@ -75,7 +75,7 @@
                 <div class="row">
                   <div
                     class="
-                      col-6
+                      col-md-6
                       d-flex
                       justify-content-center
                       align-items-center
@@ -90,12 +90,14 @@
                   </div>
                   <div
                     class="
-                      col-6
+                      col-md-6
                       d-flex
                       flex-column
                       justify-content-center
                       align-items-center
                       cart-text
+                      pt-md-0
+                      pt-3
                     "
                   >
                     <p class="mb-3">{{ item.product.title }}</p>
@@ -115,7 +117,7 @@
                 <div class="row pt-md-0 pt-4 mb-sm-0 mb-4">
                   <div
                     class="
-                      col-6
+                      col-md-6
                       d-flex
                       justify-content-center
                       align-items-center
@@ -126,7 +128,6 @@
                         class="btn btn-outline-secondary count rounded-0"
                         type="button"
                         id="button-addon1"
-                        :disabled="status.itemLoading === item.id"
                         @click="updateCart(item, item.qty + 1)"
                       >
                         <i class="bi bi-plus h5"></i>
@@ -144,9 +145,7 @@
                         type="button"
                         id="button-addon2"
                         @click="updateCart(item, item.qty - 1)"
-                        :disabled="
-                          item.qty === 1 || status.itemLoading === item.id
-                        "
+                        :disabled="item.qty === 1"
                       >
                         <i class="bi bi-dash h5"></i>
                       </button>
@@ -154,11 +153,13 @@
                   </div>
                   <div
                     class="
-                      col-6
+                      col-md-6
                       d-flex
                       justify-content-center
                       align-items-center
                       pe-4
+                      pt-md-0
+                      pt-4
                     "
                   >
                     <a
@@ -168,13 +169,6 @@
                     >
                       <i class="bi bi-bag-x pe-2"></i>刪除此商品
                     </a>
-                    <div
-                      class="spinner-grow spinner-grow-sm text-danger ms-3"
-                      role="status"
-                      v-if="status.itemLoading === item.id"
-                    >
-                      <span class="visually-hidden">Loading...</span>
-                    </div>
                   </div>
                 </div>
               </div>
@@ -186,8 +180,7 @@
                 flex-column
                 justify-content-center
                 align-items-center
-                cart-border
-                cart-need
+                cart-border cart-need
                 pb-4
               "
               v-if="tempcarts.total === 0"
@@ -208,6 +201,8 @@
                 cart-text cart-border
                 h5
                 d-flex
+                justify-content-xl-between
+                justify-content-sm-start
                 justify-content-between
                 px-3
                 pt-4
@@ -216,30 +211,53 @@
               <p>訂單總額：</p>
               <p>NT. {{ $filters.currency(tempcarts.total) }}</p>
             </div>
-            <div class="cart-text h5 d-flex justify-content-between px-3">
+            <div
+              class="
+                cart-text
+                h5
+                d-flex
+                justify-content-xl-between
+                justify-content-sm-start
+                justify-content-between
+                px-3
+              "
+            >
               <p>待折扣金額：</p>
               <p class="text-danger">
                 NT.
                 {{ $filters.currency(tempcarts.total - tempcarts.final_total) }}
               </p>
             </div>
-            <div class="d-flex justify-content-center cart-border pt-4 pb-2">
-              <div class="input-group cart-coupon mx-2 mb-3">
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="請輸入優惠碼"
-                  v-model="code"
-                />
-                <button
-                  class="btn btn-outline-secondary"
-                  type="button"
-                  id="button-addon2"
-                  @click="applyCoupon"
-                  :disabled="tempcarts.final_total !== tempcarts.total"
-                >
-                  套用優惠碼
-                </button>
+            <div
+              class="
+                row
+                g-0
+                d-flex
+                justify-content-xl-center
+                justify-content-md-end
+                cart-border
+                pt-4
+                pb-2
+              "
+            >
+              <div class="col-xl-12 col-md-5 px-2">
+                <div class="input-group cart-coupon mb-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="請輸入優惠碼"
+                    v-model="code"
+                  />
+                  <button
+                    class="btn btn-outline-secondary"
+                    type="button"
+                    id="button-addon2"
+                    @click="applyCoupon"
+                    :disabled="tempcarts.final_total !== tempcarts.total"
+                  >
+                    套用優惠碼
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -273,9 +291,6 @@ export default {
     return {
       tempcarts: {},
       code: '',
-      status: {
-        itemLoading: '',
-      },
     };
   },
   methods: {
@@ -302,11 +317,9 @@ export default {
       });
     },
     deleteCart(item) {
-      this.status.itemLoading = item.id;
       const toast = useToast();
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart/${item.id}`;
       this.$http.delete(api).then((res) => {
-        this.status.itemLoading = '';
         if (res.data.success) {
           toast.success(`已刪除 ${item.product.title}`);
           this.getCart();

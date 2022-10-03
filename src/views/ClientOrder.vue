@@ -1,14 +1,14 @@
 <template>
-  <div class="order-banner d-flex justify-content-center align-items-center">
+  <div class="banner order-banner d-flex justify-content-center align-items-center">
     <div class="banner-content text-center h1 text-light">
       <p class="banner-title">訂單查詢</p>
       <p class="h3 pt-3 mb-0">「隨時追蹤你的專輯訂單。」</p>
     </div>
   </div>
-  <div class="order-h bg-color d-flex align-items-center">
+  <div class="min-h bg-color d-flex align-items-center">
     <section class="container">
       <div class="row d-flex justify-content-center">
-        <div class="col-sm-8 py-4">
+        <div class="col-sm-8 py-4 px-sm-0 px-3">
           <div class="input-group">
             <input
               type="text"

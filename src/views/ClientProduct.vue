@@ -1,5 +1,13 @@
 <template>
-  <div class="product-banner d-flex justify-content-center align-items-center">
+  <div
+    class="
+      banner
+      product-banner
+      d-flex
+      justify-content-center
+      align-items-center
+    "
+  >
     <div class="banner-content text-center h1 text-light">
       <p class="banner-title mb-0">{{ product.title }}</p>
     </div>
@@ -7,7 +15,7 @@
   <div class="bg-color">
     <section class="container border-bottom py-4">
       <nav aria-label="breadcrumb">
-        <ol class="breadcrumb py-3">
+        <ol class="breadcrumb py-3 mb-0 ps-sm-0 ps-2">
           <li class="breadcrumb-item">
             <router-link to="/products">專輯列表</router-link>
           </li>
@@ -20,7 +28,16 @@
         <div class="col-lg-6 text-lg-start text-center">
           <img class="product-img" :src="product.imageUrl" alt="そばにいて" />
         </div>
-        <div class="col-lg-6 d-flex flex-column justify-content-between py-4">
+        <div
+          class="
+            col-lg-6
+            d-flex
+            flex-column
+            justify-content-between
+            py-4
+            px-sm-0 px-4
+          "
+        >
           <div class="product-intro">
             <div class="d-flex justify-content-between align-items-center">
               <p class="title h2 mb-0">{{ product.title }}</p>
@@ -80,13 +97,17 @@
         </div>
       </div>
     </section>
-    <section class="container product-intro border-bottom py-xl-5 py-4">
+    <section
+      class="container product-intro border-bottom py-xl-5 py-4 px-sm-0 px-4"
+    >
       <p class="title border-start border-info border-5 h2 ps-3">曲目</p>
       <p class="content wrap lh-lg ps-3 pt-4">
         {{ product.track }}
       </p>
     </section>
-    <section class="container product-intro border-bottom py-xl-5 py-4">
+    <section
+      class="container product-intro border-bottom py-xl-5 py-4 px-sm-0 px-4"
+    >
       <p class="title border-start border-danger border-5 h2 ps-3">購買須知</p>
       <p class="content lh-lg h5 pt-4">運送方式：</p>
       <p class="content lh-lg h6">
@@ -114,7 +135,7 @@
         ，以免遭詐！
       </p>
     </section>
-    <section class="container product-intro py-xl-5 py-4">
+    <section class="container product-intro py-xl-5 py-4 px-sm-0 px-4">
       <p
         class="title border-start border-success border-5 h2 ps-3 mb-xl-5 mb-4"
       >

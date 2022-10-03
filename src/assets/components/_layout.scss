@@ -45,6 +45,26 @@ body a {
   }
 }
 
+// banner樣式
+.banner {
+  background-size: cover;
+  background-position: center center;
+  height: 30vh;
+  @include mobile-m {
+    height: 40vh;
+  }
+  .banner-content {
+    font-weight: 400;
+    letter-spacing: 0.35rem;
+    text-shadow: 0.5px 0.5px 5px #EEE;
+  }
+  .banner-title {
+    @include mobile-s {
+      margin-bottom: 0;
+    }
+  }
+}
+
 // 背景樣式
 .bg-color {
   background: linear-gradient(#fff, #fbfbfd);
@@ -70,5 +90,13 @@ body a {
       padding: 0;
       filter: brightness(100%);
     }
+  }
+}
+
+// 最小高度樣式
+.min-h {
+  min-height: 70vh;
+  @include mobile-m {
+    min-height: 60vh;
   }
 }

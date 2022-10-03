@@ -1,5 +1,5 @@
 <template>
-  <div class="favor-banner d-flex justify-content-center align-items-center">
+  <div class="banner favor-banner d-flex justify-content-center align-items-center">
     <div class="banner-content text-center h1 text-light">
       <p class="banner-title">願望清單</p>
       <p class="banner-title h3 pt-3 mb-0">
@@ -7,7 +7,7 @@
       </p>
     </div>
   </div>
-  <section class="favor-table container py-5" v-if="favor.length !== 0">
+  <section class="favor-table container min-h py-5" v-if="favor.length !== 0">
     <div class="table-responsive">
       <table class="table table-hover align-middle">
         <thead>
@@ -93,6 +93,7 @@
       class="
         favor-need
         container
+        min-h
         d-flex
         flex-column
         justify-content-center

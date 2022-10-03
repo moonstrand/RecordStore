@@ -8,6 +8,9 @@
   height: 100vh;
   position: relative;
   .banner-content {
+    font-weight: 400;
+    letter-spacing: 0.35rem;
+    text-shadow: 0.5px 0.5px 5px #EEE;
     position: absolute;
     bottom: 25%;
     left: 15%;
@@ -16,12 +19,12 @@
       left: 5%;
     }
     p {
-      font-weight: 400;
-      letter-spacing: 0.35rem;
-      text-shadow: 0.5px 0.5px 5px #EEE;
       @include mobile-m {
         font-size:  16px;
       }
+    }
+    .btn {
+      letter-spacing: normal;
     }
   }
 }

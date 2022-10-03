@@ -1,12 +1,12 @@
 <template>
   <!-- banner -->
-  <div class="products-banner d-flex justify-content-center align-items-center">
+  <div class="banner products-banner d-flex justify-content-center align-items-center">
     <div class="banner-content text-center h1 text-light">
       <p class="banner-title">專輯列表</p>
       <p class="h3 pt-3 mb-0">「讓音樂帶給你全新的感動。」</p>
     </div>
   </div>
-  <div class="products-h bg-color">
+  <div class="min-h bg-color">
     <!-- category -->
     <section class="category container py-4">
       <div class="row">
