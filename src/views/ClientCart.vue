@@ -260,7 +260,7 @@
                     type="button"
                     id="button-addon2"
                     @click="applyCoupon"
-                    :disabled="tempcarts.final_total !== tempcarts.total"
+                    :disabled="tempcarts.total === 0 || tempcarts.final_total !== tempcarts.total"
                   >
                     套用優惠碼
                   </button>
@@ -346,10 +346,13 @@ export default {
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/coupon`;
       const coupon = { code: this.code };
       this.$http.post(api, { data: coupon }).then((res) => {
+        this.isLoading = false;
         if (res.data.success) {
           toast.success(res.data.message);
           this.getCart();
           this.code = '';
+        } else {
+          toast.error(res.data.message);
         }
       });
     },

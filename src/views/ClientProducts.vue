@@ -248,6 +248,13 @@ export default {
       return filterItems;
     },
   },
+  watch: {
+    search(n) {
+      if (n) {
+        this.category = '全部';
+      }
+    },
+  },
   created() {
     this.getProducts();
     this.getFavor();
