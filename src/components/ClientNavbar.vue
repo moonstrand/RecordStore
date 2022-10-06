@@ -103,8 +103,10 @@
             <router-link
               class="nav-icon text-light fs-4 d-lg-block d-none"
               to="/favor"
-              ><i class="bi bi-star"></i
-            ></router-link>
+              >
+              <i class="bi bi-star"></i>
+              <div class="item-length" v-if="favorLength">{{ favorLength }}</div>
+            </router-link>
           </li>
           <li class="nav-item my-md-0 my-2">
             <router-link
@@ -136,6 +138,7 @@ export default {
     return {
       navScroll: false,
       cartQty: '',
+      favorLength: '',
     };
   },
   inject: ['emitter'],
@@ -162,13 +165,18 @@ export default {
         }
       });
     },
+    getFavorLength() {
+      this.favorLength = JSON.parse(localStorage.getItem('favor')).length;
+    },
   },
   mounted() {
     this.emitter.on('update-cart', this.getCartQty);
+    this.emitter.on('update-favor', this.getFavorLength);
   },
   created() {
     window.addEventListener('scroll', this.navShow);
     this.getCartQty();
+    this.getFavorLength();
   },
 };
 </script>

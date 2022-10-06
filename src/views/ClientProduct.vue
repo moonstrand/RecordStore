@@ -242,6 +242,7 @@ export default {
         localStorage.setItem('favor', JSON.stringify(this.favor));
         toast.success(`${product.title} 已從願望清單中移除`);
       }
+      this.emitter.emit('update-favor');
       this.getFavor();
     },
     randomItem() {

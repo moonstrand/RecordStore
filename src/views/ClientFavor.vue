@@ -120,6 +120,7 @@ export default {
       favor: [],
     };
   },
+  inject: ['emitter'],
   methods: {
     getFavor() {
       this.isLoading = true;
@@ -132,6 +133,7 @@ export default {
       const delFavor = this.favor.find((item) => item.id === favorId);
       this.favor.splice(this.favor.indexOf(delFavor), 1);
       localStorage.setItem('favor', JSON.stringify(this.favor));
+      this.emitter.emit('update-favor');
       toast.success(`${product.title} 已從願望清單移除`);
       this.getFavor();
     },
