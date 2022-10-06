@@ -105,7 +105,7 @@
               to="/favor"
               >
               <i class="bi bi-star"></i>
-              <div class="item-length" v-if="favorLength">{{ favorLength }}</div>
+              <sup v-if="favorLength"><small>{{ favorLength }}</small></sup>
             </router-link>
           </li>
           <li class="nav-item my-md-0 my-2">
@@ -114,7 +114,7 @@
               to="/cart"
             >
               <i class="bi bi-cart2"></i>
-              <div class="item-length" v-if="cartQty">{{ cartQty }}</div>
+              <sup v-if="cartQty"><small>{{ cartQty }}</small></sup>
             </router-link>
           </li>
           <li class="nav-item">
