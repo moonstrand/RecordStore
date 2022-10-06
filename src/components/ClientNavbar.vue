@@ -110,8 +110,10 @@
             <router-link
               class="nav-icon text-light fs-4 d-lg-block d-none"
               to="/cart"
-              ><i class="bi bi-cart2"></i
-            ></router-link>
+            >
+              <i class="bi bi-cart2"></i>
+              <div class="item-length" v-if="cartQty">{{ cartQty }}</div>
+            </router-link>
           </li>
           <li class="nav-item">
             <router-link
@@ -133,8 +135,10 @@ export default {
   data() {
     return {
       navScroll: false,
+      cartQty: '',
     };
   },
+  inject: ['emitter'],
   mixins: [offcanvasMixin],
   methods: {
     navShow() {
@@ -146,9 +150,25 @@ export default {
     offcanvasHide() {
       this.canvasHide();
     },
+    getCartQty() {
+      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`;
+      this.$http.get(api).then((res) => {
+        if (res.data.success) {
+          if (res.data.data.carts.length !== 0) {
+            this.cartQty = res.data.data.carts.map((item) => item.qty).reduce((a, b) => a + b);
+          } else {
+            this.cartQty = 0;
+          }
+        }
+      });
+    },
+  },
+  mounted() {
+    this.emitter.on('update-cart', this.getCartQty);
   },
   created() {
     window.addEventListener('scroll', this.navShow);
+    this.getCartQty();
   },
 };
 </script>

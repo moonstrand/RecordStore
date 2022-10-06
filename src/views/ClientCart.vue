@@ -138,7 +138,7 @@
                         placeholder=""
                         min="1"
                         v-model.number="item.qty"
-                        @change="updateCart"
+                        disabled
                       />
                       <button
                         class="btn btn-outline-secondary count rounded-0"
@@ -301,6 +301,7 @@ export default {
       code: '',
     };
   },
+  inject: ['emitter'],
   methods: {
     getCart() {
       this.isLoading = true;
@@ -323,6 +324,7 @@ export default {
       this.$http.put(api, { data: carts }).then((res) => {
         if (res.data.success) {
           this.isLoading = false;
+          this.emitter.emit('update-cart');
           toast.success('更新購物車成功');
           this.getCart();
         }
@@ -335,6 +337,7 @@ export default {
       this.$http.delete(api).then((res) => {
         if (res.data.success) {
           this.isLoading = false;
+          this.emitter.emit('update-cart');
           toast.success(`已刪除 ${item.product.title}`);
           this.getCart();
         }

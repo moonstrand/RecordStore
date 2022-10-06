@@ -64,9 +64,22 @@
             </div>
           </div>
           <div class="d-flex justify-content-between align-items-center">
-            <p class="fw-bold h4 text-danger">
-              NT.{{ $filters.currency(product.price) }}
-            </p>
+            <div class="product-intro d-flex align-items-end">
+              <small
+                class="text-secondary pe-2 mb-0"
+                v-if="product.origin_price !== product.price"
+              >
+                <s>NT.{{ $filters.currency(product.origin_price) }}</s>
+              </small>
+              <p
+                class="title h4 mb-0"
+                :class="{
+                  'text-danger': product.origin_price !== product.price,
+                }"
+              >
+                NT.{{ $filters.currency(product.price) }}
+              </p>
+            </div>
             <div class="input-group product-input">
               <select
                 class="form-select"
@@ -180,6 +193,7 @@ export default {
       },
     };
   },
+  inject: ['emitter'],
   methods: {
     getProduct() {
       this.isLoading = true;
@@ -205,7 +219,9 @@ export default {
       this.$http.post(api, { data: carts }).then((res) => {
         this.status.itemLoading = '';
         if (res.data.success) {
+          this.emitter.emit('update-cart');
           toast.success(`已將 ${item.title} 加入購物車`);
+          this.qty = 1;
         }
       });
     },

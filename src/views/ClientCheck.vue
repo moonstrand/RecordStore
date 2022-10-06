@@ -219,6 +219,7 @@ export default {
       selfPick: false,
     };
   },
+  inject: ['emitter'],
   methods: {
     getCarts() {
       this.isLoading = true;
@@ -237,6 +238,7 @@ export default {
       this.$http.post(api, { data: this.form })
         .then((res) => {
           if (res.data.success) {
+            this.emitter.emit('update-cart');
             toast.success(res.data.message);
             this.$router.push(`payment/${res.data.orderId}`);
           }

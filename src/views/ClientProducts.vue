@@ -145,9 +145,20 @@
                     <span class="visually-hidden">Loading...</span>
                   </div>
                 </div>
-                <p class="fs-5 text-end pe-2 mb-0">
-                  NT.{{ $filters.currency(item.price) }}
-                </p>
+                <div class="d-flex align-items-end">
+                  <small
+                    class="text-secondary pe-2 mb-0"
+                    v-if="item.origin_price !== item.price"
+                  >
+                    <s>NT.{{ $filters.currency(item.origin_price) }}</s>
+                  </small>
+                  <p
+                    class="fs-5 text-end pe-2 mb-0"
+                    :class="{ 'text-danger': item.origin_price !== item.price }"
+                  >
+                    NT.{{ $filters.currency(item.price) }}
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -179,6 +190,7 @@ export default {
       },
     };
   },
+  inject: ['emitter'],
   methods: {
     getProducts() {
       this.isLoading = true;
@@ -201,13 +213,14 @@ export default {
       const toast = useToast();
       const cart = {
         product_id: id,
-        qty: +1,
+        qty: 1,
       };
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`;
       this.$http.post(api, { data: cart }).then((res) => {
         this.status.itemLoading = '';
         if (res.data.success) {
           toast.success(`已將 ${title} 加入購物車`);
+          this.emitter.emit('update-cart');
         } else {
           toast.error('加入購物車失敗');
         }
