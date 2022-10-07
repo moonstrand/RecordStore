@@ -81,5 +81,5 @@ export default {
 </script>
 
 <style lang="scss">
-@import '@/assets/components/_login.scss';
+@import '@/assets/scss/components/_login.scss';
 </style>

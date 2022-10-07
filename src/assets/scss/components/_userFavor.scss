@@ -1,7 +1,7 @@
 @import '../components/layout';
 
 .favor-banner {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.75),rgba(0, 0, 0, 0.45)), url(https://images.unsplash.com/photo-1467810563316-b5476525c0f9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.75),rgba(0, 0, 0, 0.45)), url(https://storage.googleapis.com/vue-course-api.appspot.com/strand-api/1665132968603.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=lmYQavSj449gc2sjpCfYlnQsBEJDtjkDc1McwEn0EKNz96iOpTuWKzNSuOZoudb0uipulBbO9Pu8QDRAwGGR6hLwzV7M02NVZw52vA6V%2B%2FlHAApuawHP6s76gBypnFUJpQfp8LwCXJm%2Buj0gEbd0%2Bffd80qkL6DgtLihIz9Z%2BQId6jJohgrNzLc3o%2FbUBavG6rroCvuzuCETmiYDovp%2F5GReY282BjMN56fJ0mkATnPg3SBziMewwmEEFKUHskq9ncab4oWH7sZfaGtgHpoSCoVbQbIRGR%2BlyrjuTQNvJp9ArZX1s65UzG8nN7NXyyNvNeKU45zqTTwSa624MQv02g%3D%3D);
   .banner-title {
     @include mobile-m {
       font-size: 18px;

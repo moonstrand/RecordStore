@@ -1,0 +1,23 @@
+@import '../components/layout';
+
+.order-banner {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.8),rgba(0, 0, 0, 0.45)), url(https://storage.googleapis.com/vue-course-api.appspot.com/strand-api/1665132984807.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=CIfJVS%2BCEvPQ3z%2FWlGP%2BmIr4FVxM7L%2BErFu73S56leJlyMrXDQN2eei%2Fj6PNGYhmXgdLUGmX8h5Cop3m%2Bm7k3kVKBODE%2FA%2FPWSYVrxrKbjcTgWXSYcIg7JMln2YfRrpG9BMRryNKxDki0zryQBXSRx8zPY1dk9OTtbOfN98XPXAhD7u6oz0tAu40sEUTqKb5g2sCpjAsZigfZLz6ohAgi2jRXEgqeIP63CjdNR2rwYiCvHYLHrm%2F82sapzW7eB6ZMtz4E%2F7u51PDqc846fMiYYnS3dUuhLfFPRlRebK2RTyBDQwMPbdDzff0Kg9PZXh4lo8YsBdA%2F%2Bf6I4QdXyyzGQ%3D%3D);
+  .h3 {
+    @include mobile-s {
+      font-size: 20px;
+    }
+  }
+}
+
+.order-title, .order-text {
+  color: #555;
+  font-weight: 800;
+}
+
+.method-bg {
+  background: #f0f4f8;
+}
+
+.order-text {
+  font-weight: 600;
+}

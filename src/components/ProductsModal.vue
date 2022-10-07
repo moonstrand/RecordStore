@@ -178,7 +178,7 @@
 </template>
 
 <script>
-import modalMixin from '@/assets/mixins/modalMixin';
+import modalMixin from '@/mixins/modalMixin';
 
 export default {
   props: {

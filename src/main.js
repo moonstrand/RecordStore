@@ -26,9 +26,9 @@ import { localize, setLocale } from '@vee-validate/i18n';
 //  導入驗證規則繁中語系
 import zhTW from '@vee-validate/i18n/dist/locale/zh_TW.json';
 
-import App from './App.vue';
-import router from './router';
-import { currency, date } from './assets/methods/filters';
+import App from '@/App.vue';
+import router from '@/router';
+import { currency, date } from '@/methods/filters';
 
 AOS.init();
 

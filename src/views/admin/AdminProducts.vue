@@ -182,5 +182,5 @@ export default {
 </script>
 
 <style lang="scss">
-@import '@/assets/components/_admin.scss';
+@import '@/assets/scss/components/_admin.scss';
 </style>

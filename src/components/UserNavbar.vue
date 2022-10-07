@@ -131,7 +131,7 @@
 </template>
 
 <script>
-import offcanvasMixin from '@/assets/mixins/offcanvasMixin';
+import offcanvasMixin from '@/mixins/offcanvasMixin';
 
 export default {
   data() {
@@ -182,5 +182,5 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../assets/components/navbar.scss";
+@import '@/assets/scss/components/_navbar.scss';
 </style>

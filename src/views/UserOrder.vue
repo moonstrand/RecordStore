@@ -89,5 +89,5 @@ export default {
 </script>
 
 <style lang="scss">
-@import '@/assets/components/_userOrder.scss';
+@import '@/assets/scss/components/_userOrder.scss';
 </style>

@@ -22,5 +22,5 @@
 </template>
 
 <style lang="scss">
-@import "../assets/components/_userSuccess.scss";
+@import '@/assets/scss/components/_userSuccess.scss';
 </style>

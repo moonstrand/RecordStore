@@ -275,5 +275,5 @@ export default {
 </script>
 
 <style lang="scss">
-@import '@/assets/components/_userProduct.scss';
+@import '@/assets/scss/components/_userProduct.scss';
 </style>

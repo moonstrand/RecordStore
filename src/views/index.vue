@@ -379,5 +379,5 @@ export default {
 </script>
 
 <style lang="scss">
-@import '@/assets/components/_index.scss';
+@import '@/assets/scss/components/_index.scss';
 </style>

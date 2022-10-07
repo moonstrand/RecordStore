@@ -1,0 +1,127 @@
+@import '../components/layout';
+
+// banner 樣式
+.index-banner {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3),rgba(0, 0, 0, 0.45)), url(https://storage.googleapis.com/vue-course-api.appspot.com/strand-api/1665132428037.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=oTOGOT7jr2zG9imTVeosIWbh0h7TGOjPMhByIoC%2BSNemO8QANqI29cXNgaRuU6IrlnhGFuv6aSRrmruACs6Hrj43tTeXO8j9lHfr6UEv7Lf7dEfhAf0qdku9KuR%2B30BFKggesbkZoTZ2bShV%2FoduEbXA%2FWEe7dVdWHx21MhS0SFwYR945OThYJcePm4lcW5Sgxm%2FXt6nCLlwLVVMojEXDjZQzXeMVRnyyHn3r43RiwTjXMeTxAGs3m2oy%2BGFcSycoTTFcfXdsOVlL8aul7trA44jLG3FqRIXrVVyw5UN0DP3b9S1%2FCUIUbG%2FPZq5crJhEqESFEM4D0FyflGSkQA8NQ%3D%3D);
+  background-size: cover;
+  background-position: top center;
+  height: 100vh;
+  position: relative;
+  .banner-content {
+    font-weight: 400;
+    letter-spacing: 0.35rem;
+    text-shadow: 0.5px 0.5px 5px #EEE;
+    position: absolute;
+    bottom: 25%;
+    left: 15%;
+    @include mobile-m {
+      bottom: 15%;
+      left: 5%;
+    }
+    p {
+      @include mobile-m {
+        font-size:  16px;
+      }
+    }
+    .btn {
+      letter-spacing: normal;
+    }
+  }
+}
+
+// section 文字樣式
+.title-bold {
+  font-weight: 800;
+  text-shadow: 0.5px 0.5px 1px #555;
+}
+
+.section-text {
+  letter-spacing: 0.5rem;
+  @include mobile-m {
+    letter-spacing: 0.2rem;
+    font-size: 18px;
+  }
+}
+
+// 文字淡入淡出動畫
+@keyframes fadein {
+  0% {opacity: 0;}
+  40% {opacity: 1;}
+  100% {opacity: 0;}
+}
+
+// 文字淡入淡出動畫設置
+.hide {
+  animation: fadein 8s ease;
+  animation-iteration-count: infinite;
+}
+
+// 店鋪資訊樣式
+.intro {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.8)), url(https://storage.googleapis.com/vue-course-api.appspot.com/strand-api/1665132892000.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=GX9rIlR2P%2B9u0jBTTcrAY9EgrNHkp55Yfh0CIMoDP8EUZeBKIhU59%2FDqG6EM6hM615yv3EXLn9pLAuiL7S%2BQxtqBJ%2Fri7xanUPkQT7ekV8iB6pCNGti3qIyzLEaTHl0s11ir%2F5Jg2BrA4bDagvNRvcHQMmZZIlcK1yqwBzbtT9ZxrTMtkV444vwg%2BVaLlHkmytnCPim468Nw15LsipGXpA5O7zStf4JtbvD%2FMjRVBkBXtr2QvnOX4vbMJfObi9257Q9QBMqkcI5Yvuv%2FvwCXzHhOP0dcUyhn88g4hkTiU01RbW%2FY4aOJYpFw%2BrDK0OWUHBsl5JAN8%2FL%2FZuS%2BlPeJsg%3D%3D);
+  background-attachment: fixed;
+  .item-content {
+    letter-spacing: 1px;
+    @include mobile-s {
+      font-size: 15px;
+    }
+  }
+}
+
+.bg-cover {
+  background-size: cover;
+  background-position: top center;
+}
+
+// 唱片精選樣式
+.recommend {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.2),rgba(0, 0, 0, 0.4)), url(https://storage.googleapis.com/vue-course-api.appspot.com/strand-api/1665132909824.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=RzGubPecYM3isI95LOOKd8eeExEe%2BX8NC%2FbVpLgA34KVa4%2FhHiNK%2Feam9cyfsCztEiB0wYfRt1V1NWjgGcWQO%2F%2BR2C9lpCByy%2F4WyfBNgsC3oD1byK8VtS7mFaKnm31DCIyA1QtrAWVhsQdE1M2WE93i01Diukgu8vwlTdvol02Wss2yhEKiubfugjV0kdrnvpoKPX5aKXuiq%2FgmtqY3k83pE4feKSvEFoQZQ6WgrjCXoJFtzy6q2MUft1ZdbaDC%2FlnM4akKqDkMn6Q3sj%2FsiRlwaNNAI58mQEBs9pwuiqMTw3eSp6R4eG1RXc72nw3fObnE9SxUTR2x1oXDTPnSnw%3D%3D);
+  background-attachment: fixed;
+}
+
+.card-body p {
+  @include pad-l {
+    font-size: 16px !important;
+  }
+}
+
+// 優惠券樣式
+.coupon {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3),rgba(0, 0, 0, 0.5)), url(https://storage.googleapis.com/vue-course-api.appspot.com/strand-api/1665132929081.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=Af4f7b2YkjN3UjESdHUPqragyFZf5ZYcbu4THL6z1yIVxZ4V1epztWtQwTDW6RRkFfhNuyRf8tJp2F2LA2jErgREIClKhckhvSmse2q%2Bwlah8KfUCZ3Y%2FM1aY4hhZAvJWgwO8t4FmnxH7L3V4OWv0iZ6UWY%2BSZjkxpX4BQ%2FTRa0cXHBxc%2BI6UBOvDlnrOtJRZrP1Ak8shSCVhAfu580rmj%2BB0eC00Z4RdIGbTIZ4L2e9UKYAnxioE3YJ5vW8bhHtcMv7BJcUNY3PRiwH6F5s03TM9Sdg7%2FsGX4pp6mbYT5ifxLxcqcgEsoeBF1Yb%2FXC7gBPacYC0ZQJp7s%2F%2FBiRhbQ%3D%3D);
+  background-attachment: fixed;
+  .coupon-box {
+    transition: ease 0.1s;
+    border: 1px solid #fff;
+    background: rgba(0, 0, 0, 0.5);
+    &:hover {
+      box-shadow: 0 0 10px #fff;
+    }
+  }
+  .coupon-text {
+    letter-spacing: 0.2rem;
+    @include mobile-m {
+      font-size: 16px;
+    }
+  }
+  .btn-coupon:hover {
+    transition: 0.3s ease;
+    color: #555 !important;
+  }
+}
+
+// 常見問題樣式
+.accordion-button {
+  @include mobile-m {
+    font-size: 13.5px;
+  }
+}
+
+.accordion-body {
+  @include mobile-m {
+    font-size: 14.5px;
+  }
+}
+
+.accordion-bg {
+  background-color: #fbfbfd;
+}
