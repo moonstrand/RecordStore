@@ -93,9 +93,9 @@
 
 <script>
 import { useToast } from 'vue-toastification';
-import OrderModal from '../components/OrderModal.vue';
-import DelOrderModal from '../components/DelOrderModal.vue';
-import Pagination from '../components/Pagination.vue';
+import OrderModal from '@/components/OrderModal.vue';
+import DelOrderModal from '@/components/DelOrderModal.vue';
+import Pagination from '@/components/Pagination.vue';
 
 export default {
   data() {
@@ -166,5 +166,5 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../assets/components/_Server.scss";
+@import '@/assets/components/_admin.scss';
 </style>

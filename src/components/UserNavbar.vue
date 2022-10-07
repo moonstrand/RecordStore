@@ -5,7 +5,7 @@
   >
     <div class="container-fluid">
       <router-link class="navbar-brand" to="/">
-        <img class="nav-logo" src="../assets/images/logo.svg" alt="logo" />
+        <img class="nav-logo" src="@/assets/images/logo/logo.svg" alt="logo" />
       </router-link>
       <button
         class="btn d-lg-none d-block"
@@ -131,7 +131,7 @@
 </template>
 
 <script>
-import offcanvasMixin from '../assets/mixins/offcanvasMixin';
+import offcanvasMixin from '@/assets/mixins/offcanvasMixin';
 
 export default {
   data() {

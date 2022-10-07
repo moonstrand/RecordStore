@@ -72,7 +72,7 @@ export default {
           this.isLoading = false;
           const { token, expired } = res.data;
           document.cookie = `recordToken = ${token}; expires = ${new Date(expired)}`;
-          this.$router.push('/dashboard/serverproducts');
+          this.$router.push('/dashboard/products');
         }
       });
     },
@@ -81,5 +81,5 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../assets/components/_login.scss";
+@import '@/assets/components/_login.scss';
 </style>

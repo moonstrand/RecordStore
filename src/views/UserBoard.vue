@@ -1,20 +1,20 @@
 <template>
-  <ClientNavbar></ClientNavbar>
+  <UserNavbar></UserNavbar>
   <router-view />
-  <ClientFooter></ClientFooter>
+  <UserFooter></UserFooter>
 </template>
 
 <script>
 // @ is an alias to /src
-import ClientNavbar from '@/components/ClientNavbar.vue';
-import ClientFooter from '@/components/ClientFooter.vue';
+import UserNavbar from '@/components/UserNavbar.vue';
+import UserFooter from '@/components/UserFooter.vue';
 import emitter from '@/assets/methods/emitter';
 
 export default {
   name: 'Home',
   components: {
-    ClientNavbar,
-    ClientFooter,
+    UserNavbar,
+    UserFooter,
   },
   provide() {
     return {
@@ -25,5 +25,5 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../assets/components/_layout.scss';
+@import '@/assets/components/_layout.scss';
 </style>

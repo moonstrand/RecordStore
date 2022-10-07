@@ -90,9 +90,9 @@
 
 <script>
 import { useToast } from 'vue-toastification';
-import ProductsModal from '../components/ProductsModal.vue';
-import DelProductModal from '../components/DelProductModal.vue';
-import Pagination from '../components/Pagination.vue';
+import ProductsModal from '@/components/ProductsModal.vue';
+import DelProductModal from '@/components/DelProductModal.vue';
+import Pagination from '@/components/Pagination.vue';
 
 export default {
   data() {
@@ -182,5 +182,5 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../assets/components/_Server.scss";
+@import '@/assets/components/_admin.scss';
 </style>

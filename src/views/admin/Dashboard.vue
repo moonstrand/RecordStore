@@ -5,7 +5,7 @@
 
 <script>
 import { useToast } from 'vue-toastification';
-import ServerNavbar from '../components/ServerNavbar.vue';
+import ServerNavbar from '@/components/AdminNavbar.vue';
 
 export default {
   data() {
@@ -35,7 +35,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss">
-@import "../assets/components/_navbar.scss";
-</style>

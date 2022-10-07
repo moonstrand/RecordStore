@@ -265,5 +265,5 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../assets/components/_clientCart.scss";
+@import '@/assets/components/_userCart.scss';
 </style>

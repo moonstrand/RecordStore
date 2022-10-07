@@ -329,7 +329,6 @@
 import { useToast } from 'vue-toastification';
 
 export default {
-  name: 'Home',
   data() {
     return {
       recommend: [],
@@ -380,5 +379,5 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../assets/components/index.scss";
+@import '@/assets/components/_index.scss';
 </style>

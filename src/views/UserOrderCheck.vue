@@ -258,6 +258,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../assets/components/_clientOrder.scss";
-@import "../assets/components/_clientCart.scss";
+@import '@/assets/components/_userOrder.scss';
+@import '@/assets/components/_userCart.scss';
 </style>

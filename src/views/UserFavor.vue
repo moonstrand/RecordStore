@@ -162,5 +162,5 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../assets/components/_clientFavor.scss";
+@import '@/assets/components/_userFavor.scss';
 </style>

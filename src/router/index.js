@@ -1,11 +1,11 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
-import ClientBoard from '../views/ClientBoard.vue';
+import UserBoard from '../views/UserBoard.vue';
 
 const routes = [
   {
     path: '/',
-    name: 'clientboard',
-    component: ClientBoard,
+    name: 'userBoard',
+    component: UserBoard,
     children: [
       {
         path: '',
@@ -15,47 +15,47 @@ const routes = [
       {
         path: 'products',
         name: 'products',
-        component: () => import('../views/ClientProducts.vue'),
+        component: () => import('../views/UserProducts.vue'),
       },
       {
         path: 'products/:id',
         name: 'product',
-        component: () => import('../views/ClientProduct.vue'),
+        component: () => import('../views/UserProduct.vue'),
       },
       {
         path: 'favor',
         name: 'favor',
-        component: () => import('../views/ClientFavor.vue'),
+        component: () => import('../views/UserFavor.vue'),
       },
       {
         path: 'cart',
         name: 'cart',
-        component: () => import('../views/ClientCart.vue'),
+        component: () => import('../views/UserCart.vue'),
       },
       {
         path: 'check',
         name: 'check',
-        component: () => import('../views/ClientCheck.vue'),
+        component: () => import('../views/UserCheck.vue'),
       },
       {
         path: 'payment/:orderId',
         name: 'payment',
-        component: () => import('../views/ClientPayment.vue'),
+        component: () => import('../views/UserPayment.vue'),
       },
       {
         path: 'success',
         name: 'success',
-        component: () => import('../views/ClientSuccess.vue'),
+        component: () => import('../views/UserSuccess.vue'),
       },
       {
         path: 'order',
         name: 'order',
-        component: () => import('../views/ClientOrder.vue'),
+        component: () => import('../views/UserOrder.vue'),
       },
       {
         path: 'ordercheck/:orderId',
         name: 'ordercheck',
-        component: () => import('../views/ClientOrderCheck.vue'),
+        component: () => import('../views/UserOrderCheck.vue'),
       },
       {
         path: 'login',
@@ -67,22 +67,22 @@ const routes = [
   {
     path: '/dashboard',
     name: 'dashboard',
-    component: () => import('../views/Dashboard.vue'),
+    component: () => import('../views/admin/Dashboard.vue'),
     children: [
       {
-        path: 'serverproducts',
-        name: 'serverproducts',
-        component: () => import('../views/ServerProducts.vue'),
+        path: 'products',
+        name: 'adminProducts',
+        component: () => import('../views/admin/AdminProducts.vue'),
       },
       {
-        path: 'serverorder',
-        name: 'serverorder',
-        component: () => import('../views/ServerOrder.vue'),
+        path: 'orders',
+        name: 'adminOrders',
+        component: () => import('../views/admin/AdminOrder.vue'),
       },
       {
-        path: 'servercoupon',
-        name: 'servercoupon',
-        component: () => import('../views/ServerCoupon.vue'),
+        path: 'coupon',
+        name: 'adminCoupon',
+        component: () => import('../views/admin/AdminCoupon.vue'),
       },
     ],
   },
