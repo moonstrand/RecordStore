@@ -88,10 +88,18 @@ const routes = [
   },
 ];
 
+const scrollBehavior = (to, from, savePosition) => {
+  if (savePosition && to.meta.keepAlive) {
+    return savePosition;
+  }
+  return { left: 0, top: 0 };
+};
+
 const router = createRouter({
   history: createWebHashHistory(),
   routes,
   linkActiveClass: 'active',
+  scrollBehavior,
 });
 
 export default router;
