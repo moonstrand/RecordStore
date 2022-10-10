@@ -208,8 +208,6 @@
 </template>
 
 <script>
-import { useToast } from 'vue-toastification';
-
 export default {
   data() {
     return {
@@ -220,6 +218,7 @@ export default {
       },
     };
   },
+  inject: ['toast'],
   methods: {
     getId() {
       this.orderId = this.$route.params.orderId;
@@ -236,12 +235,11 @@ export default {
     },
     payOrder() {
       this.isLoading = true;
-      const toast = useToast();
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/pay/${this.orderId}`;
       this.$http.post(api).then((res) => {
         if (res.data.success) {
           this.isLoading = false;
-          toast.success(res.data.message);
+          this.toast.success(res.data.message);
           this.$router.push('/success');
         }
       });

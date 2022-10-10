@@ -79,7 +79,6 @@
 </template>
 
 <script>
-import { useToast } from 'vue-toastification';
 import Pagination from '@/components/Pagination.vue';
 import CouponModal from '@/components/CouponModal.vue';
 import DelCouponModal from '@/components/DelCouponModal.vue';
@@ -94,6 +93,7 @@ export default {
       isLoading: false,
     };
   },
+  inject: ['toast'],
   components: {
     Pagination,
     CouponModal,
@@ -126,7 +126,6 @@ export default {
     },
     updateCoupon(tempCoupon) {
       this.isLoading = true;
-      const toast = useToast();
       const couponComponents = this.$refs.couponModal;
       let api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/coupon`;
       let axiosMethod = 'post';
@@ -138,7 +137,7 @@ export default {
       this.$http[axiosMethod](api, { data: this.tempCoupon }).then((res) => {
         if (res.data.success) {
           this.isLoading = false;
-          toast.success('更新優惠券成功');
+          this.toast.success('更新優惠券成功');
           this.getCoupon();
         }
       });
@@ -150,7 +149,6 @@ export default {
     },
     delCoupon() {
       this.isLoading = true;
-      const toast = useToast();
       const delComponents = this.$refs.delCouponModal;
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/coupon/${this.tempCoupon.id}`;
       delComponents.modalHide();
@@ -158,7 +156,7 @@ export default {
         .then((res) => {
           if (res.data.success) {
             this.isLoading = false;
-            toast.success(`已刪除 ${this.tempCoupon.title} 優惠券`);
+            this.toast.success(`已刪除 ${this.tempCoupon.title} 優惠券`);
             this.getCoupon();
           }
         });

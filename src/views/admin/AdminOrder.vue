@@ -92,7 +92,6 @@
 </template>
 
 <script>
-import { useToast } from 'vue-toastification';
 import OrderModal from '@/components/OrderModal.vue';
 import DelOrderModal from '@/components/DelOrderModal.vue';
 import Pagination from '@/components/Pagination.vue';
@@ -106,6 +105,7 @@ export default {
       isLoading: false,
     };
   },
+  inject: ['toast'],
   components: {
     OrderModal,
     DelOrderModal,
@@ -135,7 +135,6 @@ export default {
     },
     delOrder() {
       this.isLoading = true;
-      const toast = useToast();
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/order/${this.tempOrder.id}`;
       const delComponents = this.$refs.delOrderModal;
       delComponents.modalHide();
@@ -143,18 +142,17 @@ export default {
         .then((res) => {
           if (res.data.success) {
             this.isLoading = false;
-            toast.success(`已刪除 ${this.tempOrder.id}`);
+            this.toast.success(`已刪除 ${this.tempOrder.id}`);
             this.getOrders();
           }
         });
     },
     updatePaid(order) {
-      const toast = useToast();
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/order/${this.tempOrder.id}`;
       this.$http.put(api, { data: { ...order } })
         .then((res) => {
           if (res.data.success) {
-            toast.success(res.data.message);
+            this.toast.success(res.data.message);
           }
         });
     },

@@ -205,8 +205,6 @@
 </template>
 
 <script>
-import { useToast } from 'vue-toastification';
-
 export default {
   data() {
     return {
@@ -219,7 +217,7 @@ export default {
       selfPick: false,
     };
   },
-  inject: ['emitter'],
+  inject: ['emitter', 'toast'],
   methods: {
     getCarts() {
       this.isLoading = true;
@@ -233,13 +231,12 @@ export default {
     },
     submitData() {
       this.isLoading = true;
-      const toast = useToast();
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/order`;
       this.$http.post(api, { data: this.form })
         .then((res) => {
           if (res.data.success) {
             this.emitter.emit('update-cart');
-            toast.success(res.data.message);
+            this.toast.success(res.data.message);
             this.$router.push(`payment/${res.data.orderId}`);
           }
         });

@@ -9,6 +9,7 @@
 import UserNavbar from '@/components/UserNavbar.vue';
 import UserFooter from '@/components/UserFooter.vue';
 import emitter from '@/methods/emitter';
+import toast from '@/methods/toast';
 
 export default {
   name: 'Home',
@@ -19,6 +20,7 @@ export default {
   provide() {
     return {
       emitter,
+      toast,
     };
   },
 };

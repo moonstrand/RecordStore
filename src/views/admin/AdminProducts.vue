@@ -89,7 +89,6 @@
 </template>
 
 <script>
-import { useToast } from 'vue-toastification';
 import ProductsModal from '@/components/ProductsModal.vue';
 import DelProductModal from '@/components/DelProductModal.vue';
 import Pagination from '@/components/Pagination.vue';
@@ -104,6 +103,7 @@ export default {
       pagination: {},
     };
   },
+  inject: ['toast'],
   components: {
     ProductsModal,
     DelProductModal,
@@ -133,7 +133,6 @@ export default {
     },
     updateProduct(item) {
       this.isLoading = true;
-      const toast = useToast();
       this.tempProduct = item;
       const productComponent = this.$refs.productsModal;
       let api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/product`;
@@ -147,9 +146,9 @@ export default {
         .then((res) => {
           if (res.data.success) {
             this.getProducts();
-            toast.success('更新商品成功');
+            this.toast.success('更新商品成功');
           } else {
-            toast.error('更新商品失敗');
+            this.toast.error('更新商品失敗');
           }
         });
     },
@@ -160,7 +159,6 @@ export default {
     },
     delProduct() {
       this.isLoading = true;
-      const toast = useToast();
       const delComponent = this.$refs.deleteModal;
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/product/${this.tempProduct.id}`;
       delComponent.modalHide();
@@ -168,9 +166,9 @@ export default {
         this.isLoading = false;
         if (res.data.success) {
           this.getProducts();
-          toast.success('刪除商品成功');
+          this.toast.success('刪除商品成功');
         } else {
-          toast.error('刪除產品失敗');
+          this.toast.error('刪除產品失敗');
         }
       });
     },

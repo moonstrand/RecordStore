@@ -291,8 +291,6 @@
 </template>
 
 <script>
-import { useToast } from 'vue-toastification';
-
 export default {
   data() {
     return {
@@ -301,7 +299,7 @@ export default {
       code: '',
     };
   },
-  inject: ['emitter'],
+  inject: ['emitter', 'toast'],
   methods: {
     getCart() {
       this.isLoading = true;
@@ -315,7 +313,6 @@ export default {
     },
     updateCart(item, qty) {
       this.isLoading = true;
-      const toast = useToast();
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart/${item.id}`;
       const carts = {
         product_id: item.product_id,
@@ -325,37 +322,35 @@ export default {
         if (res.data.success) {
           this.isLoading = false;
           this.emitter.emit('update-cart');
-          toast.success('更新購物車成功');
+          this.toast.success('更新購物車成功');
           this.getCart();
         }
       });
     },
     deleteCart(item) {
       this.isLoading = true;
-      const toast = useToast();
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart/${item.id}`;
       this.$http.delete(api).then((res) => {
         if (res.data.success) {
           this.isLoading = false;
           this.emitter.emit('update-cart');
-          toast.success(`已刪除 ${item.product.title}`);
+          this.toast.success(`已刪除 ${item.product.title}`);
           this.getCart();
         }
       });
     },
     applyCoupon() {
       this.isLoading = true;
-      const toast = useToast();
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/coupon`;
       const coupon = { code: this.code };
       this.$http.post(api, { data: coupon }).then((res) => {
         this.isLoading = false;
         if (res.data.success) {
-          toast.success(res.data.message);
+          this.toast.success(res.data.message);
           this.getCart();
           this.code = '';
         } else {
-          toast.error(res.data.message);
+          this.toast.error(res.data.message);
         }
       });
     },

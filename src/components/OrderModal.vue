@@ -43,7 +43,7 @@
                 </tbody>
               </table>
               <span class="h4 fw-bold ms-1">訂單備註</span>
-              <p class="h5 ms-1 mt-3">"123"</p>
+              <p class="h5 ms-1 mt-3">"{{ order.message }}"</p>
             </div>
             <div class="col-7">
               <span class="h4 fw-bold ms-1">訂單細節</span>
@@ -93,12 +93,11 @@
         <div class="modal-footer">
           <button
             type="button"
-            class="btn btn-secondary"
+            class="btn btn-primary"
             data-bs-dismiss="modal"
           >
-            取消
+            確認
           </button>
-          <button type="button" class="btn btn-primary">確認</button>
         </div>
       </div>
     </div>

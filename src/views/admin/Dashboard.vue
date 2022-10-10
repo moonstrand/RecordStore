@@ -4,8 +4,8 @@
 </template>
 
 <script>
-import { useToast } from 'vue-toastification';
 import ServerNavbar from '@/components/AdminNavbar.vue';
+import toast from '@/methods/toast';
 
 export default {
   data() {
@@ -16,8 +16,12 @@ export default {
   components: {
     ServerNavbar,
   },
+  provide() {
+    return {
+      toast,
+    };
+  },
   created() {
-    const toast = useToast();
     const token = document.cookie.replace(
       /(?:(?:^|.*;\s*)recordToken\s*=\s*([^;]*).*$)|^.*$/,
       '$1',

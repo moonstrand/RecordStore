@@ -60,8 +60,6 @@
 </template>
 
 <script>
-import { useToast } from 'vue-toastification';
-
 export default {
   data() {
     return {
@@ -69,18 +67,18 @@ export default {
       orderId: '',
     };
   },
+  inject: ['toast'],
   methods: {
     checkOrder() {
       this.isLoading = true;
-      const toast = useToast();
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/order/${this.orderId}`;
       this.$http.get(api, this.orderId).then((res) => {
+        this.isLoading = false;
         if (res.data.success && res.data.order !== null) {
-          this.isLoading = false;
-          toast.info(`已查找到訂單 ${this.orderId} 的資訊`);
+          this.toast.info(`已查找到訂單編號 ${this.orderId} 的資訊`);
           this.$router.push(`/ordercheck/${this.orderId}`);
         } else {
-          toast.error(`查無訂單 ${this.orderId} 的資訊，請再次確認`);
+          this.toast.error(`查無訂單編號 ${this.orderId} 的資訊，請再次確認`);
         }
       });
     },

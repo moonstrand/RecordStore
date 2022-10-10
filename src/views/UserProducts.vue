@@ -173,8 +173,6 @@
 </template>
 
 <script>
-import { useToast } from 'vue-toastification';
-
 export default {
   data() {
     return {
@@ -188,7 +186,7 @@ export default {
       },
     };
   },
-  inject: ['emitter'],
+  inject: ['emitter', 'toast'],
   methods: {
     getProducts() {
       this.isLoading = true;
@@ -208,7 +206,6 @@ export default {
     },
     addCart(id, title) {
       this.status.itemLoading = id;
-      const toast = useToast();
       const cart = {
         product_id: id,
         qty: 1,
@@ -217,10 +214,10 @@ export default {
       this.$http.post(api, { data: cart }).then((res) => {
         this.status.itemLoading = '';
         if (res.data.success) {
-          toast.success(`已將 ${title} 加入購物車`);
+          this.toast.success(`已將 ${title} 加入購物車`);
           this.emitter.emit('update-cart');
         } else {
-          toast.error('加入購物車失敗');
+          this.toast.error('加入購物車失敗');
         }
       });
     },
@@ -228,18 +225,17 @@ export default {
       this.favor = JSON.parse(localStorage.getItem('favor')) || [];
     },
     toggleFavor(product) {
-      const toast = useToast();
       const favorId = product.id;
       const isFavor = this.favor.some((item) => item.id === favorId);
       if (!isFavor) {
         this.favor.push(product);
         localStorage.setItem('favor', JSON.stringify(this.favor));
-        toast.success(`${product.title} 已加入願望清單`);
+        this.toast.success(`${product.title} 已加入願望清單`);
       } else {
         const delFavor = this.favor.find((item) => item.id === favorId);
         this.favor.splice(this.favor.indexOf(delFavor), 1);
         localStorage.setItem('favor', JSON.stringify(this.favor));
-        toast.success(`${product.title} 已從願望清單中移除`);
+        this.toast.success(`${product.title} 已從願望清單中移除`);
       }
       this.emitter.emit('update-favor');
       this.getFavor();

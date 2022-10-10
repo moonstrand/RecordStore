@@ -111,8 +111,6 @@
 </template>
 
 <script>
-import { useToast } from 'vue-toastification';
-
 export default {
   data() {
     return {
@@ -120,7 +118,7 @@ export default {
       favor: [],
     };
   },
-  inject: ['emitter'],
+  inject: ['emitter', 'toast'],
   methods: {
     getFavor() {
       this.isLoading = true;
@@ -128,18 +126,16 @@ export default {
       this.isLoading = false;
     },
     removeFavor(product) {
-      const toast = useToast();
       const favorId = product.id;
       const delFavor = this.favor.find((item) => item.id === favorId);
       this.favor.splice(this.favor.indexOf(delFavor), 1);
       localStorage.setItem('favor', JSON.stringify(this.favor));
       this.emitter.emit('update-favor');
-      toast.success(`${product.title} 已從願望清單移除`);
+      this.toast.success(`${product.title} 已從願望清單移除`);
       this.getFavor();
     },
     addCart(id, title) {
       this.isLoading = true;
-      const toast = useToast();
       const cart = {
         product_id: id,
         qty: +1,
@@ -148,9 +144,9 @@ export default {
       this.$http.post(api, { data: cart }).then((res) => {
         if (res.data.success) {
           this.isLoading = false;
-          toast.success(`已將 ${title} 加入購物車`);
+          this.toast.success(`已將 ${title} 加入購物車`);
         } else {
-          toast.error('加入購物車失敗');
+          this.toast.error('加入購物車失敗');
         }
       });
     },
