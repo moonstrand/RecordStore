@@ -68,7 +68,7 @@
                     type="text"
                     class="form-control"
                     id="category"
-                    placeholder="請輸入分類"
+                    placeholder="請輸入主類別"
                     v-model="tempProduct.category"
                   />
                 </div>
@@ -78,7 +78,7 @@
                     type="text"
                     class="form-control"
                     id="class"
-                    placeholder="請輸入語言"
+                    placeholder="請輸入次類別"
                     v-model="tempProduct.class"
                   />
                 </div>

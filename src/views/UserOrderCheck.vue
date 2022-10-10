@@ -139,7 +139,7 @@
                   v-for="(item, i) in order.products"
                   :key="i"
                 >
-                  <img :src="item.product.imageUrl" class="cart-img" alt="cd" />
+                  <img :src="item.product.imageUrl" class="cart-img" :alt="item.product.title" />
                   <div
                     class="
                       cart-text

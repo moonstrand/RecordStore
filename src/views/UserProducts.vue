@@ -98,7 +98,7 @@
           :key="item.id"
         >
           <div class="card mb-4" @click.prevent="toDetail(item.id)">
-            <img :src="item.imageUrl" class="card-img-top" alt="" />
+            <img :src="item.imageUrl" class="card-img-top" :alt="item.title" />
             <div class="card-body p-2">
               <div class="d-flex justify-content-between align-items-center">
                 <p class="fs-5 ps-2 mt-1 mb-0">{{ item.title }}</p>

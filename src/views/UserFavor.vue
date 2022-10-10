@@ -28,7 +28,7 @@
           >
             <th>
               <div class="text-center">
-                <img :src="item.imageUrl" class="favor-item" alt="cd" />
+                <img :src="item.imageUrl" class="favor-item" :alt="item.title" />
                 <p class="favor-content d-md-none d-block pt-2 mb-0">
                   {{ item.title }}
                 </p>

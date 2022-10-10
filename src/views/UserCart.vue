@@ -86,7 +86,7 @@
                     <img
                       :src="item.product.imageUrl"
                       class="cart-img"
-                      alt="cd"
+                      :alt="item.product.title"
                     />
                   </div>
                   <div

@@ -27,7 +27,7 @@
       </nav>
       <div class="row my-4">
         <div class="col-lg-6 text-lg-start text-center">
-          <img class="product-img" :src="product.imageUrl" alt="そばにいて" />
+          <img class="product-img" :src="product.imageUrl" :alt="product.title" />
         </div>
         <div
           class="

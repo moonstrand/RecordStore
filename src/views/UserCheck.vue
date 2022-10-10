@@ -153,7 +153,7 @@
               v-for="item in carts.carts"
               :key="item.id"
             >
-              <img :src="item.product.imageUrl" class="cart-img" alt="cd" />
+              <img :src="item.product.imageUrl" class="cart-img" :alt="item.product.title" />
               <div class="cart-text fs-sm-5 ps-sm-5 ps-3">
                 <p class="mb-0">{{ item.product.title }}</p>
                 <p class="py-2 mb-0">{{ item.qty }} 張</p>
