@@ -84,8 +84,8 @@
                 :class="{ 'is-invalid': errors['姓名']}"
                 v-model="form.user.name"
               ></field>
-              <label name="姓名" for="floatingInput">收件人姓名</label>
-              <error-message name="姓名" class="invalid-feedback"></error-message>
+              <label name="name" for="floatingInput">收件人姓名</label>
+              <error-message name="name" class="invalid-feedback"></error-message>
             </div>
             <div class="form-floating mb-3">
               <field
@@ -98,8 +98,8 @@
                 :class="{ 'is-invalid': errors['電話']}"
                 v-model="form.user.tel"
               ></field>
-              <label name="電話" for="floatingInput">收件人電話</label>
-              <error-message name="電話" class="invalid-feedback"></error-message>
+              <label name="phone" for="floatingInput">收件人電話</label>
+              <error-message name="phone" class="invalid-feedback"></error-message>
             </div>
             <div class="form-floating mb-3">
               <field
@@ -113,10 +113,10 @@
                 :disabled="selfPick"
                 v-model="form.user.address"
               ></field>
-              <label name="地址" for="floatingInput" :class="{ 'text-secondary': selfPick }"
+              <label name="address" for="floatingInput" :class="{ 'text-secondary': selfPick }"
                 >收件人地址</label
               >
-              <error-message name="地址" class="invalid-feedback"></error-message>
+              <error-message name="address" class="invalid-feedback"></error-message>
             </div>
             <div class="form-floating mb-3">
               <textarea
