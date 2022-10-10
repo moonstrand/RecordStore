@@ -1,6 +1,5 @@
 @import '../components/layout';
 
-// banner
 .products-banner {
   background-image: linear-gradient(rgba(0, 0, 0, 0.8),rgba(0, 0, 0, 0.45)), url(https://storage.googleapis.com/vue-course-api.appspot.com/strand-api/1665133023841.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=h9pWpITuUcQ3DhkQ9oQdWoTEMNOdR4SkknwlAtpXAuSHI5Kq9%2BkYbC0SaB6djIeXA56F1jaY2pBr6zoGVIPXawoJpL4R1E2AP3Wd2uqMqlcADZBODiMZ63ful76s0aM7TWnTm%2Fhasj2vog69%2F3y6EdjkUebi0pmGZr6H8csMxtHuex0FK1KgFCXd6652PPcBhP3Q74HlGp5V62Wp2tHtufDM%2BArSg5sOV%2FxrFTcWijiQBIpQjBQobLeDsuTNXFYbi%2FZ%2BvidrtW7pCQ2SmeJS3GizExcCjqyOFAQy0cUTRJmBgM0iDqIeGe6rJeDMEyBnyFx%2FE6nlTg8oAtHPbrKmMg%3D%3D);
   .h3 {
@@ -10,7 +9,6 @@
   }
 }
 
-// category
 .category {
   li {
     border-right: 1px solid #999;
@@ -47,7 +45,6 @@
   color:  #b4b4b4 !important;
 }
 
-// products list
 .products {
   .card {
     font-weight: 300;

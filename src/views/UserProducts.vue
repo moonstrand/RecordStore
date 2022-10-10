@@ -1,6 +1,5 @@
 <template>
   <Loading :active="isLoading"></Loading>
-  <!-- banner -->
   <div
     class="
       banner
@@ -91,7 +90,6 @@
         </div>
       </div>
     </section>
-    <!-- Products list -->
     <section class="products container pt-xl-3 pt-0 pb-xl-5 pb-0 h-100">
       <div class="row" v-if="filterProducts.length !== 0">
         <div
