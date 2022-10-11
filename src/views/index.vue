@@ -9,7 +9,7 @@
       data-aos-offset="0"
       data-aos-once="true"
     >
-      <p class="h1 text-light">角落唱片</p>
+      <h1 class="text-light">角落唱片</h1>
       <p class="h1 text-light ps-5">一個尋知音，聽知音的好場所。</p>
       <router-link to="/products" class="btn btn-outline-light ms-3 mt-4"
         >尋找知音</router-link

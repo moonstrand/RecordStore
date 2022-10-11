@@ -1,0 +1,28 @@
+@import './layout';
+
+.notfound-bg {
+  background: linear-gradient(rgba(0, 0, 0, 0.4),rgba(0, 0, 0, 0.6)), url(https://storage.googleapis.com/vue-course-api.appspot.com/strand-api/1665475295310.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=T3Na3UtoVAHDjxktfm%2FuZp99KAUbGm9qx8sU4WIqwrOt67vLQiVNZMkNPDLv384YZ3U3pgZ88tVzCJOG0n%2ByGzm4QJuDfCF32c5pEcTnzF7QL%2F%2F6mTsCznHCtVGdqfbMbkLt0EawlemyPEcKNmxK47dKnkK5FSkJzBaduufmNo%2FQCs%2BFjp5hyQSALDMiKvI%2FRfrqzLOZQnVdQ7y2LxzOxIHyHyMWhkZQe4Jt%2B0GYrYquDvkLVz8Ue1oNKMiygq7RAL7tlld%2B%2BiegROa5ql%2B0hAL95EmBI7VmmuELoXwoAv0dgfvQt%2F%2Fm1gO%2BAxPijkbHT7tHwVqgFC6ZmN8nurw%2Flg%3D%3D);
+  background-size: cover;
+  background-position: center center;
+  height: calc(100vh - 48px);
+  @include pad-l {
+    height: calc(100vh - 57px);;
+  }
+}
+
+.notfound-title {
+  font-size: 90px;
+  line-height: 0.8;
+  text-shadow: 1px 1px 3px #EEE;
+  .subtitle {
+    font-size: 50px;
+  }
+}
+
+.back {
+  text-shadow: 0.5px 0.5px 2px #EEE;
+  &:hover {
+    transition: 0.3s ease;
+    color: #bbb !important;
+  }
+}

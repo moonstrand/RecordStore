@@ -62,6 +62,11 @@ const routes = [
         name: 'login',
         component: () => import('../views/Login.vue'),
       },
+      {
+        path: '/:pathMatch(.*)*',
+        name: 'notfound',
+        component: () => import('../views/404page.vue'),
+      },
     ],
   },
   {
