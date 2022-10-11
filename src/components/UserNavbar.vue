@@ -1,6 +1,6 @@
 <template>
   <nav
-    class="navbar navbar-expand-lg navbar-light bg-opacity-0 fixed-top px-4"
+    class="navbar navbar-expand-lg navbar-light bg-opacity-0 fixed-top px-4 py-0"
     :class="{ navShow: navScroll }"
   >
     <div class="container-fluid">

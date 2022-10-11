@@ -38,11 +38,8 @@ body a {
 .nav-bg {
   box-sizing: content-box;
   height: 48px;
-  padding: 8px 0;
+  padding: 4px 0;
   background-color: #222;
-  @include pad-l {
-    height: 57px;
-  }
 }
 
 // banner樣式

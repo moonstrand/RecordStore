@@ -61,7 +61,7 @@
   background-image: linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.8)), url(https://storage.googleapis.com/vue-course-api.appspot.com/strand-api/1665132892000.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=GX9rIlR2P%2B9u0jBTTcrAY9EgrNHkp55Yfh0CIMoDP8EUZeBKIhU59%2FDqG6EM6hM615yv3EXLn9pLAuiL7S%2BQxtqBJ%2Fri7xanUPkQT7ekV8iB6pCNGti3qIyzLEaTHl0s11ir%2F5Jg2BrA4bDagvNRvcHQMmZZIlcK1yqwBzbtT9ZxrTMtkV444vwg%2BVaLlHkmytnCPim468Nw15LsipGXpA5O7zStf4JtbvD%2FMjRVBkBXtr2QvnOX4vbMJfObi9257Q9QBMqkcI5Yvuv%2FvwCXzHhOP0dcUyhn88g4hkTiU01RbW%2FY4aOJYpFw%2BrDK0OWUHBsl5JAN8%2FL%2FZuS%2BlPeJsg%3D%3D);
   background-attachment: fixed;
   .item-content {
-    letter-spacing: 1px;
+    letter-spacing: 0.1rem;
     @include mobile-s {
       font-size: 15px;
     }
