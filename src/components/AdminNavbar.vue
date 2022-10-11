@@ -67,7 +67,7 @@
           </ul>
         </div>
       </div>
-      <div class="collapse navbar-collapse nav-server" id="navbarText">
+      <div class="collapse navbar-collapse nav-admin" id="navbarText">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-lg-flex d-none">
           <li class="nav-item">
             <router-link class="nav-link" to="products">產品列表</router-link>
