@@ -1,6 +1,8 @@
 <template>
   <Loading :active="isLoading"></Loading>
-  <div class="banner order-banner d-flex justify-content-center align-items-center">
+  <div
+    class="banner order-banner d-flex justify-content-center align-items-center"
+  >
     <div class="banner-content text-center h1 text-light">
       <p class="banner-title">訂單查詢</p>
       <p class="h3 pt-3 mb-0">「隨時追蹤你的專輯訂單。」</p>
@@ -72,20 +74,25 @@ export default {
     checkOrder() {
       this.isLoading = true;
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/order/${this.orderId}`;
-      this.$http.get(api, this.orderId).then((res) => {
+      if (this.orderId) {
+        this.$http.get(api, this.orderId).then((res) => {
+          this.isLoading = false;
+          if (res.data.success && res.data.order !== null) {
+            this.toast.info(`已查找到訂單編號 ${this.orderId} 的資訊`);
+            this.$router.push(`/ordercheck/${this.orderId}`);
+          } else {
+            this.toast.error(`查無訂單編號 ${this.orderId} 的資訊，請再次確認`);
+          }
+        });
+      } else {
         this.isLoading = false;
-        if (res.data.success && res.data.order !== null) {
-          this.toast.info(`已查找到訂單編號 ${this.orderId} 的資訊`);
-          this.$router.push(`/ordercheck/${this.orderId}`);
-        } else {
-          this.toast.error(`查無訂單編號 ${this.orderId} 的資訊，請再次確認`);
-        }
-      });
+        this.toast.error('請輸入訂單編號');
+      }
     },
   },
 };
 </script>
 
 <style lang="scss">
-@import '@/assets/scss/components/_userOrder.scss';
+@import "@/assets/scss/components/_userOrder.scss";
 </style>
