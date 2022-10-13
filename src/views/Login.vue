@@ -7,7 +7,7 @@
         class="row login-h d-flex justify-content-center align-items-center"
         @submit.prevent="signIn"
       >
-        <div class="input-bg col-lg-6 col-md-8 col-11 border border-1 p-5">
+        <div class="login-input col-lg-6 col-md-8 col-11 border border-1 p-5">
           <p
             class="
               h2
@@ -63,6 +63,7 @@ export default {
       isLoading: false,
     };
   },
+  inject: ['toast'],
   methods: {
     signIn() {
       this.isLoading = true;
@@ -73,6 +74,9 @@ export default {
           const { token, expired } = res.data;
           document.cookie = `recordToken = ${token}; expires = ${new Date(expired)}`;
           this.$router.push('/dashboard/products');
+        } else {
+          this.isLoading = false;
+          this.toast.error(`${res.data.message}，帳號密碼有誤，請重新輸入`);
         }
       });
     },
