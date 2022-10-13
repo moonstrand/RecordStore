@@ -4,10 +4,7 @@
   background-image: linear-gradient(rgba(0, 0, 0, 0.2),rgba(0, 0, 0, 0.3)), url(https://storage.googleapis.com/vue-course-api.appspot.com/strand-api/1665133043731.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=jlt9Za86S7uD9%2FL%2Bpfn%2FoItry%2BE5kOmqnDbj4vPg9Mqmlcp0C9CjWEYoD4L8%2FuK3UeDt0iCsxmmLQxElvDrIFQdNmVRv82i4HzMzdZPo0k6oCXBkGM%2Fix4kTBx5VsFEnKmGiQfjtrVU5Sc4OvoL%2FgIrxSnnOLUag0Uxqr752mT7RQz6XLNer9%2B51GEqgb0qRToRCLfMIBxblLPk2ka%2BdaaVKd6vU%2FdwqoRT9gK4jUXfzaufITUzcFidC2wlx2VE1JPKM95m%2F3shfy7IVM85ZZSKyg1WC7nG%2BjZ2bjkWInxVOZJ0WK%2Fuz66PP5bdetsy9MWnzC9IvfblPxlJ3ks6Yqg%3D%3D);
   background-size: cover;
   background-position: center center;
-  height: calc(100vh - 48px);
-  @include pad-l {
-    height: calc(100vh - 57px);
-  }
+  height: calc(#{$page-h} - #{$nav-h});
   .banner-content {
     font-weight: 400;
     letter-spacing: 0.35rem;

@@ -68,10 +68,7 @@
 }
 
 .cart-h {
-  min-height: calc(100vh - 64px);
-  @include pad-l {
-    min-height: calc(100vh - 73px);
-  }
+  min-height: calc(#{$page-h} - #{$nav-h});
 }
 
 .btn-copy:hover {
