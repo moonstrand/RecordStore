@@ -1,4 +1,5 @@
 <template>
+  <Loading :active="isLoading" loader="bars" color="#555"></Loading>
   <!-- banner -->
   <div class="index-banner">
     <div
@@ -347,13 +348,16 @@ export default {
         },
       ],
       randomCode: [],
+      isLoading: false,
     };
   },
   methods: {
     randomItem() {
+      this.isLoading = true;
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/products/all`;
       this.$http.get(api).then((res) => {
         if (res.data.success) {
+          this.isLoading = false;
           this.recommend = res.data.products.sort(() => Math.random() - 0.5).slice(0, 3);
         }
       });
