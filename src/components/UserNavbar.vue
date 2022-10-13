@@ -105,7 +105,7 @@
               to="/favor"
               >
               <i class="bi bi-star"></i>
-              <sup v-if="favorLength"><small>{{ favorLength }}</small></sup>
+              <sup v-if="favorLength !== 0"><small>{{ favorLength }}</small></sup>
             </router-link>
           </li>
           <li class="nav-item my-md-0 my-2">
@@ -138,7 +138,7 @@ export default {
     return {
       navScroll: false,
       cartQty: '',
-      favorLength: '',
+      favorLength: 0,
     };
   },
   inject: ['emitter'],
@@ -166,7 +166,7 @@ export default {
       });
     },
     getFavorLength() {
-      this.favorLength = JSON.parse(localStorage.getItem('favor')).length;
+      this.favorLength = (JSON.parse(localStorage.getItem('favor')) || []).length;
     },
   },
   mounted() {
