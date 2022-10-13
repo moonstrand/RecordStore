@@ -773,9 +773,9 @@ $btn-link-hover-color:        var(--#{$prefix}link-hover-color) !default;
 $btn-link-disabled-color:     $gray-600 !default;
 
 // Allows for customizing button radius independently from global border radius
-$btn-border-radius:           none; //$border-radius !default;
-$btn-border-radius-sm:        none; //$border-radius-sm !default;
-$btn-border-radius-lg:        none; //$border-radius-lg !default;
+$btn-border-radius:           0px; //$border-radius !default;
+$btn-border-radius-sm:        0px; //$border-radius-sm !default;
+$btn-border-radius-lg:        0px; //$border-radius-lg !default;
 
 $btn-transition:              color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out !default;
 
@@ -834,9 +834,9 @@ $input-border-color:                    #bbb; //$gray-400 !default;
 $input-border-width:                    $input-btn-border-width !default;
 $input-box-shadow:                      $box-shadow-inset !default;
 
-$input-border-radius:                   none; //$border-radius !default;
-$input-border-radius-sm:                none; //$border-radius-sm !default;
-$input-border-radius-lg:                none; //$border-radius-lg !default;
+$input-border-radius:                   0px; //$border-radius !default;
+$input-border-radius-sm:                0px; //$border-radius-sm !default;
+$input-border-radius-lg:                0px; //$border-radius-lg !default;
 
 $input-focus-bg:                        $input-bg !default;
 $input-focus-border-color:              none; //tint-color($component-active-bg, 50%) !default;
@@ -1194,7 +1194,7 @@ $pagination-font-size:              $font-size-base !default;
 
 $pagination-color:                  $secondary; //var(--#{$prefix}link-color) !default;
 $pagination-bg:                     $white !default;
-$pagination-border-radius:          none; //$border-radius !default;
+$pagination-border-radius:          0px; //$border-radius !default;
 $pagination-border-width:           $border-width !default;
 $pagination-margin-start:           ($pagination-border-width * -1) !default;
 $pagination-border-color:           $gray-300 !default;
@@ -1238,7 +1238,7 @@ $card-spacer-x:                     $spacer !default;
 $card-title-spacer-y:               $spacer * .5 !default;
 $card-border-width:                 $border-width !default;
 $card-border-color:                 var(--#{$prefix}border-color-translucent) !default;
-$card-border-radius:                none; //$border-radius !default;
+$card-border-radius:                0px; //$border-radius !default;
 $card-box-shadow:                   null !default;
 $card-inner-border-radius:          subtract($card-border-radius, $card-border-width) !default;
 $card-cap-padding-y:                $card-spacer-y * .5 !default;
@@ -1261,7 +1261,7 @@ $accordion-color:                         var(--#{$prefix}body-color) !default;
 $accordion-bg:                            $body-bg !default;
 $accordion-border-width:                  $border-width !default;
 $accordion-border-color:                  var(--#{$prefix}border-color) !default;
-$accordion-border-radius:                 none; //$border-radius !default;
+$accordion-border-radius:                 0px; //$border-radius !default;
 $accordion-inner-border-radius:           subtract($accordion-border-radius, $accordion-border-width) !default;
 
 $accordion-body-padding-y:                $accordion-padding-y !default;
@@ -1401,8 +1401,8 @@ $modal-content-color:               null !default;
 $modal-content-bg:                  $white !default;
 $modal-content-border-color:        var(--#{$prefix}border-color-translucent) !default;
 $modal-content-border-width:        $border-width !default;
-$modal-content-border-radius:       none; //$border-radius-lg !default;
-$modal-content-inner-border-radius: none; //subtract($modal-content-border-radius, $modal-content-border-width) !default;
+$modal-content-border-radius:       0px; //$border-radius-lg !default;
+$modal-content-inner-border-radius: 0px; //subtract($modal-content-border-radius, $modal-content-border-width) !default;
 $modal-content-box-shadow-xs:       $box-shadow-sm !default;
 $modal-content-box-shadow-sm-up:    $box-shadow !default;
 
@@ -1471,7 +1471,7 @@ $list-group-color:                  #555; //$gray-900 !default;
 $list-group-bg:                     #fdfeff; //$white !default;
 $list-group-border-color:           rgba($black, .125) !default;
 $list-group-border-width:           $border-width !default;
-$list-group-border-radius:          none; //$border-radius !default;
+$list-group-border-radius:          0px; //$border-radius !default;
 
 $list-group-item-padding-y:         $spacer * .5 !default;
 $list-group-item-padding-x:         $spacer !default;
