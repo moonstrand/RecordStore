@@ -1,5 +1,5 @@
 <template>
-  <Loading :active="isLoading"></Loading>
+  <Loading :active="isLoading" loader="bars" color="#555"></Loading>
   <div
     class="
       banner

@@ -1,5 +1,5 @@
 <template>
-  <Loading :active="isLoading"></Loading>
+  <Loading :active="isLoading" loader="bars" color="#555"></Loading>
   <div class="nav-bg"></div>
   <div class="bg-color cart-h py-4">
     <section

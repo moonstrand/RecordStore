@@ -1,5 +1,5 @@
 <template>
-  <Loading :active="isLoading"></Loading>
+  <Loading :active="isLoading" loader="bars" color="#555"></Loading>
   <div class="row justify-content-center mt-4">
     <div class="col-10">
       <div class="text-end me-3 mb-4">
