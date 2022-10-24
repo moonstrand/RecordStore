@@ -224,9 +224,9 @@ export default {
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`;
       this.$http.get(api).then((res) => {
         if (res.data.success) {
-          this.isLoading = false;
           this.carts = res.data.data;
         }
+        this.isLoading = false;
       });
     },
     submitData() {

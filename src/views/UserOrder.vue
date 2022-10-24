@@ -76,7 +76,6 @@ export default {
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/order/${this.orderId}`;
       if (this.orderId) {
         this.$http.get(api, this.orderId).then((res) => {
-          this.isLoading = false;
           if (res.data.success && res.data.order !== null) {
             this.toast.info(`已查找到訂單編號 ${this.orderId} 的資訊`);
             this.$router.push(`/ordercheck/${this.orderId}`);
@@ -85,9 +84,9 @@ export default {
           }
         });
       } else {
-        this.isLoading = false;
         this.toast.error('請輸入訂單編號');
       }
+      this.isLoading = false;
     },
   },
 };

@@ -228,9 +228,9 @@ export default {
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/order/${this.orderId}`;
       this.$http.get(api, this.orderId).then((res) => {
         if (res.data.success) {
-          this.isLoading = false;
           this.order = res.data.order;
         }
+        this.isLoading = false;
       });
     },
     payOrder() {
@@ -238,10 +238,10 @@ export default {
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/pay/${this.orderId}`;
       this.$http.post(api).then((res) => {
         if (res.data.success) {
-          this.isLoading = false;
           this.toast.success(res.data.message);
           this.$router.push('/success');
         }
+        this.isLoading = false;
       });
     },
     backOrderCheck() {

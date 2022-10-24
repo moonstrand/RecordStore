@@ -115,10 +115,10 @@ export default {
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/products?page=${page}`;
       this.$http.get(api).then((res) => {
         if (res.data.success) {
-          this.isLoading = false;
           this.products = res.data.products;
           this.pagination = res.data.pagination;
         }
+        this.isLoading = false;
       });
     },
     openModal(isNew, item) {
@@ -145,11 +145,11 @@ export default {
       this.$http[axiosMethod](api, { data: this.tempProduct })
         .then((res) => {
           if (res.data.success) {
-            this.getProducts();
             this.toast.success('更新商品成功');
           } else {
             this.toast.error('更新商品失敗');
           }
+          this.getProducts();
         });
     },
     openDelModal(item) {
@@ -163,13 +163,12 @@ export default {
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/product/${this.tempProduct.id}`;
       delComponent.modalHide();
       this.$http.delete(api).then((res) => {
-        this.isLoading = false;
         if (res.data.success) {
-          this.getProducts();
           this.toast.success('刪除商品成功');
         } else {
           this.toast.error('刪除產品失敗');
         }
+        this.getProducts();
       });
     },
   },

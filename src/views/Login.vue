@@ -70,14 +70,13 @@ export default {
       const api = `${process.env.VUE_APP_API}admin/signin`;
       this.$http.post(api, this.user).then((res) => {
         if (res.data.success) {
-          this.isLoading = false;
           const { token, expired } = res.data;
           document.cookie = `recordToken = ${token}; expires = ${new Date(expired)}`;
           this.$router.push('/dashboard/products');
         } else {
-          this.isLoading = false;
           this.toast.error(`${res.data.message}，帳號密碼有誤，請重新輸入`);
         }
+        this.isLoading = false;
       });
     },
   },

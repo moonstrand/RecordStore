@@ -117,10 +117,10 @@ export default {
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/orders?page=${page}`;
       this.$http.get(api).then((res) => {
         if (res.data.success) {
-          this.isLoading = false;
           this.orders = res.data.orders;
           this.pagination = res.data.pagination;
         }
+        this.isLoading = false;
       });
     },
     openModal(order) {
@@ -141,19 +141,20 @@ export default {
       this.$http.delete(api)
         .then((res) => {
           if (res.data.success) {
-            this.isLoading = false;
             this.toast.success(`已刪除 ${this.tempOrder.id}`);
-            this.getOrders();
           }
+          this.getOrders();
         });
     },
     updatePaid(order) {
+      this.isLoading = true;
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/order/${this.tempOrder.id}`;
       this.$http.put(api, { data: { ...order } })
         .then((res) => {
           if (res.data.success) {
             this.toast.success(res.data.message);
           }
+          this.isLoading = false;
         });
     },
   },

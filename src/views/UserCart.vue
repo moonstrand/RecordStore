@@ -306,9 +306,9 @@ export default {
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`;
       this.$http.get(api).then((res) => {
         if (res.data.success) {
-          this.isLoading = false;
           this.tempcarts = res.data.data;
         }
+        this.isLoading = false;
       });
     },
     updateCart(item, qty) {
@@ -320,11 +320,10 @@ export default {
       };
       this.$http.put(api, { data: carts }).then((res) => {
         if (res.data.success) {
-          this.isLoading = false;
           this.emitter.emit('update-cart');
           this.toast.success('更新購物車成功');
-          this.getCart();
         }
+        this.getCart();
       });
     },
     deleteCart(item) {
@@ -332,11 +331,10 @@ export default {
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart/${item.id}`;
       this.$http.delete(api).then((res) => {
         if (res.data.success) {
-          this.isLoading = false;
           this.emitter.emit('update-cart');
           this.toast.success(`已刪除 ${item.product.title}`);
-          this.getCart();
         }
+        this.getCart();
       });
     },
     applyCoupon() {
@@ -344,14 +342,13 @@ export default {
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/coupon`;
       const coupon = { code: this.code };
       this.$http.post(api, { data: coupon }).then((res) => {
-        this.isLoading = false;
         if (res.data.success) {
           this.toast.success(res.data.message);
-          this.getCart();
           this.code = '';
         } else {
           this.toast.error(res.data.message);
         }
+        this.getCart();
       });
     },
   },

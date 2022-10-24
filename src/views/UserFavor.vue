@@ -143,12 +143,12 @@ export default {
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`;
       this.$http.post(api, { data: cart }).then((res) => {
         if (res.data.success) {
-          this.isLoading = false;
           this.emitter.emit('update-cart');
           this.toast.success(`已將 ${title} 加入購物車`);
         } else {
           this.toast.error('加入購物車失敗');
         }
+        this.isLoading = false;
       });
     },
   },

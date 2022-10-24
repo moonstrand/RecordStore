@@ -105,10 +105,10 @@ export default {
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/coupons?page=${page}`;
       this.$http.get(api).then((res) => {
         if (res.data.success) {
-          this.isLoading = false;
           this.coupons = res.data.coupons;
           this.pagination = res.data.pagination;
         }
+        this.isLoading = false;
       });
     },
     openModal(isNew, item) {
@@ -136,10 +136,9 @@ export default {
       couponComponents.modalHide();
       this.$http[axiosMethod](api, { data: this.tempCoupon }).then((res) => {
         if (res.data.success) {
-          this.isLoading = false;
           this.toast.success('更新優惠券成功');
-          this.getCoupon();
         }
+        this.getCoupon();
       });
     },
     openDelModal(item) {
@@ -155,10 +154,9 @@ export default {
       this.$http.delete(api)
         .then((res) => {
           if (res.data.success) {
-            this.isLoading = false;
             this.toast.success(`已刪除 ${this.tempCoupon.title} 優惠券`);
-            this.getCoupon();
           }
+          this.getCoupon();
         });
     },
   },

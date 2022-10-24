@@ -191,9 +191,9 @@ export default {
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/products/all`;
       this.$http.get(api).then((res) => {
         if (res.data.success) {
-          this.isLoading = false;
           this.products = res.data.products;
         }
+        this.isLoading = false;
       });
     },
     toDetail(id) {
@@ -210,13 +210,13 @@ export default {
       };
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`;
       this.$http.post(api, { data: cart }).then((res) => {
-        this.status.itemLoading = '';
         if (res.data.success) {
           this.toast.success(`已將 ${title} 加入購物車`);
           this.emitter.emit('update-cart');
         } else {
           this.toast.error('加入購物車失敗');
         }
+        this.status.itemLoading = '';
       });
     },
     getFavor() {

@@ -46,7 +46,7 @@
                 <i
                   class="h4"
                   :class="
-                    this.favor.some((item) => item.id === product.id)
+                    favor.some((item) => item.id === product.id)
                       ? 'bi bi-star-fill text-warning'
                       : 'bi bi-star'
                   "
@@ -198,9 +198,9 @@ export default {
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/product/${this.id}`;
       this.$http.get(api).then((res) => {
         if (res.data.success) {
-          this.isLoading = false;
           this.product = res.data.product;
         }
+        this.isLoading = false;
       });
     },
     getID() {
@@ -214,12 +214,12 @@ export default {
       };
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`;
       this.$http.post(api, { data: carts }).then((res) => {
-        this.status.itemLoading = '';
         if (res.data.success) {
           this.emitter.emit('update-cart');
           this.toast.success(`已將 ${item.title} 加入購物車`);
           this.qty = 1;
         }
+        this.status.itemLoading = '';
       });
     },
     getFavor() {
