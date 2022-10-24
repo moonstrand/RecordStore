@@ -12,9 +12,9 @@
             現貨商品將於三個工作天內寄出， <br />
             若商品無庫存將由店家與您電話聯繫。
           </p>
-          <router-link to="products" class="btn btn-outline-light">
+          <RouterLink to="products" class="btn btn-outline-light">
               再去逛逛
-          </router-link>
+          </RouterLink>
         </div>
       </div>
     </div>

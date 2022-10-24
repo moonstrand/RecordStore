@@ -1,5 +1,5 @@
 <template>
-  <Loading :active="isLoading" loader="bars" color="#555"></Loading>
+  <Loading :active="isLoading" loader="bars" color="#555" />
   <div class="nav-bg"></div>
   <div class="bg-color cart-h py-4">
     <section
@@ -60,7 +60,7 @@
           <div class="cart-bg pb-4 px-4">
             <p class="text-center h3 py-4 mb-0 cart-title">客戶資料</p>
             <div class="form-floating mb-3">
-              <field
+              <Field
                 name="email"
                 type="email"
                 class="form-control"
@@ -69,12 +69,12 @@
                 placeholder="name@example.com"
                 :class="{ 'is-invalid': errors['email']}"
                 v-model="form.user.email"
-              ></field>
+              ></Field>
               <label for="floatingInput">Email</label>
-              <error-message name="email" class="invalid-feedback"></error-message>
+              <ErrorMessage name="email" class="invalid-feedback"></ErrorMessage>
             </div>
             <div class="form-floating mb-3">
-              <field
+              <Field
                 name="姓名"
                 type="text"
                 class="form-control"
@@ -83,12 +83,12 @@
                 placeholder="收件人姓名"
                 :class="{ 'is-invalid': errors['姓名']}"
                 v-model="form.user.name"
-              ></field>
+              ></Field>
               <label name="name" for="floatingInput">收件人姓名</label>
-              <error-message name="name" class="invalid-feedback"></error-message>
+              <ErrorMessage name="姓名" class="invalid-feedback"></ErrorMessage>
             </div>
             <div class="form-floating mb-3">
-              <field
+              <Field
                 name="電話"
                 type="phone"
                 class="form-control"
@@ -97,12 +97,12 @@
                 placeholder="收件人電話"
                 :class="{ 'is-invalid': errors['電話']}"
                 v-model="form.user.tel"
-              ></field>
+              ></Field>
               <label name="phone" for="floatingInput">收件人電話</label>
-              <error-message name="phone" class="invalid-feedback"></error-message>
+              <ErrorMessage name="電話" class="invalid-feedback"></ErrorMessage>
             </div>
             <div class="form-floating mb-3">
-              <field
+              <Field
                 name="地址"
                 type="text"
                 class="form-control"
@@ -112,11 +112,11 @@
                 :class="{ 'is-invalid': errors['地址']}"
                 :disabled="selfPick"
                 v-model="form.user.address"
-              ></field>
+              ></Field>
               <label name="address" for="floatingInput" :class="{ 'text-secondary': selfPick }"
                 >收件人地址</label
               >
-              <error-message name="address" class="invalid-feedback"></error-message>
+              <ErrorMessage name="地址" class="invalid-feedback"></ErrorMessage>
             </div>
             <div class="form-floating mb-3">
               <textarea

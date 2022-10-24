@@ -1,10 +1,10 @@
 <template>
-  <ServerNavbar></ServerNavbar>
-  <router-view />
+  <AdminNavbar />
+  <RouterView />
 </template>
 
 <script>
-import ServerNavbar from '@/components/AdminNavbar.vue';
+import AdminNavbar from '@/components/AdminNavbar.vue';
 import toast from '@/methods/toast';
 
 export default {
@@ -14,7 +14,7 @@ export default {
     };
   },
   components: {
-    ServerNavbar,
+    AdminNavbar,
   },
   provide() {
     return {

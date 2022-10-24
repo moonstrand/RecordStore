@@ -1,5 +1,5 @@
 <template>
-  <Loading :active="isLoading" loader="bars" color="#555"></Loading>
+  <Loading :active="isLoading" loader="bars" color="#555" />
   <div
     class="
       banner
@@ -18,7 +18,7 @@
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb py-3 mb-0 ps-sm-0 ps-2">
           <li class="breadcrumb-item">
-            <router-link to="/products">專輯列表</router-link>
+            <RouterLink to="/products">專輯列表</RouterLink>
           </li>
           <li class="breadcrumb-item active" aria-current="page">
             <strong>{{ product.title }}</strong>

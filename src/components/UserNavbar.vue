@@ -4,9 +4,9 @@
     :class="{ navShow: navScroll }"
   >
     <div class="container-fluid">
-      <router-link class="navbar-brand" to="/">
+      <RouterLink class="navbar-brand" to="/">
         <img class="nav-logo" src="@/assets/images/logo/logo.svg" alt="logo" />
-      </router-link>
+      </RouterLink>
       <button
         class="btn d-lg-none d-block"
         type="button"
@@ -32,51 +32,51 @@
         <div class="offcanvas-body pt-0">
           <ul class="navbar-nav text-center me-auto mb-2 mb-lg-0">
             <li class="nav-item py-2 fs-4">
-              <router-link
+              <RouterLink
                 class="canvas-link text-light"
                 to="/"
                 @click="offcanvasHide"
-                >返回首頁</router-link
+                >返回首頁</RouterLink
               >
             </li>
             <li class="nav-item py-2 fs-4">
-              <router-link
+              <RouterLink
                 class="canvas-link text-light"
                 to="/products"
                 @click="offcanvasHide"
-                >專輯列表</router-link
+                >專輯列表</RouterLink
               >
             </li>
             <li class="nav-item py-2 fs-4">
-              <router-link
+              <RouterLink
                 class="canvas-link text-light"
                 to="/order"
                 @click="offcanvasHide"
-                >訂單查詢</router-link
+                >訂單查詢</RouterLink
               >
             </li>
             <li class="nav-item py-2 fs-4">
-              <router-link
+              <RouterLink
                 class="canvas-link text-light"
                 to="/favor"
                 @click="offcanvasHide"
-                >最愛商品</router-link
+                >最愛商品</RouterLink
               >
             </li>
             <li class="nav-item py-2 fs-4">
-              <router-link
+              <RouterLink
                 class="canvas-link text-light"
                 to="/cart"
                 @click="offcanvasHide"
-                >購物車</router-link
+                >購物車</RouterLink
               >
             </li>
             <li class="nav-item py-2 fs-4">
-              <router-link
+              <RouterLink
                 class="canvas-link text-light"
                 to="/login"
                 @click="offcanvasHide"
-                >後台登入</router-link
+                >後台登入</RouterLink
               >
             </li>
           </ul>
@@ -85,44 +85,44 @@
       <div class="collapse navbar-collapse nav-user" id="navbarText">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-lg-flex d-none">
           <li class="nav-item">
-            <router-link class="nav-link text-light" to="/">首頁</router-link>
+            <RouterLink class="nav-link text-light" to="/">首頁</RouterLink>
           </li>
           <li class="nav-item">
-            <router-link class="nav-link text-light" to="/products"
-              >專輯列表</router-link
+            <RouterLink class="nav-link text-light" to="/products"
+              >專輯列表</RouterLink
             >
           </li>
           <li class="nav-item">
-            <router-link class="nav-link text-light" to="/order"
-              >訂單查詢</router-link
+            <RouterLink class="nav-link text-light" to="/order"
+              >訂單查詢</RouterLink
             >
           </li>
         </ul>
         <ul class="navbar-nav">
           <li class="nav-item">
-            <router-link
+            <RouterLink
               class="nav-icon text-light fs-4 d-lg-block d-none"
               to="/favor"
               >
               <i class="bi bi-star"></i>
               <sup v-if="favorLength !== 0"><small>{{ favorLength }}</small></sup>
-            </router-link>
+            </RouterLink>
           </li>
           <li class="nav-item my-md-0 my-2">
-            <router-link
+            <RouterLink
               class="nav-icon text-light fs-4 d-lg-block d-none"
               to="/cart"
             >
               <i class="bi bi-cart2"></i>
               <sup v-if="cartQty"><small>{{ cartQty }}</small></sup>
-            </router-link>
+            </RouterLink>
           </li>
           <li class="nav-item">
-            <router-link
+            <RouterLink
               class="nav-icon text-light fs-4 d-lg-block d-none"
               to="/login"
               ><i class="bi bi-person-workspace"></i
-            ></router-link>
+            ></RouterLink>
           </li>
         </ul>
       </div>

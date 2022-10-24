@@ -1,5 +1,5 @@
 <template>
-  <Loading :active="isLoading" loader="bars" color="#555"></Loading>
+  <Loading :active="isLoading" loader="bars" color="#555" />
   <div class="index-banner">
     <div
       class="banner-content"
@@ -11,8 +11,8 @@
     >
       <h1 class="text-light">角落唱片</h1>
       <p class="h1 text-light ps-5">一個尋知音，聽知音的好場所。</p>
-      <router-link to="/products" class="btn btn-outline-light ms-3 mt-4"
-        >尋找知音</router-link
+      <RouterLink to="/products" class="btn btn-outline-light ms-3 mt-4"
+        >尋找知音</RouterLink
       >
     </div>
   </div>
@@ -39,10 +39,10 @@
             隱藏在小巷的角落，讓您遠離城市的喧囂。
           </p>
           <div class="d-flex pt-3">
-            <router-link
+            <RouterLink
               class="btn btn-outline-light d-block text-center"
               to="/products"
-              >來去逛逛</router-link
+              >來去逛逛</RouterLink
             >
           </div>
         </div>

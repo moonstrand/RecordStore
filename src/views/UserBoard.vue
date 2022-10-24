@@ -1,7 +1,7 @@
 <template>
-  <UserNavbar></UserNavbar>
-  <router-view />
-  <UserFooter></UserFooter>
+  <UserNavbar />
+  <RouterView />
+  <UserFooter />
 </template>
 
 <script>

@@ -62,11 +62,6 @@ const routes = [
         name: 'login',
         component: () => import('../views/Login.vue'),
       },
-      {
-        path: '/:pathMatch(.*)*',
-        name: 'notfound',
-        component: () => import('../views/404page.vue'),
-      },
     ],
   },
   {
@@ -90,6 +85,11 @@ const routes = [
         component: () => import('../views/admin/AdminCoupon.vue'),
       },
     ],
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'notfound',
+    component: () => import('../views/404page.vue'),
   },
 ];
 

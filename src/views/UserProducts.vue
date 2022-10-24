@@ -1,5 +1,5 @@
 <template>
-  <Loading :active="isLoading" loader="bars" color="#555"></Loading>
+  <Loading :active="isLoading" loader="bars" color="#555" />
   <div
     class="
       banner
@@ -15,7 +15,6 @@
     </div>
   </div>
   <div class="min-h bg-color">
-    <!-- category -->
     <section class="category container py-4">
       <div class="row">
         <ul
@@ -108,11 +107,10 @@
                   @click.stop="toggleFavor(item)"
                 >
                   <i
-                    class="bi"
                     :class="
                       favor.some((favor) => favor.id === item.id)
-                        ? 'bi-star-fill text-warning'
-                        : 'bi-star'
+                        ? 'bi bi-star-fill text-warning'
+                        : 'bi bi-star'
                     "
                   ></i>
                 </button>

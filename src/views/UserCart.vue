@@ -1,5 +1,5 @@
 <template>
-  <Loading :active="isLoading" loader="bars" color="#555"></Loading>
+  <Loading :active="isLoading" loader="bars" color="#555" />
   <div class="nav-bg"></div>
   <div class="bg-color cart-h py-sm-0 py-4">
     <section
@@ -186,9 +186,9 @@
             >
               <i class="bi bi-cart-x"></i>
               <p class="h3 pb-4">購物車內無任何商品</p>
-              <router-link to="/products" class="btn btn-outline-secondary">
+              <RouterLink to="/products" class="btn btn-outline-secondary">
                 來去逛逛
-              </router-link>
+              </RouterLink>
             </div>
           </div>
         </div>
@@ -275,13 +275,13 @@
                 在您下標後將立即處理您的訂單，現貨商品將於三個工作天內寄出 （
                 不含週六日及國定例假日 ）， 若商品無庫存將由店家與您電話聯繫。
               </p>
-              <router-link
+              <RouterLink
                 to="check"
                 class="btn btn-secondary w-100 mt-4"
                 :class="{ disabled: tempcarts.total === 0 }"
               >
                 確認訂單
-              </router-link>
+              </RouterLink>
             </div>
           </div>
         </div>

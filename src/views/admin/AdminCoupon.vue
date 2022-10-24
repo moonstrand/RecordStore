@@ -1,5 +1,5 @@
 <template>
-  <Loading :active="isLoading" loader="bars" color="#555"></Loading>
+  <Loading :active="isLoading" loader="bars" color="#555" />
   <div class="row justify-content-center mt-4">
     <div class="col-10">
       <div class="text-end me-3 mb-4">
@@ -69,13 +69,13 @@
       </table>
     </div>
   </div>
-  <Pagination :pages="pagination" @emit-pages="getCoupon"></Pagination>
+  <Pagination :pages="pagination" @emit-pages="getCoupon" />
   <CouponModal
     ref="couponModal"
     @update-coupon="updateCoupon"
     :coupon="tempCoupon"
-  ></CouponModal>
-  <DelCouponModal ref="delCouponModal" :coupon="tempCoupon" @delCoupon="delCoupon"></DelCouponModal>
+  />
+  <DelCouponModal ref="delCouponModal" :coupon="tempCoupon" @delCoupon="delCoupon" />
 </template>
 
 <script>

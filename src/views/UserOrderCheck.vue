@@ -1,5 +1,5 @@
 <template>
-  <Loading :active="isLoading" loader="bars" color="#555"></Loading>
+  <Loading :active="isLoading" loader="bars" color="#555" />
   <div class="banner order-banner d-flex justify-content-center align-items-center">
     <div class="banner-content text-center h1 text-light">
       <p class="banner-title">訂單查詢</p>
@@ -63,7 +63,7 @@
                     </tr>
                     <tr>
                       <th>取貨方式</th>
-                      <td v-if="(order.user.address = '到店自取')">自取</td>
+                      <td v-if="(order.user.address === '到店自取')">自取</td>
                       <td v-else>宅配</td>
                     </tr>
                     <tr>
@@ -97,7 +97,7 @@
                   <h5 class="cart-title border-bottom py-2">收件人電話</h5>
                   <p class="cart-text">{{ order.user.tel }}</p>
                   <h5 class="cart-title border-bottom py-2">取貨方式</h5>
-                  <p class="cart-text" v-if="(order.user.address = '到店自取')">
+                  <p class="cart-text" v-if="(order.user.address === '到店自取')">
                     自取
                   </p>
                   <p class="cart-text" v-else>宅配</p>

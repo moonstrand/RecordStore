@@ -1,5 +1,5 @@
 <template>
-  <Loading :active="isLoading" loader="bars" color="#555"></Loading>
+  <Loading :active="isLoading" loader="bars" color="#555" />
   <div class="row justify-content-center mt-4">
     <div class="col-10">
       <div class="text-end me-3 mb-4">
@@ -79,13 +79,13 @@
     :product="tempProduct"
     @update-product="updateProduct"
     ref="productsModal"
-  ></ProductsModal>
+  />
   <DelProductModal
     :product="tempProduct"
     @del-product="delProduct"
     ref="deleteModal"
-  ></DelProductModal>
-  <Pagination :pages="pagination" @emit-pages="getProducts"></Pagination>
+  />
+  <Pagination :pages="pagination" @emit-pages="getProducts" />
 </template>
 
 <script>

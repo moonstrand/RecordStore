@@ -1,5 +1,5 @@
 <template>
-  <Loading :active="isLoading" loader="bars" color="#555"></Loading>
+  <Loading :active="isLoading" loader="bars" color="#555" />
   <div class="banner favor-banner d-flex justify-content-center align-items-center">
     <div class="banner-content text-center h1 text-light">
       <p class="banner-title">願望清單</p>
@@ -103,9 +103,9 @@
     >
       <i class="bi bi-cart-x"></i>
       <p class="h3 pb-4">願望清單內無任何商品</p>
-      <router-link to="/products" class="btn btn-outline-secondary">
+      <RouterLink to="/products" class="btn btn-outline-secondary">
         來去逛逛
-      </router-link>
+      </RouterLink>
     </div>
   </section>
 </template>
@@ -144,6 +144,7 @@ export default {
       this.$http.post(api, { data: cart }).then((res) => {
         if (res.data.success) {
           this.isLoading = false;
+          this.emitter.emit('update-cart');
           this.toast.success(`已將 ${title} 加入購物車`);
         } else {
           this.toast.error('加入購物車失敗');

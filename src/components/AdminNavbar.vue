@@ -1,13 +1,13 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-light bg-light px-4">
     <div class="container-fluid">
-      <router-link class="navbar-brand" to="/">
+      <RouterLink class="navbar-brand" to="/">
         <img
           class="nav-logo"
           src="@/assets/images/logo/logo-light-2.png"
           alt="logo"
         />
-      </router-link>
+      </RouterLink>
       <button
         class="btn d-lg-none d-block"
         type="button"
@@ -33,35 +33,35 @@
         <div class="offcanvas-body pt-0">
           <ul class="navbar-nav text-center me-auto mb-2 mb-lg-0">
             <li class="nav-item py-2 fs-4">
-              <router-link
+              <RouterLink
                 class="canvas-link text-dark"
                 to="products"
                 @click="offcanvasHide"
-                >產品列表</router-link
+                >產品列表</RouterLink
               >
             </li>
             <li class="nav-item py-2 fs-4">
-              <router-link
+              <RouterLink
                 class="canvas-link text-dark"
                 to="orders"
                 @click="offcanvasHide"
-                >訂單列表</router-link
+                >訂單列表</RouterLink
               >
             </li>
             <li class="nav-item py-2 fs-4">
-              <router-link
+              <RouterLink
                 class="canvas-link text-dark"
                 to="coupon"
                 @click="offcanvasHide"
-                >優惠券</router-link
+                >優惠券</RouterLink
               >
             </li>
             <li class="nav-item py-2 fs-4">
-              <router-link
+              <RouterLink
                 class="canvas-link text-dark"
                 to="/"
                 @click="offcanvasHide"
-                >登出</router-link
+                >登出</RouterLink
               >
             </li>
           </ul>
@@ -70,13 +70,13 @@
       <div class="collapse navbar-collapse nav-admin" id="navbarText">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-lg-flex d-none">
           <li class="nav-item">
-            <router-link class="nav-link" to="products">產品列表</router-link>
+            <RouterLink class="nav-link" to="products">產品列表</RouterLink>
           </li>
           <li class="nav-item">
-            <router-link class="nav-link" to="orders">訂單列表</router-link>
+            <RouterLink class="nav-link" to="orders">訂單列表</RouterLink>
           </li>
           <li class="nav-item">
-            <router-link class="nav-link" to="coupon">優惠券</router-link>
+            <RouterLink class="nav-link" to="coupon">優惠券</RouterLink>
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link" @click.prevent="logout">登出</a>

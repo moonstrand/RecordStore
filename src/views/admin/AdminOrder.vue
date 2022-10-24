@@ -1,5 +1,5 @@
 <template>
-  <Loading :active="isLoading" loader="bars" color="#555"></Loading>
+  <Loading :active="isLoading" loader="bars" color="#555" />
   <div class="row justify-content-center mt-5">
     <div class="col-10">
       <table class="table table-hover server-text align-middle">
@@ -86,9 +86,9 @@
       </table>
     </div>
   </div>
-  <OrderModal ref="orderModal" :order="tempOrder"></OrderModal>
-  <DelOrderModal ref="delOrderModal" :order="tempOrder" @delOrder="delOrder"></DelOrderModal>
-  <Pagination :pages="pagination" @emit-pages="getOrders"></Pagination>
+  <OrderModal ref="orderModal" :order="tempOrder" />
+  <DelOrderModal ref="delOrderModal" :order="tempOrder" @delOrder="delOrder" />
+  <Pagination :pages="pagination" @emit-pages="getOrders" />
 </template>
 
 <script>
