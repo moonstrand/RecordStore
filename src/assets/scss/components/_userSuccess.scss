@@ -17,6 +17,7 @@
     }
     @include mobile-m {
       letter-spacing: 0;
+      text-shadow: none;
     }
     &:hover {
       box-shadow: 0 0 10px #fff;

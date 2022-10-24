@@ -158,7 +158,7 @@ export default {
       this.$http.get(api).then((res) => {
         if (res.data.success) {
           if (res.data.data.carts.length !== 0) {
-            this.cartQty = res.data.data.carts.map((item) => item.qty).reduce((a, b) => a + b);
+            this.cartQty = res.data.data.carts.length;
           } else {
             this.cartQty = 0;
           }

@@ -50,6 +50,9 @@ body a {
     font-weight: 400;
     letter-spacing: 0.35rem;
     text-shadow: 0.5px 0.5px 5px #EEE;
+    @include mobile-m {
+      text-shadow: none;
+    }
   }
   .banner-title {
     @include mobile-s {
