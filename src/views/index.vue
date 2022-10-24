@@ -1,6 +1,5 @@
 <template>
   <Loading :active="isLoading" loader="bars" color="#555"></Loading>
-  <!-- banner -->
   <div class="index-banner">
     <div
       class="banner-content"
@@ -25,7 +24,6 @@
       </div>
     </div>
   </section>
-  <!-- introduce -->
   <section class="bg-cover intro py-lg-5 py-3">
     <div class="container py-4">
       <div
@@ -81,7 +79,6 @@
       </p>
     </div>
   </section>
-  <!-- recommend -->
   <section class="bg-cover recommend py-sm-5 pt-4">
     <div class="container">
       <div class="row">
@@ -108,7 +105,6 @@
       </div>
     </div>
   </section>
-  <!-- coupon -->
   <section class="bg-color py-5">
     <div class="container">
       <p class="h1 text-center title-bold">歡慶角落唱片開幕</p>
