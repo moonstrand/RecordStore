@@ -1,4 +1,3 @@
-// 響應式斷點
 @mixin pad-xl {
   @media (max-width: 1181px) {
     @content
@@ -29,12 +28,10 @@
   }
 };
 
-// 全域設置
 body a {
   text-decoration: none;
 }
 
-// navbar 樣式
 .nav-bg {
   box-sizing: content-box;
   height: 48px;
@@ -42,7 +39,6 @@ body a {
   background-color: #222;
 }
 
-// banner樣式
 .banner {
   background-size: cover;
   background-position: center center;
@@ -62,17 +58,14 @@ body a {
   }
 }
 
-// 背景樣式
 .bg-color {
   background: linear-gradient(#fff, #fbfbfd);
 }
 
-// 頁尾樣式
 .footer-bg {
   background-color: #34495E;
 }
 
-// 卡片樣式
 .card{
   transition: ease 0.5s;
   cursor: pointer;
@@ -90,7 +83,6 @@ body a {
   }
 }
 
-// 最小高度樣式
 .min-h {
   min-height: 70vh;
   @include mobile-m {

@@ -44,11 +44,11 @@
               <p class="title h2 mb-0">{{ product.title }}</p>
               <a href="#" class="favor" @click.prevent="toggleFavor(product)">
                 <i
-                  class="bi h4"
+                  class="h4"
                   :class="
                     this.favor.some((item) => item.id === product.id)
-                      ? 'bi-star-fill text-warning'
-                      : 'bi-star'
+                      ? 'bi bi-star-fill text-warning'
+                      : 'bi bi-star'
                   "
                 ></i>
               </a>
