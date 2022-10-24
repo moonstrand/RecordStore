@@ -64,8 +64,8 @@
             週一至週六 AM 10:30 ~ PM 9:30 <br />
             <i class="bi bi-geo-alt pe-2"></i>
             台北市音樂區唱片街30號1樓 <br />
-            <i class="bi bi-telephone pe-2"></i>
-            02 - 23456789
+            <i class="bi bi-telephone pe-3"></i>
+            <a href="tel:02-23456789" class="text-light lh-lg">02-23456789</a>
           </p>
         </div>
       </div>
@@ -95,7 +95,7 @@
             style="width: 18rem"
             @click="toDetail(item.id)"
           >
-            <img :src="item.imageUrl" class="card-img-top" alt="" />
+            <img :src="item.imageUrl" class="card-img-top" :alt="item.title" />
             <div class="card-body text-light p-2">
               <p class="fs-5 ps-2 mt-1 mb-0">{{ item.title }}</p>
               <p class="fs-5 text-end pe-2 mb-1">NT. {{ item.price }}</p>
@@ -163,7 +163,6 @@
       </div>
     </div>
   </section>
-  <!-- F&Q -->
   <section class="bg-color py-5">
     <div class="containe">
       <p class="h1 text-center title-bold">常見問題</p>

@@ -42,7 +42,7 @@
           <div class="product-intro">
             <div class="d-flex justify-content-between align-items-center">
               <p class="title h2 mb-0">{{ product.title }}</p>
-              <a href="" class="favor" @click.prevent="toggleFavor(product)">
+              <a href="#" class="favor" @click.prevent="toggleFavor(product)">
                 <i
                   class="bi h4"
                   :class="

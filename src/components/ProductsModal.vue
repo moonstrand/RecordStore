@@ -38,7 +38,6 @@
                   >或 上傳圖片
                   <i class="fas fa-spinner fa-spin"></i>
                 </label>
-                <!-- 選擇圖片上傳 -->
                 <input
                   type="file"
                   id="customFile"
@@ -47,7 +46,7 @@
                   ref="imgInput"
                 />
               </div>
-              <img class="img-fluid" alt="" />
+              <img class="img-fluid" :src="product.imageUrl" :alt="product.title" />
             </div>
             <div class="col-sm-8">
               <div class="mb-3">
@@ -60,7 +59,6 @@
                   v-model="tempProduct.title"
                 />
               </div>
-
               <div class="row gx-2">
                 <div class="mb-3 col-md-4">
                   <label for="category" class="form-label">主類別</label>
@@ -93,7 +91,6 @@
                   />
                 </div>
               </div>
-
               <div class="row gx-2">
                 <div class="mb-3 col-md-6">
                   <label for="origin_price" class="form-label">原價</label>
@@ -117,7 +114,6 @@
                 </div>
               </div>
               <hr />
-
               <div class="mb-3">
                 <label for="description" class="form-label">產品描述</label>
                 <textarea
