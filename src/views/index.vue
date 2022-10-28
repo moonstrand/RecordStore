@@ -139,16 +139,7 @@
         :key="coupon.code"
       >
         <p class="coupon-text h3 text-light">恭喜獲得{{ coupon.title }}！</p>
-        <p
-          class="
-            coupon-text
-            h3
-            text-light
-            d-flex
-            align-items-center
-            pt-3
-          "
-        >
+        <p class="coupon-text h3 text-light d-flex align-items-center pt-3">
           優惠券代碼：{{ coupon.code }}
           <button type="button" class="btn btn-link p-0 ms-3" @click="copycode">
             <i class="bi bi-clipboard-check text-light btn-coupon h4"></i>
@@ -346,16 +337,23 @@ export default {
       isLoading: false,
     };
   },
+  inject: ['toast'],
   methods: {
     randomItem() {
       this.isLoading = true;
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/products/all`;
-      this.$http.get(api).then((res) => {
-        if (res.data.success) {
-          this.recommend = res.data.products.sort(() => Math.random() - 0.5).slice(0, 3);
-        }
-        this.isLoading = false;
-      });
+      this.$http
+        .get(api)
+        .then((res) => {
+          if (res.data.success) {
+            this.recommend = res.data.products.sort(() => Math.random() - 0.5).slice(0, 3);
+          }
+          this.isLoading = false;
+        })
+        .catch((err) => {
+          this.toast.error(`請求失敗，代碼：${err.response.status}`);
+          this.isLoading = false;
+        });
     },
     randomCoupon() {
       this.randomCode = this.coupons.sort(() => Math.random() - 0.5).slice(0, 1);
@@ -365,10 +363,9 @@ export default {
     },
     copycode() {
       const toast = useToast();
-      navigator.clipboard.writeText(this.randomCode[0].code)
-        .then(() => {
-          toast.success('優惠券複製成功');
-        });
+      navigator.clipboard.writeText(this.randomCode[0].code).then(() => {
+        toast.success('優惠券複製成功');
+      });
     },
   },
   created() {
@@ -378,5 +375,5 @@ export default {
 </script>
 
 <style lang="scss">
-@import '@/assets/scss/components/_index.scss';
+@import "@/assets/scss/components/_index.scss";
 </style>

@@ -75,14 +75,20 @@ export default {
       this.isLoading = true;
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/order/${this.orderId}`;
       if (this.orderId) {
-        this.$http.get(api, this.orderId).then((res) => {
-          if (res.data.success && res.data.order !== null) {
-            this.toast.info(`已查找到訂單編號 ${this.orderId} 的資訊`);
-            this.$router.push(`/ordercheck/${this.orderId}`);
-          } else {
-            this.toast.error(`查無訂單編號 ${this.orderId} 的資訊，請再次確認`);
-          }
-        });
+        this.$http
+          .get(api, this.orderId)
+          .then((res) => {
+            if (res.data.success && res.data.order !== null) {
+              this.toast.info(`已查找到訂單編號 ${this.orderId} 的資訊`);
+              this.$router.push(`/ordercheck/${this.orderId}`);
+            } else {
+              this.toast.error(`查無訂單編號 ${this.orderId} 的資訊，請再次確認`);
+            }
+          })
+          .catch((err) => {
+            this.toast.error(`請求失敗，代碼：${err.response.status}`);
+            this.isLoading = false;
+          });
       } else {
         this.toast.error('請輸入訂單編號');
       }

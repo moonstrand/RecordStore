@@ -75,7 +75,11 @@
     @update-coupon="updateCoupon"
     :coupon="tempCoupon"
   />
-  <DelCouponModal ref="delCouponModal" :coupon="tempCoupon" @delCoupon="delCoupon" />
+  <DelCouponModal
+    ref="delCouponModal"
+    :coupon="tempCoupon"
+    @delCoupon="delCoupon"
+  />
 </template>
 
 <script>
@@ -103,13 +107,19 @@ export default {
     getCoupon(page = 1) {
       this.isLoading = true;
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/coupons?page=${page}`;
-      this.$http.get(api).then((res) => {
-        if (res.data.success) {
-          this.coupons = res.data.coupons;
-          this.pagination = res.data.pagination;
-        }
-        this.isLoading = false;
-      });
+      this.$http
+        .get(api)
+        .then((res) => {
+          if (res.data.success) {
+            this.coupons = res.data.coupons;
+            this.pagination = res.data.pagination;
+          }
+          this.isLoading = false;
+        })
+        .catch((err) => {
+          this.toast.error(`請求失敗，代碼：${err.response.status}`);
+          this.isLoading = false;
+        });
     },
     openModal(isNew, item) {
       this.isNew = isNew;
@@ -134,12 +144,17 @@ export default {
         axiosMethod = 'put';
       }
       couponComponents.modalHide();
-      this.$http[axiosMethod](api, { data: this.tempCoupon }).then((res) => {
-        if (res.data.success) {
-          this.toast.success('更新優惠券成功');
-        }
-        this.getCoupon();
-      });
+      this.$http[axiosMethod](api, { data: this.tempCoupon })
+        .then((res) => {
+          if (res.data.success) {
+            this.toast.success('更新優惠券成功');
+          }
+          this.getCoupon();
+        })
+        .catch((err) => {
+          this.toast.error(`請求失敗，代碼：${err.response.status}`);
+          this.isLoading = false;
+        });
     },
     openDelModal(item) {
       const delComponents = this.$refs.delCouponModal;
@@ -151,12 +166,17 @@ export default {
       const delComponents = this.$refs.delCouponModal;
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/coupon/${this.tempCoupon.id}`;
       delComponents.modalHide();
-      this.$http.delete(api)
+      this.$http
+        .delete(api)
         .then((res) => {
           if (res.data.success) {
             this.toast.success(`已刪除 ${this.tempCoupon.title} 優惠券`);
           }
           this.getCoupon();
+        })
+        .catch((err) => {
+          this.toast.error(`請求失敗，代碼：${err.response.status}`);
+          this.isLoading = false;
         });
     },
   },
@@ -167,5 +187,5 @@ export default {
 </script>
 
 <style lang="scss">
-@import '@/assets/scss/components/_admin.scss';
+@import "@/assets/scss/components/_admin.scss";
 </style>

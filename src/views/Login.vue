@@ -68,21 +68,27 @@ export default {
     signIn() {
       this.isLoading = true;
       const api = `${process.env.VUE_APP_API}admin/signin`;
-      this.$http.post(api, this.user).then((res) => {
-        if (res.data.success) {
-          const { token, expired } = res.data;
-          document.cookie = `recordToken = ${token}; expires = ${new Date(expired)}`;
-          this.$router.push('/dashboard/products');
-        } else {
-          this.toast.error(`${res.data.message}，帳號密碼有誤，請重新輸入`);
-        }
-        this.isLoading = false;
-      });
+      this.$http
+        .post(api, this.user)
+        .then((res) => {
+          if (res.data.success) {
+            const { token, expired } = res.data;
+            document.cookie = `recordToken = ${token}; expires = ${new Date(expired)}`;
+            this.$router.push('/dashboard/products');
+          } else {
+            this.toast.error(`${res.data.message}，帳號密碼有誤，請重新輸入`);
+          }
+          this.isLoading = false;
+        })
+        .catch((err) => {
+          this.toast.error(`請求失敗，代碼：${err.response.status}`);
+          this.isLoading = false;
+        });
     },
   },
 };
 </script>
 
 <style lang="scss">
-@import '@/assets/scss/components/_login.scss';
+@import "@/assets/scss/components/_login.scss";
 </style>

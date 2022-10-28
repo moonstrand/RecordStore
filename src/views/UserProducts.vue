@@ -96,7 +96,7 @@
           v-for="item in filterProducts"
           :key="item.id"
         >
-          <div class="card mb-4" @click.prevent="toDetail(item.id)">
+          <div class="card mb-4" @click="toDetail(item.id)">
             <img :src="item.imageUrl" class="card-img-top" :alt="item.title" />
             <div class="card-body p-2">
               <div class="d-flex justify-content-between align-items-center">
@@ -189,12 +189,18 @@ export default {
     getProducts() {
       this.isLoading = true;
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/products/all`;
-      this.$http.get(api).then((res) => {
-        if (res.data.success) {
-          this.products = res.data.products;
-        }
-        this.isLoading = false;
-      });
+      this.$http
+        .get(api)
+        .then((res) => {
+          if (res.data.success) {
+            this.products = res.data.products;
+          }
+          this.isLoading = false;
+        })
+        .catch((err) => {
+          this.toast.error(`請求失敗，代碼：${err.response.status}`);
+          this.isLoading = false;
+        });
     },
     toDetail(id) {
       this.$router.push(`/products/${id}`);
@@ -209,15 +215,21 @@ export default {
         qty: 1,
       };
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`;
-      this.$http.post(api, { data: cart }).then((res) => {
-        if (res.data.success) {
-          this.toast.success(`已將 ${title} 加入購物車`);
-          this.emitter.emit('update-cart');
-        } else {
-          this.toast.error('加入購物車失敗');
-        }
-        this.status.itemLoading = '';
-      });
+      this.$http
+        .post(api, { data: cart })
+        .then((res) => {
+          if (res.data.success) {
+            this.toast.success(`已將 ${title} 加入購物車`);
+            this.emitter.emit('update-cart');
+          } else {
+            this.toast.error('加入購物車失敗');
+          }
+          this.status.itemLoading = '';
+        })
+        .catch((err) => {
+          this.toast.error(`請求失敗，代碼：${err.response.status}`);
+          this.isLoading = false;
+        });
     },
     getFavor() {
       this.favor = JSON.parse(localStorage.getItem('favor')) || [];
@@ -269,5 +281,5 @@ export default {
 </script>
 
 <style lang="scss">
-@import '@/assets/scss/components/_userProducts.scss';
+@import "@/assets/scss/components/_userProducts.scss";
 </style>

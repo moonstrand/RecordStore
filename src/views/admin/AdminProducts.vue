@@ -27,8 +27,12 @@
             <tr>
               <td>{{ item.category }}</td>
               <td>{{ item.title }}</td>
-              <td class="text-center">NT.{{ $filters.currency(item.origin_price) }}</td>
-              <td class="text-center">NT.{{ $filters.currency(item.price) }}</td>
+              <td class="text-center">
+                NT.{{ $filters.currency(item.origin_price) }}
+              </td>
+              <td class="text-center">
+                NT.{{ $filters.currency(item.price) }}
+              </td>
               <td class="text-center">
                 <span class="text-success fw-bold" v-if="item.is_enabled"
                   >啟用</span
@@ -113,13 +117,19 @@ export default {
     getProducts(page = 1) {
       this.isLoading = true;
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/products?page=${page}`;
-      this.$http.get(api).then((res) => {
-        if (res.data.success) {
-          this.products = res.data.products;
-          this.pagination = res.data.pagination;
-        }
-        this.isLoading = false;
-      });
+      this.$http
+        .get(api)
+        .then((res) => {
+          if (res.data.success) {
+            this.products = res.data.products;
+            this.pagination = res.data.pagination;
+          }
+          this.isLoading = false;
+        })
+        .catch((err) => {
+          this.toast.error(`請求失敗，代碼：${err.response.status}`);
+          this.isLoading = false;
+        });
     },
     openModal(isNew, item) {
       if (isNew) {
@@ -150,6 +160,10 @@ export default {
             this.toast.error('更新商品失敗');
           }
           this.getProducts();
+        })
+        .catch((err) => {
+          this.toast.error(`請求失敗，代碼：${err.response.status}`);
+          this.isLoading = false;
         });
     },
     openDelModal(item) {
@@ -162,14 +176,20 @@ export default {
       const delComponent = this.$refs.deleteModal;
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/product/${this.tempProduct.id}`;
       delComponent.modalHide();
-      this.$http.delete(api).then((res) => {
-        if (res.data.success) {
-          this.toast.success('刪除商品成功');
-        } else {
-          this.toast.error('刪除產品失敗');
-        }
-        this.getProducts();
-      });
+      this.$http
+        .delete(api)
+        .then((res) => {
+          if (res.data.success) {
+            this.toast.success('刪除商品成功');
+          } else {
+            this.toast.error('刪除產品失敗');
+          }
+          this.getProducts();
+        })
+        .catch((err) => {
+          this.toast.error(`請求失敗，代碼：${err.response.status}`);
+          this.isLoading = false;
+        });
     },
   },
   created() {
@@ -179,5 +199,5 @@ export default {
 </script>
 
 <style lang="scss">
-@import '@/assets/scss/components/_admin.scss';
+@import "@/assets/scss/components/_admin.scss";
 </style>

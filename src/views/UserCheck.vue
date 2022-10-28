@@ -67,11 +67,11 @@
                 id="floatingInput"
                 rules="email|required"
                 placeholder="name@example.com"
-                :class="{ 'is-invalid': errors['email']}"
+                :class="{ 'is-invalid': errors['email'] }"
                 v-model="form.user.email"
               ></Field>
               <label for="floatingInput">Email</label>
-              <ErrorMessage name="email" class="invalid-feedback"></ErrorMessage>
+              <ErrorMessage name="email" class="invalid-feedback" />
             </div>
             <div class="form-floating mb-3">
               <Field
@@ -81,11 +81,11 @@
                 id="floatingInput"
                 rules="required"
                 placeholder="收件人姓名"
-                :class="{ 'is-invalid': errors['姓名']}"
+                :class="{ 'is-invalid': errors['姓名'] }"
                 v-model="form.user.name"
               ></Field>
               <label name="name" for="floatingInput">收件人姓名</label>
-              <ErrorMessage name="姓名" class="invalid-feedback"></ErrorMessage>
+              <ErrorMessage name="姓名" class="invalid-feedback" />
             </div>
             <div class="form-floating mb-3">
               <Field
@@ -95,11 +95,11 @@
                 id="floatingInput"
                 :rules="isPhone"
                 placeholder="收件人電話"
-                :class="{ 'is-invalid': errors['電話']}"
+                :class="{ 'is-invalid': errors['電話'] }"
                 v-model="form.user.tel"
               ></Field>
               <label name="phone" for="floatingInput">收件人電話</label>
-              <ErrorMessage name="電話" class="invalid-feedback"></ErrorMessage>
+              <ErrorMessage name="電話" class="invalid-feedback" />
             </div>
             <div class="form-floating mb-3">
               <Field
@@ -109,14 +109,17 @@
                 id="floatingInput"
                 rules="required"
                 placeholder="收件人地址"
-                :class="{ 'is-invalid': errors['地址']}"
+                :class="{ 'is-invalid': errors['地址'] }"
                 :disabled="selfPick"
                 v-model="form.user.address"
               ></Field>
-              <label name="address" for="floatingInput" :class="{ 'text-secondary': selfPick }"
+              <label
+                name="address"
+                for="floatingInput"
+                :class="{ 'text-secondary': selfPick }"
                 >收件人地址</label
               >
-              <ErrorMessage name="地址" class="invalid-feedback"></ErrorMessage>
+              <ErrorMessage name="地址" class="invalid-feedback" />
             </div>
             <div class="form-floating mb-3">
               <textarea
@@ -140,11 +143,9 @@
                 到店自取
               </label>
             </div>
-            <button class="btn btn-secondary w-100">
-              確認下單
-            </button>
+            <button class="btn btn-secondary w-100">確認下單</button>
           </div>
-        </form>
+        </Form>
         <div class="col-xl-5">
           <div class="cart-bg pb-2 px-4">
             <p class="text-center h3 py-4 mb-0 cart-title">訂單明細</p>
@@ -153,7 +154,11 @@
               v-for="item in carts.carts"
               :key="item.id"
             >
-              <img :src="item.product.imageUrl" class="cart-img" :alt="item.product.title" />
+              <img
+                :src="item.product.imageUrl"
+                class="cart-img"
+                :alt="item.product.title"
+              />
               <div class="cart-text fs-sm-5 ps-sm-5 ps-3">
                 <p class="mb-0">{{ item.product.title }}</p>
                 <p class="py-2 mb-0">{{ item.qty }} 張</p>
@@ -222,23 +227,34 @@ export default {
     getCarts() {
       this.isLoading = true;
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`;
-      this.$http.get(api).then((res) => {
-        if (res.data.success) {
-          this.carts = res.data.data;
-        }
-        this.isLoading = false;
-      });
+      this.$http
+        .get(api)
+        .then((res) => {
+          if (res.data.success) {
+            this.carts = res.data.data;
+          }
+          this.isLoading = false;
+        })
+        .catch((err) => {
+          this.toast.error(`請求失敗，代碼：${err.response.status}`);
+          this.isLoading = false;
+        });
     },
     submitData() {
       this.isLoading = true;
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/order`;
-      this.$http.post(api, { data: this.form })
+      this.$http
+        .post(api, { data: this.form })
         .then((res) => {
           if (res.data.success) {
             this.emitter.emit('update-cart');
             this.toast.success(res.data.message);
             this.$router.push(`payment/${res.data.orderId}`);
           }
+        })
+        .catch((err) => {
+          this.toast.error(`請求失敗，代碼：${err.response.status}`);
+          this.isLoading = false;
         });
     },
     isPhone(value) {
@@ -262,5 +278,5 @@ export default {
 </script>
 
 <style lang="scss">
-@import '@/assets/scss/components/_userCart.scss';
+@import "@/assets/scss/components/_userCart.scss";
 </style>

@@ -1,6 +1,8 @@
 <template>
   <Loading :active="isLoading" loader="bars" color="#555" />
-  <div class="banner favor-banner d-flex justify-content-center align-items-center">
+  <div
+    class="banner favor-banner d-flex justify-content-center align-items-center"
+  >
     <div class="banner-content text-center h1 text-light">
       <p class="banner-title">願望清單</p>
       <p class="banner-title h3 pt-3 mb-0">
@@ -28,7 +30,11 @@
           >
             <th>
               <div class="text-center">
-                <img :src="item.imageUrl" class="favor-item" :alt="item.title" />
+                <img
+                  :src="item.imageUrl"
+                  class="favor-item"
+                  :alt="item.title"
+                />
                 <p class="favor-content d-md-none d-block pt-2 mb-0">
                   {{ item.title }}
                 </p>
@@ -141,15 +147,21 @@ export default {
         qty: +1,
       };
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`;
-      this.$http.post(api, { data: cart }).then((res) => {
-        if (res.data.success) {
-          this.emitter.emit('update-cart');
-          this.toast.success(`已將 ${title} 加入購物車`);
-        } else {
-          this.toast.error('加入購物車失敗');
-        }
-        this.isLoading = false;
-      });
+      this.$http
+        .post(api, { data: cart })
+        .then((res) => {
+          if (res.data.success) {
+            this.emitter.emit('update-cart');
+            this.toast.success(`已將 ${title} 加入購物車`);
+          } else {
+            this.toast.error('加入購物車失敗');
+          }
+          this.isLoading = false;
+        })
+        .catch((err) => {
+          this.toast.error(`請求失敗，代碼：${err.response.status}`);
+          this.isLoading = false;
+        });
     },
   },
   created() {
@@ -159,5 +171,5 @@ export default {
 </script>
 
 <style lang="scss">
-@import '@/assets/scss/components/_userFavor.scss';
+@import "@/assets/scss/components/_userFavor.scss";
 </style>

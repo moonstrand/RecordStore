@@ -27,7 +27,11 @@
       </nav>
       <div class="row my-4">
         <div class="col-lg-6 text-lg-start text-center">
-          <img class="product-img" :src="product.imageUrl" :alt="product.title" />
+          <img
+            class="product-img"
+            :src="product.imageUrl"
+            :alt="product.title"
+          />
         </div>
         <div
           class="
@@ -196,12 +200,18 @@ export default {
     getProduct() {
       this.isLoading = true;
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/product/${this.id}`;
-      this.$http.get(api).then((res) => {
-        if (res.data.success) {
-          this.product = res.data.product;
-        }
-        this.isLoading = false;
-      });
+      this.$http
+        .get(api)
+        .then((res) => {
+          if (res.data.success) {
+            this.product = res.data.product;
+          }
+          this.isLoading = false;
+        })
+        .catch((err) => {
+          this.toast.error(`請求失敗，代碼：${err.response.status}`);
+          this.isLoading = false;
+        });
     },
     getID() {
       this.id = this.$route.params.id;
@@ -213,14 +223,20 @@ export default {
         qty,
       };
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`;
-      this.$http.post(api, { data: carts }).then((res) => {
-        if (res.data.success) {
-          this.emitter.emit('update-cart');
-          this.toast.success(`已將 ${item.title} 加入購物車`);
-          this.qty = 1;
-        }
-        this.status.itemLoading = '';
-      });
+      this.$http
+        .post(api, { data: carts })
+        .then((res) => {
+          if (res.data.success) {
+            this.emitter.emit('update-cart');
+            this.toast.success(`已將 ${item.title} 加入購物車`);
+            this.qty = 1;
+          }
+          this.status.itemLoading = '';
+        })
+        .catch((err) => {
+          this.toast.error(`請求失敗，代碼：${err.response.status}`);
+          this.isLoading = false;
+        });
     },
     getFavor() {
       this.favor = JSON.parse(localStorage.getItem('favor')) || [];
@@ -243,17 +259,23 @@ export default {
     },
     randomItem() {
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/products/all`;
-      this.$http.get(api).then((res) => {
-        if (res.data.success) {
-          this.recommend = res.data.products
-            .filter((item) => item.id !== this.id)
-            .sort(() => Math.random() - 0.5)
-            .slice(0, 4);
-        }
-      });
+      this.$http
+        .get(api)
+        .then((res) => {
+          if (res.data.success) {
+            this.recommend = res.data.products
+              .filter((item) => item.id !== this.id)
+              .sort(() => Math.random() - 0.5)
+              .slice(0, 4);
+          }
+        })
+        .catch((err) => {
+          this.toast.error(`請求失敗，代碼：${err.response.status}`);
+          this.isLoading = false;
+        });
     },
     toDetail(id) {
-      this.$router.push(`${id}`);
+      this.$router.push(id);
       this.id = id;
       this.init();
     },
@@ -271,5 +293,5 @@ export default {
 </script>
 
 <style lang="scss">
-@import '@/assets/scss/components/_userProduct.scss';
+@import "@/assets/scss/components/_userProduct.scss";
 </style>

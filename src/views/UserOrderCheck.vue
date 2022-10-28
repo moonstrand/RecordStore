@@ -1,6 +1,8 @@
 <template>
   <Loading :active="isLoading" loader="bars" color="#555" />
-  <div class="banner order-banner d-flex justify-content-center align-items-center">
+  <div
+    class="banner order-banner d-flex justify-content-center align-items-center"
+  >
     <div class="banner-content text-center h1 text-light">
       <p class="banner-title">訂單查詢</p>
       <p class="h3 pt-3 mb-0">「隨時追蹤你的專輯訂單。」</p>
@@ -63,7 +65,7 @@
                     </tr>
                     <tr>
                       <th>取貨方式</th>
-                      <td v-if="(order.user.address === '到店自取')">自取</td>
+                      <td v-if="order.user.address === '到店自取'">自取</td>
                       <td v-else>宅配</td>
                     </tr>
                     <tr>
@@ -97,7 +99,7 @@
                   <h5 class="cart-title border-bottom py-2">收件人電話</h5>
                   <p class="cart-text">{{ order.user.tel }}</p>
                   <h5 class="cart-title border-bottom py-2">取貨方式</h5>
-                  <p class="cart-text" v-if="(order.user.address === '到店自取')">
+                  <p class="cart-text" v-if="order.user.address === '到店自取'">
                     自取
                   </p>
                   <p class="cart-text" v-else>宅配</p>
@@ -139,7 +141,11 @@
                   v-for="(item, i) in order.products"
                   :key="i"
                 >
-                  <img :src="item.product.imageUrl" class="cart-img" :alt="item.product.title" />
+                  <img
+                    :src="item.product.imageUrl"
+                    class="cart-img"
+                    :alt="item.product.title"
+                  />
                   <div
                     class="
                       cart-text
@@ -153,7 +159,9 @@
                     <p class="py-2 mb-0">
                       {{ item.qty }} {{ item.product.unit }}
                     </p>
-                    <p class="mb-0">NT. {{ $filters.currency(item.final_total) }}</p>
+                    <p class="mb-0">
+                      NT. {{ $filters.currency(item.final_total) }}
+                    </p>
                   </div>
                 </div>
                 <div
@@ -161,8 +169,7 @@
                     cart-text cart-border
                     h5
                     d-flex
-                    justify-content-sm-start
-                    justify-content-between
+                    justify-content-sm-start justify-content-between
                     px-3
                     pt-4
                     mb-0
@@ -226,23 +233,35 @@ export default {
     getOrder() {
       this.isLoading = true;
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/order/${this.orderId}`;
-      this.$http.get(api, this.orderId).then((res) => {
-        if (res.data.success) {
-          this.order = res.data.order;
-        }
-        this.isLoading = false;
-      });
+      this.$http
+        .get(api, this.orderId)
+        .then((res) => {
+          if (res.data.success) {
+            this.order = res.data.order;
+          }
+          this.isLoading = false;
+        })
+        .catch((err) => {
+          this.toast.error(`請求失敗，代碼：${err.response.status}`);
+          this.isLoading = false;
+        });
     },
     payOrder() {
       this.isLoading = true;
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/pay/${this.orderId}`;
-      this.$http.post(api).then((res) => {
-        if (res.data.success) {
-          this.toast.success(res.data.message);
-          this.$router.push('/success');
-        }
-        this.isLoading = false;
-      });
+      this.$http
+        .post(api)
+        .then((res) => {
+          if (res.data.success) {
+            this.toast.success(res.data.message);
+            this.$router.push('/success');
+          }
+          this.isLoading = false;
+        })
+        .catch((err) => {
+          this.toast.error(`請求失敗，代碼：${err.response.status}`);
+          this.isLoading = false;
+        });
     },
     backOrderCheck() {
       this.$router.push('/order');
@@ -256,6 +275,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import '@/assets/scss/components/_userOrder.scss';
-@import '@/assets/scss/components/_userCart.scss';
+@import "@/assets/scss/components/_userOrder.scss";
+@import "@/assets/scss/components/_userCart.scss";
 </style>

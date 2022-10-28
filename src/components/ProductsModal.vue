@@ -46,7 +46,11 @@
                   ref="imgInput"
                 />
               </div>
-              <img class="img-fluid" :src="product.imageUrl" :alt="product.title" />
+              <img
+                class="img-fluid"
+                :src="product.imageUrl"
+                :alt="product.title"
+              />
             </div>
             <div class="col-sm-8">
               <div class="mb-3">
@@ -203,11 +207,17 @@ export default {
       const formData = new FormData();
       formData.append('file-to-upload', imgUpload);
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/upload`;
-      this.$http.post(api, formData).then((res) => {
-        if (res.data.success) {
-          this.tempProduct.imageUrl = res.data.imageUrl;
-        }
-      });
+      this.$http
+        .post(api, formData)
+        .then((res) => {
+          if (res.data.success) {
+            this.tempProduct.imageUrl = res.data.imageUrl;
+          }
+        })
+        .catch((err) => {
+          this.toast.error(`請求失敗，代碼：${err.response.status}`);
+          this.isLoading = false;
+        });
     },
   },
   mixins: [modalMixin],

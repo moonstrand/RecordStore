@@ -5,7 +5,6 @@
 </template>
 
 <script>
-// @ is an alias to /src
 import UserNavbar from '@/components/UserNavbar.vue';
 import UserFooter from '@/components/UserFooter.vue';
 import emitter from '@/methods/emitter';

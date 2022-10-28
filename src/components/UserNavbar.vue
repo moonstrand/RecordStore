@@ -1,6 +1,12 @@
 <template>
   <nav
-    class="navbar navbar-expand-lg navbar-light bg-opacity-0 fixed-top px-4 py-0"
+    class="
+      navbar navbar-expand-lg navbar-light
+      bg-opacity-0
+      fixed-top
+      px-4
+      py-0
+    "
     :class="{ navShow: navScroll }"
   >
     <div class="container-fluid">
@@ -103,9 +109,11 @@
             <RouterLink
               class="nav-icon text-light fs-4 d-lg-block d-none"
               to="/favor"
-              >
+            >
               <i class="bi bi-star"></i>
-              <sup v-if="favorLength !== 0"><small>{{ favorLength }}</small></sup>
+              <sup v-if="favorLength !== 0"
+                ><small>{{ favorLength }}</small></sup
+              >
             </RouterLink>
           </li>
           <li class="nav-item my-md-0 my-2">
@@ -114,7 +122,9 @@
               to="/cart"
             >
               <i class="bi bi-cart2"></i>
-              <sup v-if="cartQty"><small>{{ cartQty }}</small></sup>
+              <sup v-if="cartQty"
+                ><small>{{ cartQty }}</small></sup
+              >
             </RouterLink>
           </li>
           <li class="nav-item">
@@ -155,15 +165,21 @@ export default {
     },
     getCartQty() {
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`;
-      this.$http.get(api).then((res) => {
-        if (res.data.success) {
-          if (res.data.data.carts.length !== 0) {
-            this.cartQty = res.data.data.carts.length;
-          } else {
-            this.cartQty = 0;
+      this.$http
+        .get(api)
+        .then((res) => {
+          if (res.data.success) {
+            if (res.data.data.carts.length !== 0) {
+              this.cartQty = res.data.data.carts.length;
+            } else {
+              this.cartQty = 0;
+            }
           }
-        }
-      });
+        })
+        .catch((err) => {
+          this.toast.error(`請求失敗，代碼：${err.response.status}`);
+          this.isLoading = false;
+        });
     },
     getFavorLength() {
       this.favorLength = (JSON.parse(localStorage.getItem('favor')) || []).length;
@@ -182,5 +198,5 @@ export default {
 </script>
 
 <style lang="scss">
-@import '@/assets/scss/components/_navbar.scss';
+@import "@/assets/scss/components/_navbar.scss";
 </style>

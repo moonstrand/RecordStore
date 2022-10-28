@@ -97,12 +97,18 @@ export default {
     logout() {
       const toast = useToast();
       const api = `${process.env.VUE_APP_API}logout`;
-      this.$http.post(api).then((res) => {
-        if (res.data.success) {
-          this.$router.push('/login');
-          toast.info('已登出');
-        }
-      });
+      this.$http
+        .post(api)
+        .then((res) => {
+          if (res.data.success) {
+            this.$router.push('/login');
+            toast.info('已登出');
+          }
+        })
+        .catch((err) => {
+          this.toast.error(`請求失敗，代碼：${err.response.status}`);
+          this.isLoading = false;
+        });
     },
     offcanvasToggle() {
       this.canvasToggle();

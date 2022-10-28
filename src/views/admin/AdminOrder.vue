@@ -115,13 +115,19 @@ export default {
     getOrders(page = 1) {
       this.isLoading = true;
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/orders?page=${page}`;
-      this.$http.get(api).then((res) => {
-        if (res.data.success) {
-          this.orders = res.data.orders;
-          this.pagination = res.data.pagination;
-        }
-        this.isLoading = false;
-      });
+      this.$http
+        .get(api)
+        .then((res) => {
+          if (res.data.success) {
+            this.orders = res.data.orders;
+            this.pagination = res.data.pagination;
+          }
+          this.isLoading = false;
+        })
+        .catch((err) => {
+          this.toast.error(`請求失敗，代碼：${err.response.status}`);
+          this.isLoading = false;
+        });
     },
     openModal(order) {
       const orderComponents = this.$refs.orderModal;
@@ -138,22 +144,32 @@ export default {
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/order/${this.tempOrder.id}`;
       const delComponents = this.$refs.delOrderModal;
       delComponents.modalHide();
-      this.$http.delete(api)
+      this.$http
+        .delete(api)
         .then((res) => {
           if (res.data.success) {
             this.toast.success(`已刪除 ${this.tempOrder.id}`);
           }
           this.getOrders();
+        })
+        .catch((err) => {
+          this.toast.error(`請求失敗，代碼：${err.response.status}`);
+          this.isLoading = false;
         });
     },
     updatePaid(order) {
       this.isLoading = true;
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/order/${this.tempOrder.id}`;
-      this.$http.put(api, { data: { ...order } })
+      this.$http
+        .put(api, { data: { ...order } })
         .then((res) => {
           if (res.data.success) {
             this.toast.success(res.data.message);
           }
+          this.isLoading = false;
+        })
+        .catch((err) => {
+          this.toast.error(`請求失敗，代碼：${err.response.status}`);
           this.isLoading = false;
         });
     },
@@ -165,5 +181,5 @@ export default {
 </script>
 
 <style lang="scss">
-@import '@/assets/scss/components/_admin.scss';
+@import "@/assets/scss/components/_admin.scss";
 </style>

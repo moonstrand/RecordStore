@@ -177,7 +177,7 @@
                   <h5 class="cart-title border-bottom py-2">收件人電話</h5>
                   <p class="cart-text">{{ order.user.tel }}</p>
                   <h5 class="cart-title border-bottom py-2">取貨方式</h5>
-                  <p class="cart-text" v-if="(order.user.address === '到店自取')">
+                  <p class="cart-text" v-if="order.user.address === '到店自取'">
                     自取
                   </p>
                   <p class="cart-text" v-else>宅配</p>
@@ -208,7 +208,11 @@
                   v-for="(item, i) in order.products"
                   :key="i"
                 >
-                  <img :src="item.product.imageUrl" class="cart-img" :alt="item.product.title" />
+                  <img
+                    :src="item.product.imageUrl"
+                    class="cart-img"
+                    :alt="item.product.title"
+                  />
                   <div
                     class="
                       cart-text
@@ -294,23 +298,35 @@ export default {
     getOrder() {
       this.isLoading = true;
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/order/${this.orderId}`;
-      this.$http.get(api).then((res) => {
-        if (res.data.success) {
-          this.order = res.data.order;
-        }
-        this.isLoading = false;
-      });
+      this.$http
+        .get(api)
+        .then((res) => {
+          if (res.data.success) {
+            this.order = res.data.order;
+          }
+          this.isLoading = false;
+        })
+        .catch((err) => {
+          this.toast.error(`請求失敗，代碼：${err.response.status}`);
+          this.isLoading = false;
+        });
     },
     payOrder() {
       this.isLoading = true;
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/pay/${this.orderId}`;
-      this.$http.post(api).then((res) => {
-        if (res.data.success) {
-          this.toast.success(res.data.message);
-          this.$router.push('/success');
-        }
-        this.isLoading = false;
-      });
+      this.$http
+        .post(api)
+        .then((res) => {
+          if (res.data.success) {
+            this.toast.success(res.data.message);
+            this.$router.push('/success');
+          }
+          this.isLoading = false;
+        })
+        .catch((err) => {
+          this.toast.error(`請求失敗，代碼：${err.response.status}`);
+          this.isLoading = false;
+        });
     },
     copyCode() {
       navigator.clipboard.writeText(this.orderId).then(() => {
@@ -326,5 +342,5 @@ export default {
 </script>
 
 <style lang="scss">
-@import '@/assets/scss/components/_userCart.scss';
+@import "@/assets/scss/components/_userCart.scss";
 </style>
