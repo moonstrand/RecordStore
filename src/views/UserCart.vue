@@ -162,7 +162,7 @@
                     "
                   >
                     <a
-                      class="btn btn-sm btn-outline-danger"
+                      class="btn btn-outline-danger"
                       href="#"
                       @click.prevent="deleteCart(item)"
                     >

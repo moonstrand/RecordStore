@@ -128,12 +128,12 @@
     >
       <p class="title border-start border-danger border-5 h2 ps-3">購買須知</p>
       <p class="content lh-lg h5 pt-4">運送方式：</p>
-      <p class="content lh-lg h6">
+      <p class="content lh-lg mb-0">
         <i class="bi bi-truck"></i> 宅配可取貨點：臺灣、蘭嶼、綠島 <br />
         <i class="bi bi-shop"></i> 超商可取貨點：臺灣、蘭嶼、綠島、澎湖 <br />
       </p>
       <p class="content lh-lg h5 pt-4">退換貨須知：</p>
-      <ul class="content lh-lg h6">
+      <ul class="content lh-lg mb-0">
         <li>
           收到商品後有7天猶豫期，若商品有問題請於到貨後7天內於平日上班時間9點至17點來電，
           我們將盡速為您處理。
@@ -146,7 +146,7 @@
         </li>
       </ul>
       <p class="content lh-lg h5 pt-4">防詐騙提醒：</p>
-      <p class="content lh-lg h6">
+      <p class="content lh-lg mb-0">
         本店不會主動要求客戶提供個人資料，或是以分期付款、扣款失敗、
         更改結帳方式為由等名義請客戶提供銀行帳戶、信用卡資料或操作ATM轉帳匯款
         ，還請您提高警覺，若有接到不明來電請來電詢問或是撥打165防詐騙專線查證
