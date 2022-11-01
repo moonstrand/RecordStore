@@ -93,5 +93,10 @@ body a {
   }
 }
 
+.footer-links:hover {
+  transition: 0.1s ease;
+  color: #999 !important;
+}
+
 $page-h: 100vh;
 $nav-h: 56px;
