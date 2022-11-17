@@ -21,7 +21,7 @@
         <span class="bi bi-list fs-2 text-light"></span>
       </button>
       <div
-        class="offcanvas offcanvas-end w-100 d-lg-none d-block navShow"
+        class="offcanvas offcanvas-end bg-dark w-100 d-lg-none d-block navShow"
         tabindex="-1"
         id="offcanvasRight"
         aria-labelledby="offcanvasRightLabel"
@@ -151,7 +151,7 @@ export default {
       favorLength: 0,
     };
   },
-  inject: ['emitter'],
+  inject: ['emitter', 'toast'],
   mixins: [offcanvasMixin],
   methods: {
     navShow() {
